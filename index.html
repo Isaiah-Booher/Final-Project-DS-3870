@@ -4,9 +4,153 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 <body>
-    
+    <div class="col-12 bg-success">
+        <div class="modal-dialog-centered vw-100 justify-content-center">
+            <div class="col-12 col-md-6 col-lg-4 card d-block">
+                <div class="card-head text-center">
+                    <h3 class="pt-2">Registration</h3>
+                    <h4 class="text-left ms-1 me-1" >Please complete the required fields to create a new user account.</h4>
+                </div>
+                <label for="txtRequiredFields" class="form-label text-danger ms-3">"*" indicates required fields.</label>
+                <div class="card-body">
+                    <form>
+                        <label for="txtUserInformation" class="fs-5 fw-bold form-label text-left text-decoration-underline d-md-block col-12">User Information</label>
+                        <label for="txtFirstName" class="form-label">First Name*</label>
+                        <input class="form-control" id="txtFirstName" aria-label="First Name">
+                        <label for="txtLastName" class="form-label">Last Name*</label>
+                        <input class="form-control" id="txtLastName">
+                        <label for="txtEmail" class="form-label">Email*</label>
+                        <input type="email" class="form-control" id="txtEmail">
+                        <label for="txtPassword" class="form-label">Password*</label>
+                        <input type="password" class="form-control" id="txtPassword">
+                        <label for="txtMobileNumber" class="form-label">Mobile Number*</label>
+                        <input class="form-control" id="txtMobileNumber">
+
+                        <label for="txtLocationDetails" class="fs-5 fw-bold form-label text-left text-decoration-underline d-md-block col-12 mt-4">Location Details</label>
+                        <label for="txtFarmID" class="form-label">Farm ID</label>
+                        <input class="form-control" id="txtFarmID">
+
+                        <label for="txtLocationDetails" class="fs-6 fst-italic fw-bold form-label text-left d-md-block col-12 mt-1">-OR-</label>
+
+                        <label for="txtFarmName" class="form-label">Farm Name*</label>
+                        <input class="form-control" id="txtFarmName">
+                        <label for="txtStreetAddress1" class="form-label">Street Address 1*</label>
+                        <input class="form-control" id="txtStreetAddress1">
+                        <label for="txtStreetAddress2" class="form-label">Street Address 2</label>
+                        <input class="form-control" id="txtStreetAddress2">
+                        <label for="txtCity" class="form-label">City*</label>
+                        <input class="form-control" id="txtCity">
+                        <label for="txtState" class="form-label">State*</label>
+                        <input class="form-control" id="txtState">
+                        <label for="txtZipCode" class="form-label">Zip Code*</label>
+                        <input class="form-control" id="txtZipCode">
+                        
+
+                        <button aria-label="Submit" class="btn btn-success col-12 mt-3" id="btnSubmit" type="button">Submit</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script>
+        const strHello = "Hello";
+        var strWorld = 'World';
+        let strName = 'Isaiah';
+        strName = 31;
+        // alert(strHello + " " + strWorld + ". This is " + strName);
+        // Hello World. This is Isaiah
+        
+        //Retrieve the value of the input with the id of txtEmail
+        
+        $('#btnSubmit').click(function(){
+            let strFirst = $('#txtFirstName').val();
+            let intFirstNameLength = $('#txtFirstName').val().length;
+
+            let strLast = $('#txtLastName').val();
+            let intLastNameLength = $('#txtLastName').val().length;
+
+            let strEmail = $('#txtEmail').val();
+            let intEmailLength = $('#txtEmail').val().length;
+
+            let strPassword = $('#txtPassword').val();
+            let intPasswordLength = $('#txtPassword').val().length;
+
+            let strMobileNumber = $('#txtMobileNumber').val();
+            let intMobileNumberLength = $('#txtMobileNumber').val().length;
+
+            let strFarmName = $('#txtFarmName').val();
+            let intFarmNameLength = $('#txtFarmName').val().length;
+
+            let strStreetAddress1 = $('#txtStreetAddress1').val();
+            let intStreetAddress1Length = $('#txtStreetAddress1').val().length;
+
+            let strCity = $('#txtCity').val();
+            let intCityLength = $('#txtCity').val().length;
+
+            let strState = $('#txtState').val();
+            let intStateLength = $('#txtState').val().length;
+
+            let strZipCode = $('#txtZipCode').val();
+            let intZipCodeLength = $('#txtZipCode').val().length;
+
+
+            var blnErrorFound = false;
+            var strErrorMessage = '';
+
+            if(intFirstNameLength < 1){
+                blnErrorFound = true;
+                strErrorMessage += "You must enter a First Name. ";
+            }
+            if(intLastNameLength < 1){
+                blnErrorFound = true;
+                strErrorMessage += "You must enter a Last Name. ";
+            }
+            if(intEmailLength < 1){
+                blnErrorFound = true;
+                strErrorMessage += "You must enter a Email. ";
+            }
+            if(intPasswordLength < 1){
+                blnErrorFound = true;
+                strErrorMessage += "You must enter a Password. ";
+            }
+            if(intMobileNumberLength < 1){
+                blnErrorFound = true;
+                strErrorMessage += "You must enter a Mobile Number. ";
+            }
+            if(intFarmNameLength < 1){
+                blnErrorFound = true;
+                strErrorMessage += "You must enter a Farm Name. ";
+            }
+            if(intStreetAddress1Length < 1){
+                blnErrorFound = true;
+                strErrorMessage += "You must enter a Street Address. ";
+            }
+            if(intCityLength < 1){
+                blnErrorFound = true;
+                strErrorMessage += "You must enter a City. ";
+            }
+            if(intStateLength < 1){
+                blnErrorFound = true;
+                strErrorMessage += "You must enter a State. ";
+            }
+            if(intZipCodeLength < 1){
+                blnErrorFound = true;
+                strErrorMessage += "You must enter a Zip Code. ";
+            }
+
+            if(blnErrorFound == true){
+                alert(strErrorMessage)
+            }
+
+            // alert('First Name: ' + strFirst + ' | Last Name: ' + strLast + ' | Username: ' + strEmail + ' | Password: ' + strPassword);
+        })
+    </script>
 </body>
 </html>
