@@ -25,7 +25,7 @@
                                   <div class="row d-flex justify-content-center align-items-center h-100">
                                     <div class="col-md-9 col-lg-6 col-xl-5 justify-content-center text-center">
                                       <img src="Putnam Farms.png"
-                                        class="img-fluid" style="padding: auto;" alt="Brand Logo">
+                                        class="img-fluid" alt="Brand Logo">
                                     </div>
                                     <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                                       <form>
@@ -43,16 +43,16 @@
                               
                                         <!-- Email input -->
                                         <div class="form-outline mb-4">
-                                          <input aria-label="Enter Email" type="email" id="emailAddress" class="form-control form-control-lg"
-                                            placeholder="Enter a valid email address" />
+                                          <input aria-label="Enter Email" type="email" id="txtEmailAddress" class="form-control form-control-lg"
+                                            placeholder="Enter email address" />
                                           <label class="form-label" for="emailAddress">Email address</label>
                                         </div>
                               
                                         <!-- Password input -->
                                         <div class="form-outline mb-3">
-                                          <input aria-label="Enter Password" type="password" id="form3Example4" class="form-control form-control-lg"
+                                          <input aria-label="Enter Password" type="password" id="txtPassword" class="form-control form-control-lg"
                                             placeholder="Enter password" />
-                                          <label class="form-label" for="form3Example4">Password</label>
+                                          <label class="form-label" for="password">Password</label>
                                         </div>
                               
                                         <div class="d-flex justify-content-between align-items-center">
@@ -60,33 +60,51 @@
                                         </div>
                               
                                         <div class="text-center text-lg-start mt-4 pt-2">
-                                          <button type="button" class="btn btn-success btn-lg"
+                                          <button type="button" id="btnLogin" class="btn btn-success btn-lg"
                                             style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
                                           <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="registration.html"
-                                              class="link-primary">Register and create a new farm.</a></p>
-                                        </div>
-                              
+                                              class="link-primary">Register and/or create a new farm.</a></p>
+                                        </div>                              
                                       </form>
                                     </div>
                                   </div>
                                 </div>
                               </section>
-                            
-
                         </div>
-
                     </div>
-
                 </div>
-
-
             </div>
-
         </div>
-
     </section>
   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+
+    <script>
+      $('#btnLogin').click(function(){
+        let strEmail = $('#txtEmailAddress').val();
+        let intEmailLength = $('#txtEmailAddress').val().length;
+
+        let strPassword = $('#txtPassword').val();
+        let intPasswordLength = $('#txtPassword').val().length;
+
+        var blnErrorFound1 = false;
+        var strErrorMessage1 = '';
+
+        if(intEmailLength < 1){
+            blnErrorFound1 = true;
+            strErrorMessage1 += "You must enter a Email. ";
+        }
+
+        if(intPasswordLength < 1){
+            blnErrorFound1 = true;
+            strErrorMessage1 += "You must enter a Password. ";
+        }
+
+        if(blnErrorFound1 == true){
+            alert(strErrorMessage1)
+        }
+      })
+    </script>
 </body>
 </html>
