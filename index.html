@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swollen Farms</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<nav class="navbar navbar-expand-lg fixed-top" data-bs-theme="dark" style="background-color:darkolivegreen;">
+    <div class="container-fluid" id="divNavBarStandard">
+      <img src="..//Final-Project-DS-3870/pictures/Picture3.jpg" alt="Logo" height="50px" width="50px" class="d-inline">
+      <a class="navbar-brand align-items-center btn" id="btnHome">Swollen Farms</a>
+    </div>
+    <div class="container-fluid" id="divNavBarDashboard" style="display: none">
+      <img src="..//Final-Project-DS-3870/pictures/Picture3.jpg" alt="Logo" height="50px" width="50px" class="d-inline">
+      <div>
+        <a class="navbar-brand align-items-center btn" id="btnDashboard">Dashboard</a>
+        <a class="navbar-brand align-items-center btn" id="btnProfile">Profile</a>
+        <a class="navbar-brand align-items-center btn" id="btnLogout">Logout</a>
+      </div>
+    </div>
+  </nav>
+<body style="background-image: url('../Final-Project-DS-3870/pictures/field.jpg'); background-position-x:left;">
+    <div id="divLogin" class="h-100 h-custom gradient-custom-2">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12">
+                    <div class="mt-5 card card-registration card-registration-2" style="border-radius: 15px;">
+                        <div class="card-body p-0">
+                            <section class="h-100 ms-3 me-3 mt-4 mb-5">
+                                <div class="container-fluid h-custom">
+                                  <div class="row d-flex justify-content-center align-items-center h-100">
+                                    <div class="col-md-9 col-lg-6 col-xl-5 justify-content-center text-center">
+                                      <img src="..//Final-Project-DS-3870/pictures/Hippo.jpg"
+                                        class="img-fluid" alt="Brand Logo">
+                                    </div>
+                                    <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                                      <form>
+                                        <div class="d-flex align-items-center justify-content-center justify-content-lg-start">
+                                          <p class="lead display-6 fw-bold mb-0 me-3">Swollen Farms</p>
+                                        </div>
+
+                                        <div class="d-flex align-items-center justify-content-center justify-content-lg-start">
+                                          <h5>A better way to track produce</h5>
+                                        </div>
+                              
+                                        <div class="divider d-flex align-items-center my-4">
+                                          <h4 class="text-left fw-bold mx-0 mb-0">Login:</h4>
+                                        </div>
+                              
+                                        <!-- Email input -->
+                                        <div class="form-outline mb-4">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                          </svg>
+                                          <label class="form-label" for="emailAddress">Email address</label>
+                                          <input aria-label="Enter Email" type="email" id="txtEmailAddress" class="form-control form-control-lg"
+                                            placeholder="Enter email address" />
+                                        </div>
+                              
+                                        <!-- Password input -->
+                                        <div class="form-outline mb-3">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                          </svg>
+                                          <label class="form-label" for="password">Password</label>
+                                          <input aria-label="Enter Password" type="password" id="txtPassword" class="form-control form-control-lg"
+                                            placeholder="Enter password" />
+                                        </div>
+                              
+                                        <div class="d-flex justify-content-between align-items-center">
+                                          <a href="#!" class="text-body">Forgot password?</a>
+                                        </div>
+                              
+                                        <div class="text-center text-lg-start mt-4 pt-2">
+                                          <button type="button" id="btnLogin" class="btn btn-success btn-lg"
+                                            style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+                                          </div>                              
+                                        </form>
+                                        <div>
+                                          <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <button type="button"
+                                              class="btn btn-primary" id="btnRegister">Register and/or create a new farm.</button></p>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    <div id="divRegistration" class="h-100 h-custom gradient-custom-2" style="display: none;">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12">
+              <div class="mt-5 card card-registration card-registration-2" style="border-radius: 15px;">
+                <div class="card-body p-0">
+                  <div class="row g-0">
+                    <div class="col-lg-6">
+                      <div class="p-5">
+                        <h3 class="fw-normal mb-1 text-decoration-underline">Create a New User Account</h3>
+                        <h6 class="mb-4">Please complete the required fields to register as a new user. </h6>
+    
+                        <div class="row">
+                          <div class="col-md-6 mb-4 pb-2">
+      
+                            <div class="form-outline">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                              </svg>
+                            <label for="txtFirstName" class="form-label">First Name<p class="form-label text-danger d-inline">*</p></label>
+                            <input class="form-control" placeholder="John" id="txtFirstName" aria-label="First Name">
+                            </div>
+      
+                          </div>
+                          <div class="col-md-6 mb-4 pb-2">
+      
+                            <div class="form-outline">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                  </svg>
+                                <label for="txtLastName" class="form-label">Last Name<p class="form-label text-danger d-inline">*</p></label>
+                                <input class="form-control" placeholder="Doe" id="txtLastName" aria-label="Last Name">
+                            </div>
+      
+                          </div>
+                        </div>
+      
+                    
+      
+                        <div class="mb-4 pb-2">
+                          <div class="form-outline">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                              </svg>
+                            <label for="txtEmail" class="form-label">Email<p class="form-label text-danger d-inline">*</p></label>
+                            <input type="email" placeholder="johndoe@domain.com" class="form-control" id="txtEmail" aria-label="Email">
+                          </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-4 pb-2">
+        
+                              <div class="form-outline">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                  </svg>
+                                <label for="txtPassword" class="form-label">Password<p class="form-label text-danger d-inline">*</p></label>
+                                <input type="password" placeholder="must be at least 8 characters" class="form-control" id="txtPassword" aria-label="Password">
+                              </div>
+        
+                            </div>
+                            <div class="col-md-6 mb-4 pb-2">
+        
+                              <div class="form-outline">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                      <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                    </svg>
+                                  <label for="txtMobileNumber" class="form-label">Mobile Number<p class="form-label text-danger d-inline">*</p></label>
+                                  <input class="form-control" type="number" placeholder="(xxx) xxx-xxxx" id="txtMobileNumber" aria-label="Mobile Number">
+                              </div>
+        
+                            </div>
+                            <div class="form-check ms-3">
+                                <input class="form-check-input me-3" type="checkbox" value="" id="checkbox1" />
+                                <label class="form-check-label text-dark d-inline" for="txtPolicy1">
+                                  I accept the <a href=""><u>terms and conditions</u></a>, <a href=""><u>privacy policy</u></a>, and <a href=""><u>cookie policy</u></a> of your
+                                  site.
+                                </label>
+                            </div>
+                            <div class="form-check d-flex justify-content-center mb-2 pb-3 mt-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person-add" viewBox="0 0 16 16">
+                                    <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0Zm-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/>
+                                    <path d="M8.256 14a4.474 4.474 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4s1 1 1 1h5.256Z"/>
+                                  </svg>
+                            </div>
+                            
+                            <button type="button" id="btnCreateAccount" class="btn btn-light btn-lg col-12 ms-2 bg-success text-light"
+                                data-mdb-ripple-color="dark">Create Account</button>
+                           
+                        </div>
+      
+                      </div>
+                    </div>
+                    <div class="col-lg-6 bg-indigo text-dark">
+                      <div class="p-5">
+                        <h3 class="fw-normal mb-1 text-decoration-underline">Create a New Farm</h3>
+                        <h6 class="mb-4">Please complete the required fields to register a new farm. </h6>
+      
+                        <div class="mb-4 pb-2">
+                          <div class="form-outline form-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                              </svg>
+                            <label for="txtFarmName" class="form-label">Farm Name<p class="form-label text-danger d-inline">*</p></label>
+                            <input class="form-control" placeholder="Ex: TN-Homestead" id="txtFarmName" aria-label="Farm Name">
+                          </div>
+                        </div>
+      
+                        <div class="mb-4 pb-2">
+                          <div class="form-outline form-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                              </svg>
+                            <label for="txtStreetAddress1" class="form-label">Street Address 1<p class="form-label text-danger d-inline">*</p></label>
+                            <input class="form-control" placeholder="123 East Street" id="txtStreetAddress1" aria-label="Street Address 1">
+                          </div>
+                        </div>
+
+                        <div class="mb-4 pb-2">
+                            <div class="form-outline form-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                  </svg>
+                                <label for="txtStreetAddress2" class="form-label">Street Address 2</label>
+                                <input class="form-control" placeholder="Optional" id="txtStreetAddress2" aria-label="Street Address 2">
+                            </div>
+                          </div>
+      
+                          <div class="row">
+                            <div class="col-md-6 mb-4 pb-2">
+        
+                              <div class="form-outline">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                  </svg>
+                                <label for="txtCity" class="form-label">City<p class="form-label text-danger d-inline">*</p></label>
+                                <input class="form-control" placeholder="Cookeville" id="txtCity" aria-label="City">
+                              </div>
+        
+                            </div>
+                            <div class="col-md-6 mb-4 pb-2">
+        
+                              <div class="form-outline">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                  </svg>
+                                <label for="txtState" class="form-label">State<p class="form-label text-danger d-inline">*</p></label>
+                                <input class="form-control" placeholder="Tennessee" id="txtState" aria-label="State">
+                              </div>
+        
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-md-6 mb-4 pb-2">
+        
+                              <div class="form-outline">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                  </svg>
+                                <label for="txtZipCode" class="form-label">Zip Code<p class="form-label text-danger d-inline">*</p></label>
+                                <input class="form-control" type="number" placeholder="12345" id="txtZipCode" aria-label="Zip Code">
+                              </div>
+        
+                            </div>
+                            <div class="col-md-6 mb-4 pb-2">
+        
+                              <div class="form-check mt-3 ms-2">
+                                <input class="form-check-input me-3" type="checkbox" value="" id="checkbox2" />
+                                <label class="form-check-label text-dark d-inline" for="txtPolicy2">
+                                  I accept the <a href=""><u>terms and conditions</u></a>, <a href=""><u>privacy policy</u></a>, and <a href=""><u>cookie policy</u></a> of your
+                                  site.
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+
+                        <div class="form-check d-flex justify-content-center mb-2 pb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-house-add" viewBox="0 0 16 16">
+                                <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h4a.5.5 0 1 0 0-1h-4a.5.5 0 0 1-.5-.5V7.207l5-5 6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5Z"/>
+                                <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-3.5-2a.5.5 0 0 0-.5.5v1h-1a.5.5 0 0 0 0 1h1v1a.5.5 0 1 0 1 0v-1h1a.5.5 0 1 0 0-1h-1v-1a.5.5 0 0 0-.5-.5Z"/>
+                              </svg>
+                        </div>
+                        
+                        <button type="button" id="btnCreateFarm" class="btn btn-light btn-lg col-12 ms-2 bg-success text-light"
+                            data-mdb-ripple-color="dark">Create Farm</button>      
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                  <div class="card-footer text-primary text-center fw-bold">
+                    <a href="login.html" class="d-inline btn btn-link ms-3 ms-3" role="button">Home</a>
+                    <a href="#" class="d-inline btn btn-link ms-3 ms-3" role="button">About</a>
+                    <a href="#" class="d-inline btn btn-link ms-3 ms-3" role="button">Contact</a>
+                    <a href="#" class="d-inline btn btn-link ms-3 ms-3" role="button">Support</a>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div id="divProfile" class="h-100 h-custom gradient-custom-2" style="display: none;">
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12">
+                <div class="mt-5 card card-registration card-registration-2" style="border-radius: 15px;">
+                    <div class="card-body p-0">
+                      <div class="col p-5">
+                        <h2 class="card-title">Profile Information</h2>
+                        <div class="card p-3">
+                          <div class="card-body">
+                            <h4 class="card-title">Your User Information</h4>
+                            <div>
+                              <div><label>First Name: </label></div>
+                              <div><label>Last Name: </label></div>
+                              <div><label>User Type: </label></div>
+                              <div><label>Email: </label></div>
+                              <div><label>Mobile Number: </label></div>
+                            </div>    
+                          </div>
+                        </div>
+                        <div class="card p-3">
+                          <div class="card-body">
+                            <h4 class="card-title">Your Farm Information</h4>
+                            <div>
+                              <div><label>Farm Name: </label></div>
+                              <div><label>Street Address 1: </label></div>
+                              <div><label>Street Address 2: </label></div>
+                              <div><label>City: </label></div>
+                              <div><label>State: </label></div>
+                              <div><label>Zip: </label></div>
+                            </div>    
+                          </div>
+                        </div>
+                        <div>
+                          <button class="btn btn-primary" type="button" id="btnBackToDashboard">Back to Dashboard</button>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      </div> 
+    <div id="divDashboard" class="h-100 h-custom gradient-custom-2" style="display: none;">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+              <div class="col-12">
+                  <div class="mt-5 card card-registration card-registration-2" style="border-radius: 15px;">
+                      <div class="card-body p-0">
+                        <div>
+                          <label for="" class="align-items-center justify-content-center col-12 text-center p-2 fw-bold fs-1">Hello User, Welcome to your Dashboard</label>
+                          <h4 class="col-12 text-center">Explore our platforms below to optimize your business processes!</h4>
+                        </div>
+                        <div class="row row-cols-1 row-cols-md-2 g-4">
+                          <div class="col p-5">
+                            <div class="card">
+                              <img src="..//Final-Project-DS-3870/pictures/Animals.jpg" class="card-img-top"
+                                alt="Animals" />
+                              <div class="card-body">
+                                <h5 class="card-title">Animals</h5>
+                                <p class="card-text">
+                                  Welcome to our animal tracking platform! Here, you can easily track information about your pets and livestock. 
+                                  From the animal type to the amount of animals, our platform makes it simple to stay organized and informed. 
+                                  Whether you're a pet owner or a farmer, our user-friendly system can help you keep track of all the important 
+                                  details you need to keep your animals healthy and happy.
+                                </p>
+                                <div class="col-12 text-center">
+                                  <button id="" class="btn btn-success" type="button">Access</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col p-5">
+                            <div class="card">
+                              <img src="../Final-Project-DS-3870/pictures/Crops.jpg" class="card-img-top"
+                                alt="Crops" />
+                              <div class="card-body">
+                                <h5 class="card-title">Crops</h5>
+                                <p class="card-text">
+                                  Welcome to our crop tracking platform! Our platform makes it easy to track all the important information about your crops, 
+                                  from planting dates to the status of growth. Whether you're a farmer or a gardener, 
+                                  our user-friendly system can help you stay on top of your crop management. With our platform, you can easily monitor your crop's progress, identify potential issues, and track your harvest data.
+                                </p>
+                                <div class="col-12 text-center">
+                                  <button id="" class="btn btn-success" type="button">Access</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col p-5">
+                            <div class="card">
+                              <img src="../Final-Project-DS-3870/pictures/Farms.jpg" class="card-img-top"
+                                alt="Farms" />
+                              <div class="card-body">
+                                <h5 class="card-title">Farms</h5>
+                                <p class="card-text">Welcome to our farm tracking platform! Our platform is designed to help farmers 
+                                  of all sizes stay organized and informed about their farming operations. Our user-friendly system makes it easy to manage all aspects 
+                                  of your farms from one centralized location. With our platform, you can identify potential 
+                                  issues and make informed decisions to optimize your farm's performance.
+                                </p>
+                                <div class="col-12 text-center">
+                                  <button id="" class="btn btn-success" type="button">Access</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col p-5">
+                            <div class="card">
+                              <img src="../Final-Project-DS-3870/pictures/Employees.jpg" class="card-img-top"
+                                alt="Employees" />
+                              <div class="card-body">
+                                <h5 class="card-title">Employees</h5>
+                                <p class="card-text">Welcome to our farm employee tracking platform! Keeping track of your employees is 
+                                  essential for managing your farm operations. With our platform, you can easily monitor employee demographics, track hours worked, 
+                                  and manage payroll. Our user-friendly system also allows you to store employee records, including contact information, 
+                                  and job descriptions.
+                                </p>
+                                <div class="col-12 text-center">
+                                  <button id="" class="btn btn-success" type="button">Access</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col p-5">
+                            <div class="card">
+                              <img src="..//Final-Project-DS-3870/pictures/tasks.jpg" class="card-img-top"
+                                alt="Tasks" />
+                              <div class="card-body">
+                                <h5 class="card-title">Tasks</h5>
+                                <p class="card-text">
+                                  Welcome to our task tracking platform! Our platform is designed to help individuals and teams 
+                                  stay organized and on top of their daily tasks. With our user-friendly system, you can easily create and 
+                                  assign tasks, set due dates and priorities, and monitor progress towards completion. Whether you're managing 
+                                  a small project or a large team, our platform can help you streamline your task management and increase productivity. 
+                                </p>
+                                <div class="col-12 text-center">
+                                  <button id="" class="btn btn-success" type="button">Access</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col p-5">
+                            <div class="card">
+                              <img src="../Final-Project-DS-3870/pictures/Inventory.jpg" class="card-img-top"
+                                alt="Inventory" />
+                              <div class="card-body">
+                                <h5 class="card-title">Inventory (Raw Materials)</h5>
+                                <p class="card-text">
+                                  Welcome to our farm inventory tracking platform! Our platform makes it easy to manage your inventory, from tracking the quantity 
+                                  of feed and supplies to monitoring equipment usage and maintenance schedules. With our user-friendly system, 
+                                  you can easily identify which items need to be replenished, track inventory levels over time, and make informed 
+                                  decisions to optimize your operations.
+                                </p>
+                                <div class="col-12 text-center">
+                                  <button id="" class="btn btn-success" type="button">Access</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col p-5">
+                            <div class="card">
+                              <img src="..//Final-Project-DS-3870/pictures/Costs.jpg" class="card-img-top"
+                                alt="Costs" />
+                              <div class="card-body">
+                                <h5 class="card-title">Financial Reports</h5>
+                                <p class="card-text">
+                                  Welcome to our cost tracking platform! Keeping track of your expenses is essential to managing your finances effectively. 
+                                  Our platform makes it easy to monitor all your costs, from labor and materials to miscellaneous charges. With our user-friendly system, you 
+                                  can easily track expenses over time, identify areas where you can save money, and make informed 
+                                  decisions to optimize your spending.
+                                </p>
+                                <div class="col-12 text-center">
+                                  <button id="" class="btn btn-success" type="button">Access</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+      </div>
+    <div id="divAnimals" class="h-100 h-custom gradient-custom-2" style="display: none;">
+      </div>
+    <div id="divCrops" class="h-100 h-custom gradient-custom-2" style="display: none;">
+      </div>
+    <div id="divFarms" class="h-100 h-custom gradient-custom-2" style="display: none;">
+      </div>
+    <div id="divTasks" class="h-100 h-custom gradient-custom-2" style="display: none;">
+      </div>
+    <div id="divInventory" class="h-100 h-custom gradient-custom-2" style="display: none;">
+      </div>
+    <div id="divCosts" class="h-100 h-custom gradient-custom-2" style="display: none;">
+      </div>
+  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+
+    <script>
+      $('#btnLogin').click(function(){
+        let strEmail = $('#txtEmailAddress').val();
+        let intEmailLength = $('#txtEmailAddress').val().length;
+
+        let strPassword = $('#txtPassword').val();
+        let intPasswordLength = $('#txtPassword').val().length;
+
+        var blnErrorFound1 = false;
+        var strErrorMessage1 = '';
+
+        if(intEmailLength < 1){
+            blnErrorFound1 = true;
+            strErrorMessage1 += "You must enter a Email. ";
+        }
+
+        if(intPasswordLength < 1){
+            blnErrorFound1 = true;
+            strErrorMessage1 += "You must enter a Password. ";
+        }
+
+        if(blnErrorFound1 == true){
+            alert(strErrorMessage1)
+        }
+
+        $('#divLogin').slideToggle()
+        $('#divDashboard').slideToggle()
+
+        $('#divNavBarStandard').slideToggle()
+        $('#divNavBarDashboard').slideToggle()
+
+      })
+
+      $('#btnRegister').click(function(){
+        $('#divLogin').slideToggle()
+        $('#divRegistration').slideToggle()
+      });
+
+      $('#btnProfile').click(function(){
+        if ($("#divProfile").css("display") == "none") {
+            $("#divProfile").slideToggle();
+            $("#divDashboard").hide();
+            $("#divLogin").hide();
+          }
+        else {
+          pass
+        }
+      });
+
+      $('#btnBackToDashboard').click(function(){
+        $('#divProfile').slideToggle()
+        $('#divDashboard').slideToggle()
+      });
+
+      $("#btnDashboard").click(function(){
+        if ($("#divDashboard").css("display") == "none") {
+            $("#divDashboard").slideToggle();
+            $("#divProfile").hide();
+            $("#divLogin").hide();
+          }
+        else {
+          pass
+        }
+      })
+      
+
+
+
+
+
+      $('#btnLogout').click(function(){
+        $('#divNavBarDashboard').slideToggle()
+        $('#divNavBarStandard').slideToggle()
+        $('#divLogin').slideToggle()
+        $('#divDashboard').hide()
+        $('#divProfile').hide()
+
+      });
+   
+    // $('#btnCreateAccount').onclick.slideup();  
+    
+    // $('#btnLogout').click(function(){
+    //     $('#divDashboard').slideToggle()
+    //     $('#divLogin').slideToggle()
+    //   });
+
+
+    $('#btnCreateAccount').click(function(){
+        let strFirst = $('#txtFirstName').val();
+        let intFirstNameLength = $('#txtFirstName').val().length;
+
+        let strLast = $('#txtLastName').val();
+        let intLastNameLength = $('#txtLastName').val().length;
+
+        let strEmail = $('#txtEmail').val();
+        let intEmailLength = $('#txtEmail').val().length;
+
+        let strPassword = $('#txtPassword').val();
+        let intPasswordLength = $('#txtPassword').val().length;
+
+        let strMobileNumber = $('#txtMobileNumber').val();
+        let intMobileNumberLength = $('#txtMobileNumber').val().length;
+
+        var blnErrorFound1 = false;
+        var strErrorMessage1 = '';
+
+        var pswError = false;
+        var pswErrorMessage = '';
+
+        if(intFirstNameLength < 1){
+            blnErrorFound1 = true;
+            strErrorMessage1 += "You must enter a First Name. ";
+        }
+        if(intLastNameLength < 1){
+            blnErrorFound1 = true;
+            strErrorMessage1 += "You must enter a Last Name. ";
+        }
+        if(intEmailLength < 1){
+            blnErrorFound1 = true;
+            strErrorMessage1 += "You must enter a Email. ";
+        }
+        if(intPasswordLength < 1){
+            blnErrorFound1 = true;
+            strErrorMessage1 += "You must enter a Password. ";
+        }
+        if(intPasswordLength < 8){
+            pswError = true;
+            pswErrorMessage += "Your password must be at least 8 characters long.";
+        }
+        if(intMobileNumberLength < 1){
+            blnErrorFound1 = true;
+            strErrorMessage1 += "You must enter a Mobile Number. ";
+        }
+        if($('#checkbox1').prop('checked') == false){
+            blnErrorFound1 = true;
+            strErrorMessage1 += "You must accept our terms and conditions, our privacy policy, and our cookie policy. ";
+        }
+
+        if(blnErrorFound1 == true){
+            alert(strErrorMessage1)
+        }
+        if(pswError == true){
+            alert(pswErrorMessage)
+        }
+
+        $('#divRegistration').slideToggle()
+        $('#divDashboard').slideToggle()
+
+        $('#divNavBarStandard').slideToggle()
+        $('#divNavBarDashboard').slideToggle()
+
+        // if(blnErrorFound1 != true){
+        //   $('#divRegistration').slideToggle()
+        //   $('#divDashboard').slideToggle()
+        // }
+
+        // if(pswError != true){
+        //   $('#divRegistration').slideToggle()
+        //   $('#divDashboard').slideToggle()
+        // }
+    })
+        
+    $('#btnCreateFarm').click(function(){    
+
+        let strFarmName = $('#txtFarmName').val();
+        let intFarmNameLength = $('#txtFarmName').val().length;
+
+        let strStreetAddress1 = $('#txtStreetAddress1').val();
+        let intStreetAddress1Length = $('#txtStreetAddress1').val().length;
+
+        let strCity = $('#txtCity').val();
+        let intCityLength = $('#txtCity').val().length;
+
+        let strState = $('#txtState').val();
+        let intStateLength = $('#txtState').val().length;
+
+        let strZipCode = $('#txtZipCode').val();
+        let intZipCodeLength = $('#txtZipCode').val().length;
+
+
+        var blnErrorFound2 = false;
+        var strErrorMessage2 = '';
+
+        if(intFarmNameLength < 1){
+            blnErrorFound2 = true;
+            strErrorMessage2 += "You must enter a Farm Name. ";
+        }
+        if(intStreetAddress1Length < 1){
+            blnErrorFound2 = true;
+            strErrorMessage2 += "You must enter a Street Address. ";
+        }
+        if(intCityLength < 1){
+            blnErrorFound2 = true;
+            strErrorMessage2 += "You must enter a City. ";
+        }
+        if(intStateLength < 1){
+            blnErrorFound2 = true;
+            strErrorMessage2 += "You must enter a State. ";
+        }
+        if(intZipCodeLength < 1){
+            blnErrorFound2 = true;
+            strErrorMessage2 += "You must enter a Zip Code. ";
+        }
+        if($('#checkbox2').prop('checked') == false){
+            blnErrorFound2 = true;
+            strErrorMessage2 += "You must accept our terms and conditions, our privacy policy, and our cookie policy. ";
+        }
+
+        if(blnErrorFound2 == true){
+            alert(strErrorMessage2)
+        }
+    })
+  </script> 
+  
+</body>
+</html>
