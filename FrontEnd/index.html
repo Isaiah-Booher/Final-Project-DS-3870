@@ -1271,7 +1271,7 @@
             blnErrorFound1 = true;
             strErrorMessage1 += "You must enter a Password. ";
         }
-        if(intPasswordLength < 8){
+        if(intPasswordLength <= 8){
             pswError = true;
             pswErrorMessage += "Your password must be at least 8 characters long.";
         }

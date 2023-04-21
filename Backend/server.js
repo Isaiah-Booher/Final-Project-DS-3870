@@ -33,3 +33,22 @@ function uuidv4() {
 app.listen(HTTP_PORT, () => {
     console.log("Server is listening on port " + HTTP_PORT);
 });
+
+
+app.post("/users", (req,res,next) => {
+    let strFirstName = req.query.firstname || req.body.firstname;
+    let strLastName = req.query.lastname || req.body.lastname;
+    let strEmail = req.query.email || req.body.email;
+    let strPassword = req.query.password || req.body.password;
+    let strPhone = req.query.mobilenumber || req.body.mobilenumber;
+    bcrypt.hash(strPassword, 10).then(hash => {
+        strPassword = hash;
+        pool.query('INSERT INTO tblUsers (First_Name, Last_Name, Email, UserPassword, Phone, Date_Recorded) VALUES(?, ?, ?, ?, ?,SYSDATE())',[strEmail, strFirstName, strLastName, strPassword, strPhone], function(error, results){
+            if(!error){
+                res.status(200).send(JSON.stringify({Outcome:'New User Created'}));
+            } else {
+                res.status(400).send(JSON.stringify({Error:error}));
+            }
+        })
+    })
+})

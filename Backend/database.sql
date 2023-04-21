@@ -30,6 +30,7 @@ CREATE TABLE tblUsers (
     Email varchar(30),
     UserPassword varchar(30),
     Phone varchar(10),
+    Date_Recorded sysdate(),
     PRIMARY KEY (User_ID),
     FOREIGN KEY (Farm_ID) REFERENCES tblFarms(Farm_ID)
 );
