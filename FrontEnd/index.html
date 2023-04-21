@@ -503,7 +503,7 @@
                                 <td>14</td>
                                 <td>
                                   <button class="btn btn-sm btn-info edit-user" data-id="1">Edit</button>
-                                  <button class="btn btn-sm btn-danger delete-user" data-id="1">Delete</button>
+                                  <button class="btn btn-sm btn-danger delete-button" data-id="1">Delete</button>
                                 </td>
                               </tr>
                             </tbody>
@@ -590,7 +590,7 @@
                                 <td>Mechanic</td>
                                 <td>
                                   <button class="btn btn-sm btn-info edit-user" data-id="1">Edit</button>
-                                  <button class="btn btn-sm btn-danger delete-user" data-id="1">Delete</button>
+                                  <button class="btn btn-sm btn-danger delete-button" data-id="1">Delete</button>
                                 </td>
                               </tr>
                             </tbody>
@@ -675,7 +675,20 @@
                                 <td>56649</td>
                                 <td>
                                   <button class="btn btn-sm btn-info edit-user" data-id="1">Edit</button>
-                                  <button class="btn btn-sm btn-danger delete-user" data-id="1">Delete</button>
+                                  <button id="delete-button" class="btn btn-sm btn-danger delete-button" data-id="1">Delete</button>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>1</td>
+                                <td>TN-Frontier</td>
+                                <td>321 Neal St</td>
+                                <td></td>
+                                <td>Atlanta</td>
+                                <td>Georgia</td>
+                                <td>46987</td>
+                                <td>
+                                  <button class="btn btn-sm btn-info edit-user" data-id="1">Edit</button>
+                                  <button id="delete-button" class="btn btn-sm btn-danger delete-button" data-id="1">Delete</button>
                                 </td>
                               </tr>
                             </tbody>
@@ -760,7 +773,7 @@
                                 <td>Bravo</td>
                                 <td>
                                   <button class="btn btn-sm btn-info edit-user" data-id="1">Edit</button>
-                                  <button class="btn btn-sm btn-danger delete-user" data-id="1">Delete</button>
+                                  <button class="btn btn-sm btn-danger delete-button" data-id="1">Delete</button>
                                 </td>
                               </tr>
                             </tbody>
@@ -843,7 +856,7 @@
                                 <td>4/15/2023</td>
                                 <td>
                                   <button class="btn btn-sm btn-info edit-user" data-id="1">Edit</button>
-                                  <button class="btn btn-sm btn-danger delete-user" data-id="1">Delete</button>
+                                  <button class="btn btn-sm btn-danger delete-button" data-id="1">Delete</button>
                                 </td>
                               </tr>
                             </tbody>
@@ -965,6 +978,27 @@
         </div>
         </div>
        </div>
+    <div>
+      <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">New Farm</h5>
+              <button type="button" class="farmClose" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <h3>Are you sure you want to Delete this information?</h3>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="btnCloseModal" class="btn btn-secondary closeModel" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-danger modal-delete">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
@@ -1005,6 +1039,27 @@
           $('#divNavBarDashboard').slideToggle()
         }
       })
+
+      $(document).ready(function() {
+        $('.delete-button').click(function() {
+          var $row = $(this).closest('tr');
+          $('#modalDelete').modal('show')
+
+          $('.modal-delete').click(function(){
+            $row.remove();
+            $('#modalDelete').modal('hide')
+        });
+        $('.closeModel').click(function(){
+            $('#modalDelete').modal('hide')
+        });
+      });
+    });
+
+      // $('.modal-delete').click(function(){
+      //   $(this).closest('tr').remove();
+      //   $('#modalDelete').modal('hide')
+      // });
+
 
       $('#btnRegister').click(function(){
         $('#divLogin').slideToggle()
