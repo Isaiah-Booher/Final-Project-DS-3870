@@ -1,0 +1,11 @@
+In the git terminal type the following commands:
+
+"touch .gitignore"  <--This will create a .gitignore file
+
+Open the .gitignore file 
+
+Paste the following text inside of the .gitignore file to avoid the node_modules from being pushed to the repository every time.
+
+*/node_modules/**
+
+Save the file.
