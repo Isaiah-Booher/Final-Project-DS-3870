@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Swollen Farms</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-</head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.min.css">
+  </head>
 <nav class="navbar navbar-expand-lg fixed-top" data-bs-theme="dark" style="background-color:darkolivegreen;">
     <div class="container-fluid" id="divNavBarStandard">
       <img src="..//FrontEnd/pictures/Picture3.jpg" alt="Logo" height="50px" width="50px" class="d-inline">
-      <a class="navbar-brand align-items-center btn" id="btnHome">Swollen Farms</a>
+      <a class="navbar-brand align-items-center btn" id="btnSwollenFarms">Swollen Farms</a>
     </div>
     <div class="container-fluid" id="divNavBarDashboard" style="display: none">
       <img src="..//FrontEnd/pictures/Picture3.jpg" alt="Logo" height="50px" width="50px" class="d-inline">
@@ -21,7 +22,7 @@
       </div>
     </div>
   </nav>
-<body style="background-image: url('../FrontEnd/pictures/field.jpg'); background-position-x:left;">
+<body style="background-image: url('../FrontEnd/pictures/field.jpg'); background-position-x:left; background-attachment: fixed;">
     <div id="divLogin" class="h-100 h-custom gradient-custom-2">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
@@ -359,7 +360,7 @@
                                   Our dashboards allow you to monitor trends in sales and identify opportunities for growth.
                                 </p>
                                 <div class="col-12 text-center">
-                                  <button id="" class="btn btn-success" type="button">Access</button>
+                                  <button id="btnProducts" class="btn btn-success" type="button">Access</button>
                                 </div>
                               </div>
                             </div>
@@ -376,7 +377,7 @@
                                   issues and make informed decisions to optimize your farm's performance.
                                 </p>
                                 <div class="col-12 text-center">
-                                  <button id="" class="btn btn-success" type="button">Access</button>
+                                  <button id="btnFarms" class="btn btn-success" type="button">Access</button>
                                 </div>
                               </div>
                             </div>
@@ -411,7 +412,7 @@
                                   a small project or a large team, our platform can help you streamline your task management and increase productivity. 
                                 </p>
                                 <div class="col-12 text-center">
-                                  <button id="" class="btn btn-success" type="button">Access</button>
+                                  <button id="btnTasks" class="btn btn-success" type="button">Access</button>
                                 </div>
                               </div>
                             </div>
@@ -429,7 +430,7 @@
                                   decisions to optimize your operations.
                                 </p>
                                 <div class="col-12 text-center">
-                                  <button id="" class="btn btn-success" type="button">Access</button>
+                                  <button id="btnInventory" class="btn btn-success" type="button">Access</button>
                                 </div>
                               </div>
                             </div>
@@ -447,7 +448,7 @@
                                   decisions to optimize your spending.
                                 </p>
                                 <div class="col-12 text-center">
-                                  <button id="" class="btn btn-success" type="button">Access</button>
+                                  <button id="btnFinance" class="btn btn-success" type="button">Access</button>
                                 </div>
                               </div>
                             </div>
@@ -464,11 +465,91 @@
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12">
                 <div class="mt-5 card card-registration card-registration-2" style="border-radius: 15px;">
-                    <div class="card-body p-0">
+                    <div class="card-body p-5">
+                      <div class="input-group mb-4">
+                        <input type="text" class="form-control" id="advanced-search-input" placeholder="Search by Product Name" />
+                        <button class="btn btn-primary" id="advanced-search-button" type="button">
+                          <i class="fa fa-search">Search</i>
+                        </button>
+                      </div>       
+                      <div id="datatable">
+                        <div class="container">
+                          <h2>Products</h2>
+                          <button class="btn btn-primary mb-2" id="add-product">Add Product</button>
+                          <table class="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th>Product_ID</th>
+                                <th>Farm Name</th>
+                                <th>Prod_Type</th>
+                                <th>Fixed Cost</th>
+                                <th>Date Planted</th>
+                                <th>Date Harvested</th>
+                                <th>Harvest Weight (lbs)</th>
+                                <th>Quantity</th>
+                                <th>Actions</th>
+
+                              </tr>
+                            </thead>
+                            <tbody id="user-table">
+                              <tr>
+                                <td>1</td>
+                                <td>TN-Homestead</td>
+                                <td>Vegetable</td>
+                                <td>$1.00</td>
+                                <td>04-15-2022</td>
+                                <td>08-15-2022</td>
+                                <td>5</td>
+                                <td>14</td>
+                                <td>
+                                  <button class="btn btn-sm btn-info edit-user" data-id="1">Edit</button>
+                                  <button class="btn btn-sm btn-danger delete-user" data-id="1">Delete</button>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        
+                      
+                      </div>
                       </div>       
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="modal fade" id="modalAddProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: none;">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">New Product</h5>
+                <button type="button" class="productClose" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body p-3">
+                <label for="txtProductID" class="form-label">Product ID: </label>
+                <input type="text" class="form-control" id="txtProductID" />
+                <label for="txtFarmName1" class="form-label">Farm Name:  </label>
+                <input type="text" class="form-control" id="txtFarmName1" />
+                <label for="txtProductType1" class="form-label">Product Type:  </label>
+                <input type="text" class="form-control" id="txtProductType1" />
+                <label for="txtFixedCost" class="form-label">Fixed Cost:  </label>
+                <input type="text" class="form-control" id="txtFixedCost" />
+                <label for="txtDatePlanted" class="form-label">Date Planted:  </label>
+                <input type="text" class="form-control" id="txtDatePlanted" />
+                <label for="txtDateHarvested" class="form-label">Date Harvested:  </label>
+                <input type="text" class="form-control" id="txtDateHarvested" />
+                <label for="txtHarvestWeight" class="form-label">Harvest Weight (lbs):  </label>
+                <input type="text" class="form-control" id="txtHarvestWeight" />
+                <label for="txtQuantity" class="form-label">Quantity:  </label>
+                <input type="text" class="form-control" id="txtQuantity" />
+              </div>
+              <div class="modal-footer">
+                <button type="button" id="btnCloseProduct" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Add Product</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     <div id="divEmployees" class="h-100 h-custom gradient-custom-2" style="display: none;">
@@ -478,150 +559,80 @@
                 <div class="mt-5 card card-registration card-registration-2" style="border-radius: 15px;">
                     <div class="card-body p-5">
                       <div class="input-group mb-4">
-                        <input type="text" class="form-control" id="advanced-search-input" placeholder="phrase in:column1,column2" />
+                        <input type="text" class="form-control" id="advanced-search-input" placeholder="Search by Name" />
                         <button class="btn btn-primary" id="advanced-search-button" type="button">
                           <i class="fa fa-search">Search</i>
                         </button>
-                      </div>
-                      <!-- <div class="row d-inline">
-                        <div>
-                          <button id="" class="btn btn-success" type="button">Add</button>
-                        </div>
-                        <div>
-                          <button id="" class="btn btn-primary" type="button">Edit</button>
-                        </div>
-                        <div>
-                          <button id="" class="btn btn-danger" type="button">Delete</button>
-                        </div>
-                      </div> -->
-                      <div class="row">
-                        <div class="col-2">
-                          <button class="btn btn-primary">Button 1</button>
-                        </div>
-                        <div class="col-2">
-                          <button class="btn btn-secondary">Button 2</button>
-                        </div>
-                        <div class="col-2">
-                          <button class="btn btn-secondary">Button 2</button>
-                        </div>
-                      </div>
-                      
+                      </div>       
                       <div id="datatable">
-                        <table class="table align-middle mb-0 bg-white">
-                          <thead class="bg-light">
-                            <tr>
-                              <th>Name</th>
-                              <th>Title</th>
-                              <th>Status</th>
-                              <th>Position</th>
-                              <th>Actions</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>
-                                <div class="d-flex align-items-center">
-                                  <img
-                                      src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                                      alt=""
-                                      style="width: 45px; height: 45px"
-                                      class="rounded-circle"
-                                      />
-                                  <div class="ms-3">
-                                    <p class="fw-bold mb-1">John Doe</p>
-                                    <p class="text-muted mb-0">john.doe@gmail.com</p>
-                                  </div>
-                                </div>
-                              </td>
-                              <td>
-                                <p class="fw-normal mb-1">Software engineer</p>
-                                <p class="text-muted mb-0">IT department</p>
-                              </td>
-                              <td>
-                                <span class="badge badge-success rounded-pill d-inline">Active</span>
-                              </td>
-                              <td>Senior</td>
-                              <td>
-                                <button type="button" class="btn btn-link btn-sm btn-rounded">
-                                  Edit
-                                </button>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <div class="d-flex align-items-center">
-                                  <img
-                                      src="https://mdbootstrap.com/img/new/avatars/6.jpg"
-                                      class="rounded-circle"
-                                      alt=""
-                                      style="width: 45px; height: 45px"
-                                      />
-                                  <div class="ms-3">
-                                    <p class="fw-bold mb-1">Alex Ray</p>
-                                    <p class="text-muted mb-0">alex.ray@gmail.com</p>
-                                  </div>
-                                </div>
-                              </td>
-                              <td>
-                                <p class="fw-normal mb-1">Consultant</p>
-                                <p class="text-muted mb-0">Finance</p>
-                              </td>
-                              <td>
-                                <span class="badge badge-primary rounded-pill d-inline"
-                                      >Onboarding</span
-                                  >
-                              </td>
-                              <td>Junior</td>
-                              <td>
-                                <button
-                                        type="button"
-                                        class="btn btn-link btn-rounded btn-sm fw-bold"
-                                        data-mdb-ripple-color="dark"
-                                        >
-                                  Edit
-                                </button>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <div class="d-flex align-items-center">
-                                  <img
-                                      src="https://mdbootstrap.com/img/new/avatars/7.jpg"
-                                      class="rounded-circle"
-                                      alt=""
-                                      style="width: 45px; height: 45px"
-                                      />
-                                  <div class="ms-3">
-                                    <p class="fw-bold mb-1">Kate Hunington</p>
-                                    <p class="text-muted mb-0">kate.hunington@gmail.com</p>
-                                  </div>
-                                </div>
-                              </td>
-                              <td>
-                                <p class="fw-normal mb-1">Designer</p>
-                                <p class="text-muted mb-0">UI/UX</p>
-                              </td>
-                              <td>
-                                <span class="badge badge-warning rounded-pill d-inline">Awaiting</span>
-                              </td>
-                              <td>Senior</td>
-                              <td>
-                                <button
-                                        type="button"
-                                        class="btn btn-link btn-rounded btn-sm fw-bold"
-                                        data-mdb-ripple-color="dark"
-                                        >
-                                  Edit
-                                </button>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                        <div class="container">
+                          <h2>Employee List</h2>
+                          <button class="btn btn-primary mb-2" id="add-employee">Add Employee</button>
+                          <table class="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th>Employee ID</th>
+                                <th>Farm Name</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Pay Rate /hr</th>
+                                <th>Position</th>  
+                                <th>Actions</th>                               
+                              </tr>
+                            </thead>
+                            <tbody id="user-table">
+                              <tr>
+                                <td>1</td>
+                                <td>TN-Homestead</td>
+                                <td>Leroy</td>
+                                <td>Jenkins</td>
+                                <td>32.00</td>
+                                <td>Mechanic</td>
+                                <td>
+                                  <button class="btn btn-sm btn-info edit-user" data-id="1">Edit</button>
+                                  <button class="btn btn-sm btn-danger delete-user" data-id="1">Delete</button>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        
+                      
                       </div>
                     </div>
                   </div>
               </div>
           </div>
+      </div>
+      <div class="modal fade" id="modalAddEmployee" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">New Employee</h5>
+              <button type="button" class="employeeClose" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <label for="txtEmployeeID" class="form-label">Employee ID: </label>
+                <input type="text" class="form-control" id="txtEmployeeID" />
+                <label for="txtFarmName2" class="form-label">Farm Name:  </label>
+                <input type="text" class="form-control" id="txtFarmName2" />
+                <label for="txtEmpFirstName" class="form-label">First Name:  </label>
+                <input type="text" class="form-control" id="txtEmpFirstName" />
+                <label for="txtEmpLastName" class="form-label">Last Name:  </label>
+                <input type="text" class="form-control" id="txtEmpLastName" />
+                <label for="txtPayRatehr" class="form-label">Pay Rate /hr:  </label>
+                <input type="text" class="form-control" id="txtPayRatehr" />
+                <label for="txtPosition" class="form-label">Position:  </label>
+                <input type="text" class="form-control" id="txtPosition" />
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="btnCloseEmployee" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Add Employee</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div id="divFarms" class="h-100 h-custom gradient-custom-2" style="display: none;">
@@ -629,11 +640,83 @@
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12">
                 <div class="mt-5 card card-registration card-registration-2" style="border-radius: 15px;">
-                    <div class="card-body p-0">
-                      
+                    <div class="card-body p-5">
+                      <div class="input-group mb-4">
+                        <input type="text" class="form-control" id="advanced-search-input" placeholder="Search by Farm Name" />
+                        <button class="btn btn-primary" id="advanced-search-button" type="button">
+                          <i class="fa fa-search">Search</i>
+                        </button>
+                      </div>       
+                      <div id="datatable">
+                        <div class="container">
+                          <h2>Farms</h2>
+                          <button class="btn btn-primary mb-2" id="add-farm">Add Farm</button>
+                          <table class="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th>Farm ID</th>
+                                <th>Farm Name</th>
+                                <th>Street Address 1</th>
+                                <th>Street Address 2</th>
+                                <th>City</th>
+                                <th>State</th>
+                                <th>Zip</th>  
+                                <th>Actions</th>                               
+                              </tr>
+                            </thead>
+                            <tbody id="user-table">
+                              <tr>
+                                <td>1</td>
+                                <td>TN-Homestead</td>
+                                <td>123 Home Drive</td>
+                                <td></td>
+                                <td>Chicago</td>
+                                <td>Illinios</td>
+                                <td>56649</td>
+                                <td>
+                                  <button class="btn btn-sm btn-info edit-user" data-id="1">Edit</button>
+                                  <button class="btn btn-sm btn-danger delete-user" data-id="1">Delete</button>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
                     </div>
                 </div>
             </div>
+        </div>
+      </div>
+      <div class="modal fade" id="modalAddFarm" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">New Farm</h5>
+              <button type="button" class="farmClose" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <label for="txtFarmID3" class="form-label">Farm ID: </label>
+                <input type="text" class="form-control" id="txtFarmID3" />
+                <label for="txtFarmName3" class="form-label">Farm Name:  </label>
+                <input type="text" class="form-control" id="txtFarmName3" />
+                <label for="txtStreetAddress1" class="form-label">Street Address 1:  </label>
+                <input type="text" class="form-control" id="txtStreetAddress1" />
+                <label for="txtStreetAddress2" class="form-label">Street Address 2:  </label>
+                <input type="text" class="form-control" id="txtStreetAddress2" />
+                <label for="txtCity" class="form-label">City:  </label>
+                <input type="text" class="form-control" id="txtCity" />
+                <label for="txtState" class="form-label">State:  </label>
+                <input type="text" class="form-control" id="txtState" />
+                <label for="txtZip" class="form-label">Zip:  </label>
+                <input type="text" class="form-control" id="txtZip" />
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="btnCloseFarm" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Add Farm</button>
+            </div>
+          </div>
         </div>
       </div>
       </div>
@@ -642,11 +725,83 @@
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12">
                 <div class="mt-5 card card-registration card-registration-2" style="border-radius: 15px;">
-                    <div class="card-body p-0">
-                      
+                    <div class="card-body p-5">
+                      <div class="input-group mb-4">
+                        <input type="text" class="form-control" id="advanced-search-input" placeholder="Search by Task Title" />
+                        <button class="btn btn-primary" id="advanced-search-button" type="button">
+                          <i class="fa fa-search">Search</i>
+                        </button>
+                      </div>       
+                      <div id="datatable">
+                        <div class="container">
+                          <h2>Tasks</h2>
+                          <button class="btn btn-primary mb-2" id="add-task">Add Task</button>
+                          <table class="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th>Task ID</th>
+                                <th>Title</th>
+                                <th>Product Type</th>
+                                <th>Description</th>
+                                <th>Task Duration (Minutes)</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>  
+                                <th>Actions</th>                               
+                              </tr>
+                            </thead>
+                            <tbody id="user-table">
+                              <tr>
+                                <td>1</td>
+                                <td>Water Plants</td>
+                                <td>Tomatoes</td>
+                                <td>Water the Tomatoes</td>
+                                <td>30 Min</td>
+                                <td>Johnny</td>
+                                <td>Bravo</td>
+                                <td>
+                                  <button class="btn btn-sm btn-info edit-user" data-id="1">Edit</button>
+                                  <button class="btn btn-sm btn-danger delete-user" data-id="1">Delete</button>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
                     </div>
                 </div>
             </div>
+        </div>
+      </div>
+      <div class="modal fade" id="modalAddTask" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">New Task</h5>
+              <button type="button" class="taskClose" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <label for="txtTaskID" class="form-label">Task ID: </label>
+                <input type="text" class="form-control" id="txtTaskID" />
+                <label for="txtTitle" class="form-label">Title:  </label>
+                <input type="text" class="form-control" id="txtTitle" />
+                <label for="txtTaskProductType" class="form-label">Product Type:  </label>
+                <input type="text" class="form-control" id="txtTaskProductType" />
+                <label for="txtTaskDescription" class="form-label">Description:  </label>
+                <input type="text" class="form-control" id="txtTaskDescription" />
+                <label for="txtDuration" class="form-label">Task Duration (Minutes):  </label>
+                <input type="text" class="form-control" id="txtDuration" />
+                <label for="txtFirstName1" class="form-label">First Name: </label>
+                <input type="text" class="form-control" id="txtFirstName1" />
+                <label for="txtLastName1" class="form-label">Last Name:  </label>
+                <input type="text" class="form-control" id="txtLastName1" />
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="btnCloseTask" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Add Task</button>
+            </div>
+          </div>
         </div>
       </div>
       </div>
@@ -655,11 +810,79 @@
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12">
                 <div class="mt-5 card card-registration card-registration-2" style="border-radius: 15px;">
-                    <div class="card-body p-0">
-                      
+                    <div class="card-body p-5">
+                      <div class="input-group mb-4">
+                        <input type="text" class="form-control" id="advanced-search-input" placeholder="Search by Item Name" />
+                        <button class="btn btn-primary" id="advanced-search-button" type="button">
+                          <i class="fa fa-search">Search</i>
+                        </button>
+                      </div>       
+                      <div id="datatable">
+                        <div class="container">
+                          <h2>Items</h2>
+                          <button class="btn btn-primary mb-2" id="add-item">Add Item</button>
+                          <table class="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th>Inventory ID</th>
+                                <th>Farm ID</th>
+                                <th>Item Name</th>
+                                <th>Description</th>
+                                <th>Item Cost</th>
+                                <th>Date Recorded</th> 
+                                <th>Actions</th>                               
+                              </tr>
+                            </thead>
+                            <tbody id="user-table">
+                              <tr>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>Seed</td>
+                                <td>Tomatoe Seeds</td>
+                                <td>25.00</td>
+                                <td>4/15/2023</td>
+                                <td>
+                                  <button class="btn btn-sm btn-info edit-user" data-id="1">Edit</button>
+                                  <button class="btn btn-sm btn-danger delete-user" data-id="1">Delete</button>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>  
+                      </div>
                     </div>
                 </div>
             </div>
+        </div>
+      </div>
+      <div class="modal fade" id="modalAddItem" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">New Inventory Item</h5>
+              <button type="button" class="inventoryClose" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <label for="txtInventoryID" class="form-label">Inventory ID: </label>
+                <input type="text" class="form-control" id="txtInventoryID" />
+                <label for="txtFarmID4" class="form-label">Farm ID:  </label>
+                <input type="text" class="form-control" id="txtFarmID4" />
+                <label for="txtItem" class="form-label">Item:  </label>
+                <input type="text" class="form-control" id="txtItem" />
+                <label for="txtItemDescription" class="form-label">Item Description:  </label>
+                <input type="text" class="form-control" id="txtItemDescription" />
+                <label for="txtItemCost" class="form-label">Item Cost:  </label>
+                <input type="text" class="form-control" id="txtItemCost" />
+                <label for="txtDateRecorded" class="form-label">Date Recorded: </label>
+                <input type="text" class="form-control" id="txtDateRecorded" />
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="btnCloseInventory" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Add Item</button>
+            </div>
+          </div>
         </div>
       </div>
       </div>
@@ -679,6 +902,7 @@
   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>
 
     <script>
       $('#btnLogin').click(function(){
@@ -702,15 +926,18 @@
         }
 
         if(blnErrorFound1 == true){
-            alert(strErrorMessage1)
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: strErrorMessage1,
+            })
+        } else {
+          $('#divLogin').slideToggle()
+          $('#divDashboard').slideToggle()
+  
+          $('#divNavBarStandard').slideToggle()
+          $('#divNavBarDashboard').slideToggle()
         }
-
-        $('#divLogin').slideToggle()
-        $('#divDashboard').slideToggle()
-
-        $('#divNavBarStandard').slideToggle()
-        $('#divNavBarDashboard').slideToggle()
-
       })
 
       $('#btnRegister').click(function(){
@@ -718,9 +945,106 @@
         $('#divRegistration').slideToggle()
       });
 
+      $('#add-item').click(function(){
+        $('#modalAddItem').modal('show')
+      });
+
+      $('#btnCloseInventory').click(function(){
+        $('#modalAddItem').modal('hide')
+      });
+
+      $('.inventoryClose').click(function(){
+        $('#modalAddItem').modal('hide')
+      });
+
+      $('#add-task').click(function(){
+        $('#modalAddTask').modal('show')
+      })
+
+      $('#btnCloseTask').click(function(){
+        $('#modalAddTask').modal('hide')
+      })
+
+      $('.taskClose').click(function(){
+        $('#modalAddTask').modal('hide')
+      })
+
+      $('#add-farm').click(function(){
+        $('#modalAddFarm').modal('show')
+      })
+
+      $('#btnCloseFarm').click(function(){
+        $('#modalAddFarm').modal('hide')
+      })
+
+      $('.farmClose').click(function(){
+        $('#modalAddFarm').modal('hide')
+      })
+
+      $('#add-employee').click(function(){
+        $('#modalAddEmployee').modal('show')
+      })
+
+      $('#btnCloseEmployee').click(function(){
+        $('#modalAddEmployee').modal('hide')
+      })
+
+      $('.employeeClose').click(function(){
+        $('#modalAddEmployee').modal('hide')
+      })
+
+      $('#add-product').click(function(){
+        $('#modalAddProduct').modal('show')
+      })
+
+      $('#btnCloseProduct').click(function(){
+        $('#modalAddProduct').modal('hide')
+      })
+
+      $('.productClose').click(function(){
+        $('#modalAddProduct').modal('hide')
+      })
+
+
+
+      $('#btnSwollenFarms').click(function(){
+        if ($("#divLogin").css("display") == "none") {
+          $('#divRegistration').slideToggle()
+          $('#divLogin').slideToggle() 
+          }
+        else {
+          pass
+        }
+      });
+
       $('#btnEmployees').click(function(){
         $('#divDashboard').slideToggle()
         $('#divEmployees').slideToggle()
+      });
+
+      $('#btnFarms').click(function(){
+        $('#divDashboard').slideToggle()
+        $('#divFarms').slideToggle()
+      });
+
+      $('#btnInventory').click(function(){
+        $('#divDashboard').slideToggle()
+        $('#divInventory').slideToggle()
+      });
+
+      $('#btnProducts').click(function(){
+        $('#divDashboard').slideToggle()
+        $('#divProducts').slideToggle()
+      });
+      
+      $('#btnBackToDashboard').click(function(){
+        $('#divProfile').slideToggle()
+        $('#divDashboard').slideToggle()
+      });
+
+      $('#btnTasks').click(function(){
+        $('#divDashboard').slideToggle()
+        $('#divTasks').slideToggle()
       });
 
       $('#btnProfile').click(function(){
@@ -728,22 +1052,32 @@
             $("#divProfile").slideToggle();
             $("#divDashboard").hide();
             $("#divLogin").hide();
+            $("#divProducts").hide();
+            $("#divFarms").hide();
+            $("#divTasks").hide();
+            $("#divEmployees").hide();
+            $("#divInventory").hide();
+            $("#divFinancialReporting").hide();
+            $("#divRegistration").hide();
           }
         else {
           pass
         }
       });
 
-      $('#btnBackToDashboard').click(function(){
-        $('#divProfile').slideToggle()
-        $('#divDashboard').slideToggle()
-      });
 
       $("#btnDashboard").click(function(){
         if ($("#divDashboard").css("display") == "none") {
             $("#divDashboard").slideToggle();
             $("#divProfile").hide();
             $("#divLogin").hide();
+            $("#divProducts").hide();
+            $("#divFarms").hide();
+            $("#divTasks").hide();
+            $("#divEmployees").hide();
+            $("#divInventory").hide();
+            $("#divFinancialReporting").hide();
+            $("#divRegistration").hide();
           }
         else {
           pass
@@ -761,6 +1095,7 @@
         $('#divLogin').slideToggle()
         $('#divDashboard').hide()
         $('#divProfile').hide()
+        
 
       });
    
@@ -806,7 +1141,7 @@
             blnErrorFound1 = true;
             strErrorMessage1 += "You must enter a Email. ";
         }
-        if(intPasswordLength < 1){
+        if(intPasswordLength == null){
             blnErrorFound1 = true;
             strErrorMessage1 += "You must enter a Password. ";
         }
@@ -823,18 +1158,22 @@
             strErrorMessage1 += "You must accept our terms and conditions, our privacy policy, and our cookie policy. ";
         }
 
-        if(blnErrorFound1 == true){
-            alert(strErrorMessage1)
+        if(blnErrorFound1 || pswError == true){
+          let message = strErrorMessage1 += pswErrorMessage
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: message,
+            })  
+        } else {
+          $('#divRegistration').slideToggle()
+          $('#divDashboard').slideToggle()
+  
+          $('#divNavBarStandard').slideToggle()
+          $('#divNavBarDashboard').slideToggle()
         }
-        if(pswError == true){
-            alert(pswErrorMessage)
-        }
+        
 
-        $('#divRegistration').slideToggle()
-        $('#divDashboard').slideToggle()
-
-        $('#divNavBarStandard').slideToggle()
-        $('#divNavBarDashboard').slideToggle()
 
         // if(blnErrorFound1 != true){
         //   $('#divRegistration').slideToggle()
@@ -846,7 +1185,9 @@
         //   $('#divDashboard').slideToggle()
         // }
     })
-        
+
+    
+    
     $('#btnCreateFarm').click(function(){    
 
         let strFarmName = $('#txtFarmName').val();
