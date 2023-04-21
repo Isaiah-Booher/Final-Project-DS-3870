@@ -891,8 +891,74 @@
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12">
                 <div class="mt-5 card card-registration card-registration-2" style="border-radius: 15px;">
-                    <div class="card-body p-0">
-                      
+                    <div class="card-body p-5">
+                      <div class="container">
+                        <!-- Header -->
+                        <header>
+                          <h1>Finance Report</h1>
+                        </header>
+
+                        
+                        <!-- Financial Data -->
+                        <section id="financial-data">
+                          <h2>Financial Data</h2>
+                          <div class="row">
+                            <div class="col-md-4">
+                              <div class="card">
+                                <div class="card-body">
+                                  <h3 class="card-title">Total amount of products</h3>
+                                  <p class="card-text" id="revenue">-</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="card">
+                                <div class="card-body">
+                                  <h3 class="card-title">Cost per item produced</h3>
+                                  <p class="card-text" id="expenses">-</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="card">
+                                <div class="card-body">
+                                  <h3 class="card-title">Total expenses</h3>
+                                  <p class="card-text" id="profit">-</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </section>
+
+                        <div class="input-group mb-4 mt-4">
+                          <input type="text" class="form-control" id="advanced-search-input" placeholder="Search by Product Type" />
+                          <button class="btn btn-primary" id="advanced-search-button" type="button">
+                            <i class="fa fa-search">Search</i>
+                          </button>
+                        </div>
+                        
+                        <!-- Transactions -->
+                        <section id="transactions" class="mt-3">
+                          <h2>Transactions</h2>
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th>Farm</th>
+                                <th>Product Type</th>
+                                <th>Quantity</th>
+                                <th>Fixed Costs</th>
+                                <th>Employee ID</th>
+                                <th>Pay Rate</th>
+                                <th>Labor Hours</th>
+                                <th>Date</th>
+                                <th>Total</th> <!--(Labor Hours * Pay Rate) + (Fixed Costs * Quantity)-->
+                              </tr>
+                            </thead>
+                            <tbody id="transaction-table-body">
+                            </tbody>
+                          </table>
+                        </section>
+                      </div>
                     </div>
                 </div>
             </div>
@@ -943,6 +1009,11 @@
       $('#btnRegister').click(function(){
         $('#divLogin').slideToggle()
         $('#divRegistration').slideToggle()
+      });
+
+      $('#btnFinance').click(function(){
+        $('#divDashboard').slideToggle()
+        $('#divFinancialReporting').slideToggle()
       });
 
       $('#add-item').click(function(){
