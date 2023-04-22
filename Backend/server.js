@@ -116,7 +116,36 @@ app.post("/users", (req,res,next) => {
      } )
     })
 
-    app.post("/farm", (req,res,next) => {
+    app.post("/sessions", (req,res,next) => {
+        let strSessionID = uuidv4();
+
+        pool.query('INSERT INTO tblSessions (Session_ID, Session_Start, Session_End) VALUES(?, getdate(), getdate())',
+        strSessionID, function(error, results){
+                if(!error){
+                    let objMessage = new message("Success", "New Session Created");
+                    res.status(201).send(JSON.stringify(objMessage));
+                } else {
+                    let objMessage = new message("Error", error);
+                    res.status(400).send(JSON.stringify(objMessage));
+                }
+            })
+         } )
+
+        //  Get Sessions
+    //      app.get("/session, (req, res, next) => {
+    //         let strSessionID = req.params.sessionid;
+    //         pool.query('SELECT tblUsers.Email,FirstName,LastName,PreferredName,CreatedDateTime, Description FROM tblUsers LEFT JOIN tblUserRoles ON tblUsers.Email = tblUserRoles.Email LEFT JOIN tblRoles ON tblRoles.RoleID = tblUserRoles.RoleID WHERE tblUsers.Email = (SELECT tblSessions.Email FROM tblSessions WHERE SessionID = ?)', strSessionID, function(error, results){
+    //             if(!error){
+    //                 res.status(200).send(results);
+    //             } else {
+    //                 res.status(400).send(JSON.stringify({Error:error}));
+    //             }
+    //         })
+    //     })
+    // })
+        
+
+    app.post("/farms", (req,res,next) => {
         let strFarmName = req.query.farmname || req.body.farmname;
         let strStreetAddress1 = req.query.StreetAddress1 || req.body.StreetAddress1;
         let strStreetAddress2 = req.query.StreetAddress2 || req.body.StreetAddress2;
@@ -184,6 +213,23 @@ app.post("/users", (req,res,next) => {
         [strItem, strItemDescription, strItemCost], function(error, results){
                 if(!error){
                     let objMessage = new message("Success", "New Item Created");
+                    res.status(201).send(JSON.stringify(objMessage));
+                } else {
+                    let objMessage = new message("Error", error);
+                            res.status(400).send(JSON.stringify(objMessage));
+                        }
+                    })
+                    } )
+
+    app.post("/tasks", (req,res,next) => {
+        let strTitle = req.query.title || req.body.title;
+        let strDescription = req.query.description || req.body.description;
+        let strTotalTimeMin = req.query.totaltimemin || req.body.totaltimemin;
+
+        pool.query('INSERT INTO tblTasks (Title, Description, Total_Time_Min, Input_Date) VALUES(?, ?, ?, GetDate())',
+        [strTitle, strDescription, strTotalTimeMin], function(error, results){
+                if(!error){
+                    let objMessage = new message("Success", "New Task Created");
                     res.status(201).send(JSON.stringify(objMessage));
                 } else {
                     let objMessage = new message("Error", error);

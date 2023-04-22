@@ -66,7 +66,7 @@
                                             <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
                                           </svg>
                                           <label class="form-label" for="password">Password</label>
-                                          <input aria-label="Enter Password" type="password" id="txtPassword" class="form-control form-control-lg"
+                                          <input aria-label="Enter Password" type="password" id="txtLoginPassword" class="form-control form-control-lg"
                                             placeholder="Enter password" />
                                         </div>
                               
@@ -1009,8 +1009,8 @@
         let strEmail = $('#txtEmailAddress').val();
         let intEmailLength = $('#txtEmailAddress').val().length;
 
-        let strPassword = $('#txtPassword').val();
-        let intPasswordLength = $('#txtPassword').val().length;
+        // let strPassword = $('#txtLoginPassword').val();
+        // let intPasswordLength = $('#ttxtLoginPassword').val().length;
 
         var blnErrorFound1 = false;
         var strErrorMessage1 = '';
@@ -1020,10 +1020,10 @@
             strErrorMessage1 += "You must enter a Email. ";
         }
 
-        if(intPasswordLength < 1){
-            blnErrorFound1 = true;
-            strErrorMessage1 += "You must enter a Password. ";
-        }
+        // if(intPasswordLength < 1){
+        //     blnErrorFound1 = true;
+        //     strErrorMessage1 += "You must enter a Password. ";
+        // }
 
         if(blnErrorFound1 == true){
           Swal.fire({
@@ -1244,7 +1244,8 @@
         let intEmailLength = $('#txtEmail').val().length;
 
         let strPassword = $('#txtPassword').val();
-        let intPasswordLength = $('#txtPassword').val().length;
+        let intPasswordLength = strPassword.length;
+        console.log(strPassword)
 
         let strMobileNumber = $('#txtMobileNumber').val();
         let intMobileNumberLength = $('#txtMobileNumber').val().length;
@@ -1271,7 +1272,8 @@
             blnErrorFound1 = true;
             strErrorMessage1 += "You must enter a Password. ";
         }
-        if(intPasswordLength <= 8){
+        console.log(intPasswordLength)
+        if(intPasswordLength < 8){
             pswError = true;
             pswErrorMessage += "Your password must be at least 8 characters long.";
         }
