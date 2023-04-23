@@ -10,11 +10,16 @@
   </head>
 <nav class="navbar navbar-expand-lg fixed-top" data-bs-theme="dark" style="background-color:darkolivegreen;">
     <div class="container-fluid" id="divNavBarStandard">
-      <img src="..//FrontEnd/pictures/Picture3.jpg" alt="Logo" height="50px" width="50px" class="d-inline">
+      <div class="d-none d-md-block">
+        <img src="..//FrontEnd/pictures/Picture3.jpg" alt="Logo" height="50px" width="50px" class="d-inline">
+      </div>
       <a class="navbar-brand align-items-center btn" id="btnSwollenFarms">Swollen Farms</a>
     </div>
     <div class="container-fluid" id="divNavBarDashboard" style="display: none">
-      <img src="..//FrontEnd/pictures/Picture3.jpg" alt="Logo" height="50px" width="50px" class="d-inline">
+      <div class="d-none d-md-block">
+        <img src="..//FrontEnd/pictures/Picture3.jpg" alt="Logo" height="50px" width="50px" class="d-inline">
+
+      </div>
       <div>
         <a class="navbar-brand align-items-center btn" id="btnDashboard">Dashboard</a>
         <a class="navbar-brand align-items-center btn" id="btnProfile">Profile</a>
@@ -365,7 +370,7 @@
                               </div>
                             </div>
                           </div>
-                          <div class="col p-5">
+                          <!-- <div class="col p-5">
                             <div class="card">
                               <img src="../FrontEnd/pictures/Farms.jpg" class="card-img-top"
                                 alt="Farms" />
@@ -381,7 +386,7 @@
                                 </div>
                               </div>
                             </div>
-                          </div>
+                          </div> -->
                           <div class="col p-5">
                             <div class="card">
                               <img src="../FrontEnd/pictures/Employees.jpg" class="card-img-top"
@@ -473,10 +478,10 @@
                         </button>
                       </div>       
                       <div id="datatable">
-                        <div class="container">
+                        <div class="container table-responsive">
                           <h2>Products</h2>
                           <button class="btn btn-primary mb-2" id="add-product">Add Product</button>
-                          <table class="table table-bordered">
+                          <table id="tblProduct" class="table table-bordered table-striped table-hover">
                             <thead>
                               <tr>
                                 <th>Product_ID</th>
@@ -502,7 +507,7 @@
                                 <td>5</td>
                                 <td>14</td>
                                 <td>
-                                  <button class="btn btn-sm btn-info edit-user" data-id="1">Edit</button>
+                                  <button class="btn btn-sm btn-info edit-product" data-id="1">Edit</button>
                                   <button class="btn btn-sm btn-danger delete-button" data-id="1">Delete</button>
                                 </td>
                               </tr>
@@ -522,31 +527,65 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">New Product</h5>
-                <button type="button" class="productClose" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="terminateModal" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body p-3">
                 <label for="txtProductID" class="form-label">Product ID: </label>
                 <input type="text" class="form-control" id="txtProductID" />
-                <label for="txtFarmName1" class="form-label">Farm Name:  </label>
-                <input type="text" class="form-control" id="txtFarmName1" />
+                <label for="txtProductFarmName" class="form-label">Farm Name:  </label>
+                <input type="text" class="form-control" id="txtProductFarmName" />
                 <label for="txtProductType1" class="form-label">Product Type:  </label>
                 <input type="text" class="form-control" id="txtProductType1" />
-                <label for="txtFixedCost" class="form-label">Fixed Cost:  </label>
-                <input type="text" class="form-control" id="txtFixedCost" />
+                <label for="txtProductFixedCost" class="form-label">Fixed Cost:  </label>
+                <input type="text" class="form-control" id="txtProductFixedCost" />
                 <label for="txtDatePlanted" class="form-label">Date Planted:  </label>
                 <input type="text" class="form-control" id="txtDatePlanted" />
                 <label for="txtDateHarvested" class="form-label">Date Harvested:  </label>
                 <input type="text" class="form-control" id="txtDateHarvested" />
                 <label for="txtHarvestWeight" class="form-label">Harvest Weight (lbs):  </label>
                 <input type="text" class="form-control" id="txtHarvestWeight" />
-                <label for="txtQuantity" class="form-label">Quantity:  </label>
-                <input type="text" class="form-control" id="txtQuantity" />
+                <label for="txtHarvestQuantity" class="form-label">Quantity:  </label>
+                <input type="text" class="form-control" id="txtHarvestQuantity" />
               </div>
               <div class="modal-footer">
-                <button type="button" id="btnCloseProduct" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Add Product</button>
+                <button type="button" class="btn btn-secondary btnCloseModal" data-dismiss="modal">Close</button>
+                <button id="confirmAddProduct" type="button" class="btn btn-primary">Add Product</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="modalEditProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: none;">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Edit Product</h5>
+                <button type="button" class="terminateModal" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body p-3">
+                <label for="txtEditProductID" class="form-label">Product ID: </label>
+                <input type="text" class="form-control" id="txtEditProductID" />
+                <label for="txtEditProductFarmName" class="form-label">Farm Name:  </label>
+                <input type="text" class="form-control" id="txtEditProductFarmName" />
+                <label for="txtEditProductType1" class="form-label">Product Type:  </label>
+                <input type="text" class="form-control" id="txtEditProductType1" />
+                <label for="txtEditProductFixedCost" class="form-label">Fixed Cost:  </label>
+                <input type="text" class="form-control" id="txtEditProductFixedCost" />
+                <label for="txtEditDatePlanted" class="form-label">Date Planted:  </label>
+                <input type="text" class="form-control" id="txtEditDatePlanted" />
+                <label for="txtEditDateHarvested" class="form-label">Date Harvested:  </label>
+                <input type="text" class="form-control" id="txtEditDateHarvested" />
+                <label for="txtEditHarvestWeight" class="form-label">Harvest Weight (lbs):  </label>
+                <input type="text" class="form-control" id="txtEditHarvestWeight" />
+                <label for="txtEditHarvestQuantity" class="form-label">Quantity:  </label>
+                <input type="text" class="form-control" id="txtEditHarvestQuantity" />
+              </div>
+              <div class="modal-footer">
+                <button type="button"  class="btn btn-secondary btnCloseModal" data-dismiss="modal">Close</button>
+                <button id="btnConfirmEditProduct" type="button" class="btn btn-primary">Edit Product</button>
               </div>
             </div>
           </div>
@@ -565,10 +604,10 @@
                         </button>
                       </div>       
                       <div id="datatable">
-                        <div class="container">
+                        <div class="container table-responsive">
                           <h2>Employee List</h2>
                           <button class="btn btn-primary mb-2" id="add-employee">Add Employee</button>
-                          <table class="table table-bordered">
+                          <table id="tblEmployee" class="table table-bordered table-striped table-hover">
                             <thead>
                               <tr>
                                 <th>Employee ID</th>
@@ -589,7 +628,7 @@
                                 <td>32.00</td>
                                 <td>Mechanic</td>
                                 <td>
-                                  <button class="btn btn-sm btn-info edit-user" data-id="1">Edit</button>
+                                  <button class="btn btn-sm btn-info edit-employee" data-id="1">Edit</button>
                                   <button class="btn btn-sm btn-danger delete-button" data-id="1">Delete</button>
                                 </td>
                               </tr>
@@ -609,33 +648,63 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLongTitle">New Employee</h5>
-              <button type="button" class="employeeClose" data-dismiss="modal" aria-label="Close">
+              <button type="button" class="terminateModal" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
                 <label for="txtEmployeeID" class="form-label">Employee ID: </label>
                 <input type="text" class="form-control" id="txtEmployeeID" />
-                <label for="txtFarmName2" class="form-label">Farm Name:  </label>
-                <input type="text" class="form-control" id="txtFarmName2" />
+                <label for="txtEmpFarmName" class="form-label">Farm Name:  </label>
+                <input type="text" class="form-control" id="txtEmpFarmName" />
                 <label for="txtEmpFirstName" class="form-label">First Name:  </label>
                 <input type="text" class="form-control" id="txtEmpFirstName" />
                 <label for="txtEmpLastName" class="form-label">Last Name:  </label>
                 <input type="text" class="form-control" id="txtEmpLastName" />
-                <label for="txtPayRatehr" class="form-label">Pay Rate /hr:  </label>
-                <input type="text" class="form-control" id="txtPayRatehr" />
+                <label for="txtPayRate" class="form-label">Pay Rate /hr:  </label>
+                <input type="text" class="form-control" id="txtPayRate" />
                 <label for="txtPosition" class="form-label">Position:  </label>
                 <input type="text" class="form-control" id="txtPosition" />
             </div>
             <div class="modal-footer">
-              <button type="button" id="btnCloseEmployee" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Add Employee</button>
+              <button type="button" class="btn btn-secondary btnCloseModal" data-dismiss="modal">Close</button>
+              <button type="button" id="confirmAddEmployee" class="btn btn-primary">Add Employee</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="modalEditEmployee" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Edit Employee</h5>
+              <button type="button" class="terminateModal" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body p-3">
+              <label for="txtEditEmployeeID" class="form-label">Employee ID: </label>
+                <input type="text" class="form-control" id="txtEditEmployeeID" />
+                <label for="txtEditEmpFarmName" class="form-label">Farm Name:  </label>
+                <input type="text" class="form-control" id="txtEditEmpFarmName" />
+                <label for="txtEditEmpFirstName" class="form-label">First Name:  </label>
+                <input type="text" class="form-control" id="txtEditEmpFirstName" />
+                <label for="txtEditEmpLastName" class="form-label">Last Name:  </label>
+                <input type="text" class="form-control" id="txtEditEmpLastName" />
+                <label for="txtEditPayRate" class="form-label">Pay Rate /hr:  </label>
+                <input type="text" class="form-control" id="txtEditPayRate" />
+                <label for="txtEditPosition" class="form-label">Position:  </label>
+                <input type="text" class="form-control" id="txtEditPosition" />
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary btnCloseModal" data-dismiss="modal">Close</button>
+              <button id="confirmEditEmployee" type="button" class="btn btn-primary">Edit Employee</button>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div id="divFarms" class="h-100 h-custom gradient-custom-2" style="display: none;">
+    <!-- <div id="divFarms" class="h-100 h-custom gradient-custom-2" style="display: none;">
       <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12">
@@ -674,7 +743,7 @@
                                 <td>Illinios</td>
                                 <td>56649</td>
                                 <td>
-                                  <button class="btn btn-sm btn-info edit-user" data-id="1">Edit</button>
+                                  <button class="btn btn-sm btn-info edit-farm" data-id="1">Edit</button>
                                   <button id="delete-button" class="btn btn-sm btn-danger delete-button" data-id="1">Delete</button>
                                 </td>
                               </tr>
@@ -687,7 +756,7 @@
                                 <td>Georgia</td>
                                 <td>46987</td>
                                 <td>
-                                  <button class="btn btn-sm btn-info edit-user" data-id="1">Edit</button>
+                                  <button class="btn btn-sm btn-info edit-farm" data-id="1">Edit</button>
                                   <button id="delete-button" class="btn btn-sm btn-danger delete-button" data-id="1">Delete</button>
                                 </td>
                               </tr>
@@ -705,7 +774,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLongTitle">New Farm</h5>
-              <button type="button" class="farmClose" data-dismiss="modal" aria-label="Close">
+              <button type="button" class="terminateModal" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -732,7 +801,39 @@
           </div>
         </div>
       </div>
+      <div class="modal fade" id="modalEditFarm" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Edit Farm</h5>
+              <button type="button" class="terminateModal" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body p-3">
+                <label for="txtEditFarmID3" class="form-label">Farm ID: </label>
+                <input type="text" class="form-control" id="txtEditFarmID3" />
+                <label for="txtFarmName3" class="form-label">Farm Name:  </label>
+                <input type="text" class="form-control" id="txtEditFarmName3" />
+                <label for="txtStreetAddress1" class="form-label">Street Address 1:  </label>
+                <input type="text" class="form-control" id="txtEditStreetAddress1" />
+                <label for="txtStreetAddress2" class="form-label">Street Address 2:  </label>
+                <input type="text" class="form-control" id="txtEditStreetAddress2" />
+                <label for="txtCity" class="form-label">City:  </label>
+                <input type="text" class="form-control" id="txtEditCity" />
+                <label for="txtState" class="form-label">State:  </label>
+                <input type="text" class="form-control" id="txtEditState" />
+                <label for="txtZip" class="form-label">Zip:  </label>
+                <input type="text" class="form-control" id="txtEditZip" />
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="btnCloseEditEmployee" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button id="confirmEditEmployee" type="button" class="btn btn-primary">Edit Employee</button>
+            </div>
+          </div>
+        </div>
       </div>
+      </div> -->
     <div id="divTasks" class="h-100 h-custom gradient-custom-2" style="display: none;">
       <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -746,10 +847,10 @@
                         </button>
                       </div>       
                       <div id="datatable">
-                        <div class="container">
+                        <div class="container table-responsive">
                           <h2>Tasks</h2>
                           <button class="btn btn-primary mb-2" id="add-task">Add Task</button>
-                          <table class="table table-bordered">
+                          <table id="tblTask" class="table table-bordered table-striped table-hover">
                             <thead>
                               <tr>
                                 <th>Task ID</th>
@@ -772,7 +873,7 @@
                                 <td>Johnny</td>
                                 <td>Bravo</td>
                                 <td>
-                                  <button class="btn btn-sm btn-info edit-user" data-id="1">Edit</button>
+                                  <button class="btn btn-sm btn-info edit-task" data-id="1">Edit</button>
                                   <button class="btn btn-sm btn-danger delete-button" data-id="1">Delete</button>
                                 </td>
                               </tr>
@@ -790,7 +891,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLongTitle">New Task</h5>
-              <button type="button" class="taskClose" data-dismiss="modal" aria-label="Close">
+              <button type="button" class="terminateModal" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -807,12 +908,44 @@
                 <input type="text" class="form-control" id="txtDuration" />
                 <label for="txtFirstName1" class="form-label">First Name: </label>
                 <input type="text" class="form-control" id="txtFirstName1" />
-                <label for="txtLastName1" class="form-label">Last Name:  </label>
-                <input type="text" class="form-control" id="txtLastName1" />
+                <label for="txtLastName2" class="form-label">Last Name:  </label>
+                <input type="text" class="form-control" id="txtLastName2" />
             </div>
             <div class="modal-footer">
-              <button type="button" id="btnCloseTask" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Add Task</button>
+              <button type="button" class="btn btn-secondary btnCloseModal" data-dismiss="modal">Close</button>
+              <button type="button" id="confirmAddTask" class="btn btn-primary">Add Task</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="modalEditTask" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Edit Task</h5>
+              <button type="button" class="terminateModal" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body p-3">
+                <label for="txtEditTaskID" class="form-label">Task ID: </label>
+                <input type="text" class="form-control" id="txtEditTaskID" />
+                <label for="txtEditTitle" class="form-label">Title:  </label>
+                <input type="text" class="form-control" id="txtEditTitle" />
+                <label for="txtEditTaskProductType" class="form-label">Product Type:  </label>
+                <input type="text" class="form-control" id="txtEditTaskProductType" />
+                <label for="txtEditTaskDescription" class="form-label">Description:  </label>
+                <input type="text" class="form-control" id="txtEditTaskDescription" />
+                <label for="txtEditDuration" class="form-label">Task Duration (Minutes):  </label>
+                <input type="text" class="form-control" id="txtEditDuration" />
+                <label for="txtEditFirstName1" class="form-label">First Name: </label>
+                <input type="text" class="form-control" id="txtEditFirstName1" />
+                <label for="txtEditLastName1" class="form-label">Last Name:  </label>
+                <input type="text" class="form-control" id="txtEditLastName1" />
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary btnCloseModal" data-dismiss="modal">Close</button>
+              <button id="confirmEditTask" type="button" class="btn btn-primary">Edit Task</button>
             </div>
           </div>
         </div>
@@ -831,10 +964,10 @@
                         </button>
                       </div>       
                       <div id="datatable">
-                        <div class="container">
+                        <div class="container table-responsive">
                           <h2>Items</h2>
                           <button class="btn btn-primary mb-2" id="add-item">Add Item</button>
-                          <table class="table table-bordered">
+                          <table id="tblInventory" class="table table-bordered table-striped table-hover">
                             <thead>
                               <tr>
                                 <th>Inventory ID</th>
@@ -855,7 +988,7 @@
                                 <td>25.00</td>
                                 <td>4/15/2023</td>
                                 <td>
-                                  <button class="btn btn-sm btn-info edit-user" data-id="1">Edit</button>
+                                  <button class="btn btn-sm btn-info edit-item" data-id="1">Edit</button>
                                   <button class="btn btn-sm btn-danger delete-button" data-id="1">Delete</button>
                                 </td>
                               </tr>
@@ -873,7 +1006,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLongTitle">New Inventory Item</h5>
-              <button type="button" class="inventoryClose" data-dismiss="modal" aria-label="Close">
+              <button type="button" class="terminateModal" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -892,8 +1025,38 @@
                 <input type="text" class="form-control" id="txtDateRecorded" />
             </div>
             <div class="modal-footer">
-              <button type="button" id="btnCloseInventory" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Add Item</button>
+              <button type="button" class="btn btn-secondary btnCloseModal" data-dismiss="modal">Close</button>
+              <button type="button" id="btnConfirmAddItem" class="btn btn-primary">Add Item</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="modalEditItem" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Edit Item</h5>
+              <button type="button" class="terminateModal" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body p-3">
+              <label for="txtEditInventoryID" class="form-label">Inventory ID: </label>
+              <input type="text" class="form-control" id="txtEditInventoryID" />
+              <label for="txtEditFarmID4" class="form-label">Farm ID:  </label>
+              <input type="text" class="form-control" id="txtEditFarmID4" />
+              <label for="txtEditItem" class="form-label">Item:  </label>
+              <input type="text" class="form-control" id="txtEditItem" />
+              <label for="txtEditItemDescription" class="form-label">Item Description:  </label>
+              <input type="text" class="form-control" id="txtEditItemDescription" />
+              <label for="txtEditItemCost" class="form-label">Item Cost:  </label>
+              <input type="text" class="form-control" id="txtEditItemCost" />
+              <label for="txtEditDateRecorded" class="form-label">Date Recorded: </label>
+              <input type="text" class="form-control" id="txtEditDateRecorded" />
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary btnCloseModal" data-dismiss="modal">Close</button>
+              <button id="confirmEditItem" type="button" class="btn btn-primary">Edit Item</button>
             </div>
           </div>
         </div>
@@ -983,8 +1146,8 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">New Farm</h5>
-              <button type="button" class="farmClose" data-dismiss="modal" aria-label="Close">
+              <h5 class="modal-title" id="exampleModalLongTitle">Delete</h5>
+              <button type="button" class="terminateModal" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -1000,17 +1163,21 @@
       </div>
     </div>
   
+  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>
 
     <script>
+      const strhost = 'http://localhost:8000';
+     
+      //Login Buttons
       $('#btnLogin').click(function(){
         let strEmail = $('#txtEmailAddress').val();
         let intEmailLength = $('#txtEmailAddress').val().length;
 
-        // let strPassword = $('#txtLoginPassword').val();
-        // let intPasswordLength = $('#ttxtLoginPassword').val().length;
+        let strPassword = $('#txtLoginPassword').val();
+        let intPasswordLength = $('#txtLoginPassword').val().length;
 
         var blnErrorFound1 = false;
         var strErrorMessage1 = '';
@@ -1020,10 +1187,10 @@
             strErrorMessage1 += "You must enter a Email. ";
         }
 
-        // if(intPasswordLength < 1){
-        //     blnErrorFound1 = true;
-        //     strErrorMessage1 += "You must enter a Password. ";
-        // }
+        if(intPasswordLength < 1){
+            blnErrorFound1 = true;
+            strErrorMessage1 += "You must enter a Password. ";
+        }
 
         if(blnErrorFound1 == true){
           Swal.fire({
@@ -1032,14 +1199,84 @@
             text: strErrorMessage1,
             })
         } else {
+          $.getJSON(strhost + '/users', {
+            email: strEmail,
+            password: strPassword
+          }, function(data){
+            if(data.length == 0){
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Invalid Email or Password',
+                })
+            } else {
+              $('#divLogin').slideToggle()
+              $('#divDashboard').slideToggle()
+      
+              $('#divNavBarStandard').slideToggle()
+              $('#divNavBarDashboard').slideToggle()
+              $.post(strhost + '/sessions', {
+                  Email: strEmail,
+                  Password: strPassword
+                }, function(result){
+                  result = JSON.parse(result)
+                  console.log(result)
+                  if (result == 'success'){
+                    Swal.fire({
+                      icon: 'success',
+                      title: 'Success',
+                      text: 'Session Created',
+                      }) 
+                      
+
+                      sessionStorage.setItem('SessionID', strSessionID)
+                      console.log(sessionStorage.getItem('SessionID'))
+                        $.get(strhost + '/sessions', {
+                          SessionID: strSessionID,
+                          Email: strEmail,
+                        }, function(data){
+                          data = JSON.parse(data)
+                          console.log(data)
+                          sessionStorage.setItem('SessionID', data[0].SessionID)
+                          console.log(sessionStorage.getItem('SessionID'))
+                        })
+                  }
+                  else{
+                    Swal.fire({
+                      icon: 'error',
+                      title: 'Oops...',
+                      text: 'Session Not Created',
+                      })  
+                  }
+                })
+              Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'You have successfully logged in',
+                })
+            }
+          })
+
           $('#divLogin').slideToggle()
           $('#divDashboard').slideToggle()
   
           $('#divNavBarStandard').slideToggle()
           $('#divNavBarDashboard').slideToggle()
+
+          $('#txtEmailAddress').val('')
+          $('#txtLoginPassword').val('')
         }
       })
+  
+      $('#btnRegister').click(function(){
+            $('#divLogin').slideToggle()
+            $('#divRegistration').slideToggle()
+            $('#txtEmailAddress').val('')
+            $('#txtLoginPassword').val('')
+          });
 
+ 
+      // Delete Buttons
       $(document).ready(function() {
         $('.delete-button').click(function() {
           var $row = $(this).closest('tr');
@@ -1055,122 +1292,1134 @@
       });
     });
 
-      // $('.modal-delete').click(function(){
-      //   $(this).closest('tr').remove();
-      //   $('#modalDelete').modal('hide')
-      // });
 
-
-      $('#btnRegister').click(function(){
+      //Logout Button
+      $('#btnLogout').click(function(){
+        $('#divNavBarDashboard').slideToggle()
+        $('#divNavBarStandard').slideToggle()
         $('#divLogin').slideToggle()
-        $('#divRegistration').slideToggle()
+        $('#divDashboard').hide()
+        $('#divProfile').hide()
+        $("#divProducts").hide();
+        $("#divFarms").hide();
+        $("#divTasks").hide();
+        $("#divEmployees").hide();
+        $("#divInventory").hide();
+        $("#divFinancialReporting").hide();
+        //Delete Session
       });
 
+
+      //Terminate Modal Button
+      $('.terminateModal').click(function(){
+        $('#modalAddTask').modal('hide')
+        $('#modalAddFarm').modal('hide')
+        $('#modalAddEmployee').modal('hide')
+        $('#modalAddProduct').modal('hide')
+        $('#modalAddItem').modal('hide')
+        $('#modalEditTask').modal('hide')
+        $('#modalEditFarm').modal('hide')
+        $('#modalEditEmployee').modal('hide')
+        $('#modalEditProduct').modal('hide')
+        $('#modalEditItem').modal('hide')
+        $('#modalDelete').modal('hide')
+
+    
+      })
+      
+
+      //Close Modal Button
+      $('.btnCloseModal').click(function(){
+        $('#modalAddTask').modal('hide')
+        $('#modalAddFarm').modal('hide')
+        $('#modalAddEmployee').modal('hide')
+        $('#modalAddProduct').modal('hide')
+        $('#modalAddItem').modal('hide')
+        $('#modalEditTask').modal('hide')
+        $('#modalEditFarm').modal('hide')
+        $('#modalEditEmployee').modal('hide')
+        $('#modalEditProduct').modal('hide')
+        $('#modalEditItem').modal('hide')
+        this.form.reset()
+      })
+
+      // $('#btnFarms').click(function(){
+      //   $('#divDashboard').slideToggle()
+      //   $('#divFarms').slideToggle()
+      // });
+
+      //Access Buttons
       $('#btnFinance').click(function(){
         $('#divDashboard').slideToggle()
         $('#divFinancialReporting').slideToggle()
+
       });
 
+      $('#btnEmployees').click(function(){
+        $('#divDashboard').slideToggle()
+        $('#divEmployees').slideToggle()
+        //Get Employees
+        $.getJSON('http://localhost:8000/employees', function(data) {
+                data = JSON.parse(data);
+                console.log(data);
+                if(!data){
+                    return;
+                    swal.fire ({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'No Employees Found',
+                    })
+                } else {
+                    $('#tblEmployee').empty();
+                    $.each(data, function(index, value) {
+                        $('#tblEmployee').append('<tr><td>' + value.EmployeeID + '</td><td>' + value.FarmName + '</td><td>' + value.EmployeeFirstName + '</td><td>' + value.EmployeeLastName + '</td><td>' + value.PayRate + '</td><td>' + value.Position + '</td><td><button class="btn btn-primary edit-employee" data-toggle="modal" data-target="#modalEditEmployee">Edit</button></td><td><button class="btn btn-danger delete-employee" data-toggle="modal" data-target="#modalDelete">Delete</button></td></tr>');
+                    });
+                }
+            });
+      });
+
+      $('#btnInventory').click(function(){
+        $('#divDashboard').slideToggle()
+        $('#divInventory').slideToggle()
+        //Get Inventory
+        $.getJSON(strhost + '/inventory', function(data) {
+                data = JSON.parse(data);
+                console.log(data);
+                if(!data){
+                    return;
+                    swal.fire ({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'No Inventory Found',
+                    })
+                } else {
+                  $('#tblInventory').empty();
+                  $.each(data, function(index, value) {
+                      $('#tblInventory').append('<tr><td>' + value.InventoryID + '</td><td>' + value.FarmName + '</td><td>' + value.Item + '</td><td>' + value.ItemDescription + '</td><td>' + value.ItemCost + '</td><td>' + value.DateRecorded + '</td><td><button class="btn btn-primary edit-item" data-toggle="modal" data-target="#modalEditItem">Edit</button></td><td><button class="btn btn-danger delete-item" data-toggle="modal" data-target="#modalDelete">Delete</button></td></tr>');
+                  });
+
+                }
+            });
+      });
+
+      $('#btnProducts').click(function(){
+        $('#divDashboard').slideToggle()
+        $('#divProducts').slideToggle()
+        //Get Products
+        $.getJSON(strhost + '/products', function(data) {
+                data = JSON.parse(data);
+                console.log(data);
+                if(!data){
+                    return;
+                    swal.fire ({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'No Products Found',
+                    })
+                } else {
+                  $('#tblProduct').empty();
+                  $.each(data, function(index, value) {
+                      $('#tblProduct').append('<tr><td>' + value.ProductID + '</td><td>' + value.FarmName + '</td><td>' + value.ProductName + '</td><td>' + value.ProductDescription + '</td><td>' + value.ProductPrice + '</td><td>' + value.DateRecorded + '</td><td><button class="btn btn-primary edit-product" data-toggle="modal" data-target="#modalEditProduct">Edit</button></td><td><button class="btn btn-danger delete-product" data-toggle="modal" data-target="#modalDelete">Delete</button></td></tr>');
+                  });
+                }
+            });
+      });    
+
+      $('#btnTasks').click(function(){
+        $('#divDashboard').slideToggle()
+        $('#divTasks').slideToggle()
+        //Get Tasks
+        $.getJSON(strhost + '/tasks', function(data) {
+                data = JSON.parse(data);
+                console.log(data);
+                if(!data){
+                  swal.fire ({
+                      icon: 'error',
+                      title: 'Oops...',
+                      text: 'No Tasks Found',
+                  })
+                } else {
+                  $('#tblTask').empty();
+                  $.each(data, function(index, value) {
+                      $('#tblTask').append('<tr><td>' + value.TaskID + '</td><td>' + value.FarmName + '</td><td>' + value.TaskName + '</td><td>' + value.TaskDescription + '</td><td>' + value.TaskDate + '</td><td>' + value.TaskTime + '</td><td><button class="btn btn-primary edit-task" data-toggle="modal" data-target="#modalEditTask">Edit</button></td><td><button class="btn btn-danger delete-task" data-toggle="modal" data-target="#modalDelete">Delete</button></td></tr>');
+                  });
+                }
+            });
+      });
+
+      
+      //Inventory CRUD Functions
       $('#add-item').click(function(){
         $('#modalAddItem').modal('show')
       });
 
-      $('#btnCloseInventory').click(function(){
-        $('#modalAddItem').modal('hide')
+      $('.edit-item').click(function(){
+        $('#modalEditItem').modal('show')
       });
+      
+      $('#btnConfirmAddItem').click(function(){
+        let strInventoryID = $('#txtInventoryID').val();
+        let strFarmID = $('#txtFarmID4').val();
+        let strItem = $('#txtItem').val();
+        let strItemDescription = $('#txtItemDescription').val();
+        let strItemCost = $('#txtItemCost').val();
+        let strDateRecorded = $('#txtDateRecorded').val();
 
-      $('.inventoryClose').click(function(){
-        $('#modalAddItem').modal('hide')
+        let intInventoryIDLength = $('#txtInventoryID').val().length;
+        let intFarmIDLength = $('#txtFarmID4').val().length;
+        let intItemLength = $('#txtItem').val().length;
+        let intItemDescriptionLength = $('#txtItemDescription').val().length;
+        let intItemCostLength = $('#txtItemCost').val().length;
+        let intDateRecordedLength = $('#txtDateRecorded').val().length;
+
+        let blnErrorFound = false;
+        let strErrorMessage = '';
+
+        if(intInventoryIDLength < 1){
+          blnErrorFound = true;
+          strErrorMessage += "You must enter a Inventory ID. ";
+        }
+
+        if(intFarmIDLength < 1){
+          blnErrorFound = true;
+          strErrorMessage += "You must enter a Farm ID. ";
+        }
+
+        if(intItemLength < 1){
+          blnErrorFound = true;
+          strErrorMessage += "You must enter a Item. ";
+        }
+
+        if(intItemDescriptionLength < 1){
+          blnErrorFound = true;
+          strErrorMessage += "You must enter a Item Description. ";
+        }
+
+        if(intItemCostLength < 1){
+          blnErrorFound = true;
+          strErrorMessage += "You must enter a Item Cost. ";
+        }
+
+        if(intDateRecordedLength < 1){
+          blnErrorFound = true;
+          strErrorMessage += "You must enter a Date Recorded. ";
+        }
+
+        if(blnErrorFound == true){
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: strErrorMessage,
+            })
+        } else {
+          $('#modalAddItem').modal('hide')
+
+          $('#txtInventoryID').val('');
+          $('#txtFarmID4').val('');
+          $('#txtItem').val('');
+          $('#txtItemDescription').val('');
+          $('#txtItemCost').val('');
+          $('#txtDateRecorded').val('');
+
+          $.post(strhost + '/inventory', {
+            inventoryID: strInventoryID,
+            farmID: strFarmID,
+            item: strItem,
+            itemDescription: strItemDescription,
+            itemCost: strItemCost,
+            dateRecorded: strDateRecorded
+          }) , function(data){
+            console.log(data);
+            data = JSON.parse(data);
+            if(!data){
+              swal.fire({
+                title: "Error",
+                text: "The Item has not been added to the Inventory.",
+                icon: "error",
+                button: "Close",
+              })
+              
+            } else {
+              $.getJSON('http://localhost:8000/inventory', function(data) {
+                data = JSON.parse(data);
+                console.log(data);
+                $('#tblInventory').empty();
+                $.each(data, function(index, value) {
+                  $('#tblInventory').append('<tr><td>' + value.inventoryID + '</td><td>' + value.farmID + '</td><td>' + value.item + '</td><td>' + value.itemDescription + '</td><td>' + value.itemCost + '</td><td>' + value.dateRecorded + '</td><td><button class="btn btn-primary edit-item" data-toggle="modal" data-target="#modalEditItem">Edit</button></td><td><button class="btn btn-danger delete-item" data-toggle="modal" data-target="#modalDelete">Delete</button></td></tr>');
+                });
+              });
+              swal.fire({
+                title: "Item Added",
+                text: "The Item has been added to the Inventory.",
+                icon: "success",
+                button: "Close",
+              });
+            }
+          }
+        }
+  
       });
+      
+      $('#confirmEditItem').click(function(){
+        let strInventoryID = $('#txtEditInventoryID').val();
+        let strFarmID = $('#txtEditFarmID4').val();
+        let strItem = $('#txtEditItem').val();
+        let strItemDescription = $('#txtEditItemDescription').val();
+        let strItemCost = $('#txtEditItemCost').val();
+        let strDateRecorded = $('#txtEditDateRecorded').val();
 
+        let intInventoryIDLength = $('#txtEditInventoryID').val().length;
+        let intFarmIDLength = $('#txtEditFarmID4').val().length;
+        let intItemLength = $('#txtEditItem').val().length;
+        let intItemDescriptionLength = $('#txtEditItemDescription').val().length;
+        let intItemCostLength = $('#txtEditItemCost').val().length;
+        let intDateRecordedLength = $('#txtEditDateRecorded').val().length;
+
+        let blnErrorFound = false;
+        let strErrorMessage = '';
+
+        if(intInventoryIDLength < 1){
+          blnErrorFound = true;
+          strErrorMessage += "You must enter a Inventory ID. ";
+        }
+
+        if(intFarmIDLength < 1){
+          blnErrorFound = true;
+          strErrorMessage += "You must enter a Farm ID. ";
+        }
+
+        if(intItemLength < 1){
+          blnErrorFound = true;
+          strErrorMessage += "You must enter a Item. ";
+        }
+
+        if(intItemDescriptionLength < 1){
+          blnErrorFound = true;
+          strErrorMessage += "You must enter a Item Description. ";
+        }
+
+        if(intItemCostLength < 1){
+          blnErrorFound = true;
+          strErrorMessage += "You must enter a Item Cost. ";
+        }
+
+        if(intDateRecordedLength < 1){
+          blnErrorFound = true;
+          strErrorMessage += "You must enter a Date Recorded. ";
+        }
+
+        if(blnErrorFound == true){
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: strErrorMessage,
+            })
+        } else {
+          $('#modalAddItem').modal('hide')
+          $('#txtEditInventoryID').val('');
+          $('#txtEditFarmID4').val('');
+          $('#txtEditItem').val('');
+          $('#txtEditItemDescription').val('');
+          $('#txtEditItemCost').val('');
+          $('#txtEditDateRecorded').val('');
+
+          $.put(strhost + '/inventory', {
+            inventoryID: strInventoryID,
+            farmID: strFarmID,
+            item: strItem,
+            itemDescription: strItemDescription,
+            itemCost: strItemCost,
+            dateRecorded: strDateRecorded
+          }, function(data){
+            data = JSON.parse(data);
+            console.log(data)
+            if(!data){
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+                })
+            } else {
+              Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'Item has been updated!',
+                })
+                $.getJSON('http://localhost:8000/inventory', function(data) {
+                  data = JSON.parse(data);
+                  console.log(data);
+                  $('#tblInventory').empty();
+                  $.each(data, function(index, value) {
+                    $('#tblInventory').append('<tr><td>' + value.inventoryID + '</td><td>' + value.farmID + '</td><td>' + value.item + '</td><td>' + value.itemDescription + '</td><td>' + value.itemCost + '</td><td>' + value.dateRecorded + '</td><td><button class="btn btn-primary edit-item" data-toggle="modal" data-target="#modalEditItem">Edit</button></td><td><button class="btn btn-danger delete-item" data-toggle="modal" data-target="#modalDelete">Delete</button></td></tr>');
+                  });
+                });
+            }
+          })
+        }
+
+        
+
+      });
+  
+
+      //Task CRUD Functions
       $('#add-task').click(function(){
         $('#modalAddTask').modal('show')
       })
+      
+      $('#confirmAddTask').click(function(){
 
-      $('#btnCloseTask').click(function(){
-        $('#modalAddTask').modal('hide')
+        let strTaskID = $('#txtTaskID').val();
+        let strTitle = $('#txtTitle').val();
+        let strProductType = $('#txtTaskProductType').val();
+        let strDescription = $('#txtTaskDescription').val();
+        let strDuration = $('#txtDuration').val();
+        let strFirstName = $('#txtFirstName1').val();
+        let strLastName = $('#txtLastName2').val();
+
+        let intTaskIDLength = $('#txtTaskID').val().length;
+        let intTitleLength = $('#txtTitle').val().length;
+        let intProductTypeLength = $('#txtTaskProductType').val().length;
+        let intDescriptionLength = $('#txtTaskDescription').val().length;
+        let intDurationLength = $('#txtDuration').val().length;
+        let intFirstNameLength = $('#txtFirstName1').val().length;
+        let intLastNameLength = $('#txtLastName2').val().length;
+        
+        var blnErrorFound = false;
+        var strErrorMessage = '';
+
+        if(intTaskIDLength < 1){
+            blnErrorFound = true;
+            strErrorMessage += "You must enter a Task ID. ";
+        }
+
+        if(intTitleLength < 1){
+            blnErrorFound = true;
+            strErrorMessage += "You must enter a Title. ";
+        }
+
+        if(intProductTypeLength < 1){
+            blnErrorFound = true;
+            strErrorMessage += "You must enter a Product Type. ";
+        }
+
+        if(intDescriptionLength < 1){
+            blnErrorFound = true;
+            strErrorMessage += "You must enter a Description. ";
+        }
+
+        if(intDurationLength < 1){
+            blnErrorFound = true;
+            strErrorMessage += "You must enter a Duration. ";
+        }
+
+        if(intFirstNameLength < 1){
+            blnErrorFound = true;
+            strErrorMessage += "You must enter a First Name. ";
+        }
+
+        if(intLastNameLength < 1){
+            blnErrorFound = true;
+            strErrorMessage += "You must enter a Last Name. ";
+        }
+
+        if(blnErrorFound == true){
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: strErrorMessage,
+              })
+        }
+        else{
+            $('#modalAddTask').modal('hide')
+
+            Swal.fire({
+              icon: 'success',
+              title: 'Success!',
+              text: 'Task has been added!',
+            })
+
+            $('#txtTaskID').val('');
+            $('#txtTitle').val('');
+            $('#txtTaskProductType').val('');
+            $('#txtTaskDescription').val('');
+            $('#txtDuration').val('');
+            $('#txtFirstName1').val('');
+            $('#txtLastName2').val('');
+
+            $.post(strhost + '/task', {
+                taskID: strTaskID,
+                title: strTitle,
+                productType: strProductType,
+                description: strDescription,
+                duration: strDuration,
+                firstName: strFirstName,
+                lastName: strLastName
+            }, function(data){
+                data = JSON.parse(data);
+                console.log(data)
+                if(!data){
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong!',
+                      })
+                } else {
+                    $.getJSON('http://localhost:8000/task', function(data) {
+                        data = JSON.parse(data);
+                        console.log(data);
+                        $('#tblTask').empty();
+                        $.each(data, function(index, value) {
+                            $('#tblTask').append('<tr><td>' + value.taskID + '</td><td>' + value.title + '</td><td>' + value.productType + '</td><td>' + value.description + '</td><td>' + value.duration + '</td><td>' + value.firstName + '</td><td>' + value.lastName + '</td><td><button class="btn btn-primary edit-task" data-toggle="modal" data-target="#modalEditTask">Edit</button></td><td><button class="btn btn-danger delete-task" data-toggle="modal" data-target="#modalDelete">Delete</button></td></tr>');
+                        });
+                    });
+
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success!',
+                        text: 'Task has been added!',
+                      })
+                }
+            })
+        }
+
+
+      })
+     
+      $('.edit-task').click(function(){
+        $('#modalEditTask').modal('show')
       })
 
-      $('.taskClose').click(function(){
-        $('#modalAddTask').modal('hide')
+      $('#confirmEditTask').click(function(){
+        let strTaskID = $('#txtEditTaskID').val();
+        let strTitle = $('#txtEditTitle').val();
+        let strProductType = $('#txtEditTaskProductType').val();
+        let strDescription = $('#txtEditTaskDescription').val();
+        let strDuration = $('#txtEditDuration').val();
+        let strFirstName = $('#txtEditFirstName1').val();
+        let strLastName = $('#txtEditLastName1').val();
+
+        let intTaskIDLength = $('#txtEditTaskID').val().length;
+        let intTitleLength = $('#txtEditTitle').val().length;
+        let intProductTypeLength = $('#txtEditTaskProductType').val().length;
+        let intDescriptionLength = $('#txtEditTaskDescription').val().length;
+        let intDurationLength = $('#txtEditDuration').val().length;
+        let intFirstNameLength = $('#txtEditFirstName1').val().length;
+        let intLastNameLength = $('#txtEditLastName1').val().length;
+        
+        var blnErrorFound = false;
+        var strErrorMessage = '';
+
+        if(intTaskIDLength < 1){
+            blnErrorFound = true;
+            strErrorMessage += "You must enter a Task ID. ";
+        }
+
+        if(intTitleLength < 1){
+            blnErrorFound = true;
+            strErrorMessage += "You must enter a Title. ";
+        }
+
+        if(intProductTypeLength < 1){
+            blnErrorFound = true;
+            strErrorMessage += "You must enter a Product Type. ";
+        }
+
+        if(intDescriptionLength < 1){
+            blnErrorFound = true;
+            strErrorMessage += "You must enter a Description. ";
+        }
+
+        if(intDurationLength < 1){
+            blnErrorFound = true;
+            strErrorMessage += "You must enter a Duration. ";
+        }
+
+        if(intFirstNameLength < 1){
+            blnErrorFound = true;
+            strErrorMessage += "You must enter a First Name. ";
+        }
+
+        if(intLastNameLength < 1){
+            blnErrorFound = true;
+            strErrorMessage += "You must enter a Last Name. ";
+        }
+
+        if(blnErrorFound == true){
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: strErrorMessage,
+              })
+        }
+        else{
+          Swal.fire({
+              icon: 'success',
+              title: 'Success!',
+              text: 'Task has been added!',
+            })
+  
+            $('#modalEditTask').modal('hide')
+            
+            $('#txtEditTaskID').val('');
+            $('#txtEditTitle').val('');
+            $('#txtEditTaskProductType').val('');
+            $('#txtEditTaskDescription').val('');
+            $('#txtEditDuration').val('');
+            $('#txtEditFirstName1').val('');
+            $('#txtEditLastName1').val('');
+
+            $.put(strhost + '/task', {
+                taskID: strTaskID,
+                title: strTitle,
+                productType: strProductType,
+                description: strDescription,
+                duration: strDuration,
+                firstName: strFirstName,
+                lastName: strLastName
+            }, function(data){
+                console.log(data)
+                if(!data){
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong!',
+                      })
+                } else {
+                    $.getJSON('http://localhost:8000/task', function(data) {
+                        data = JSON.parse(data);
+                        console.log(data);
+                        $('#tblTask').empty();
+                        $.each(data, function(index, value) {
+                            $('#tblTask').append('<tr><td>' + value.taskID + '</td><td>' + value.title + '</td><td>' + value.productType + '</td><td>' + value.description + '</td><td>' + value.duration + '</td><td>' + value.firstName + '</td><td>' + value.lastName + '</td><td><button class="btn btn-primary edit-task" data-toggle="modal" data-target="#modalEditTask">Edit</button></td><td><button class="btn btn-danger delete-task" data-toggle="modal" data-target="#modalDelete">Delete</button></td></tr>');
+                        });
+                    });
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success!',
+                        text: 'Task has been Updated!',
+                      })
+                }
+            })
+        }
       })
 
-      $('#add-farm').click(function(){
-        $('#modalAddFarm').modal('show')
-      })
 
-      $('#btnCloseFarm').click(function(){
-        $('#modalAddFarm').modal('hide')
-      })
-
-      $('.farmClose').click(function(){
-        $('#modalAddFarm').modal('hide')
-      })
-
+      //Employee CRUD Functions
       $('#add-employee').click(function(){
         $('#modalAddEmployee').modal('show')
       })
 
-      $('#btnCloseEmployee').click(function(){
-        $('#modalAddEmployee').modal('hide')
+      $('.edit-employee').click(function(){
+        $('#modalEditEmployee').modal('show')
       })
 
-      $('.employeeClose').click(function(){
-        $('#modalAddEmployee').modal('hide')
+      $('#confirmAddEmployee').click(function(){
+        let strEmployeeID = $('#txtEmployeeID').val();
+        let strFarmName = $('#txtEmpFarmName').val();
+        let strEmployeeFirstName = $('#txtEmpFirstName').val();
+        let strEmployeeLastName = $('#txtEmpLastName').val();
+        let strPayRate = $('#txtPayRate').val();
+        let strPosition = $('#txtPosition').val();
+
+        let intEmployeeIDLength = $('#txtEmployeeID').val().length;
+        let intFarmNameLength = $('#txtEmpFarmName').val().length;
+        let intEmployeeFirstNameLength = $('#txtEmpFirstName').val().length;
+        let intEmployeeLastNameLength = $('#txtEmpLastName').val().length;
+        let intPayRateLength = $('#txtPayRate').val().length;
+        let intPositionLength = $('#txtPosition').val().length;
+
+        let blnErrorFound = false;
+        let strErrorMessage = '';
+
+        if(intEmployeeIDLength < 1){
+          blnErrorFound = true;
+          strErrorMessage += "You must enter an Employee ID. ";
+        }
+        
+        if(intFarmNameLength < 1){
+          blnErrorFound = true;
+          strErrorMessage += "You must enter a Farm Name. ";
+        }
+
+        if(intEmployeeFirstNameLength < 1){
+          blnErrorFound = true;
+          strErrorMessage += "You must enter a First Name. ";
+        }
+
+        if(intEmployeeLastNameLength < 1){
+          blnErrorFound = true;
+          strErrorMessage += "You must enter a Last Name. ";
+        }
+
+        if(intPayRateLength < 1){
+          blnErrorFound = true;
+          strErrorMessage += "You must enter a Pay Rate. ";
+        }
+
+        if(intPositionLength < 1){
+          blnErrorFound = true;
+          strErrorMessage += "You must enter a Position. ";
+        }
+
+        if(blnErrorFound == true){
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: strErrorMessage,
+            })
+        }
+        else{
+          $('#modalAddEmployee').modal('hide')
+          $('#txtEmployeeID').val('');
+          $('#txtEmpFarmName').val('');
+          $('#txtEmpFirstName').val('');
+          $('#txtEmpLastName').val('');
+          $('#txtPayRate').val('');
+          $('#txtPosition').val('');
+          swal.fire({
+            title: 'Success!',
+            text: 'Employee Added!',
+            icon: 'success',
+            confirmButtonText: 'OK'
+          })
+
+          $.post(strhost + '/employees' ,{
+            EmployeeID: strEmployeeID,
+            FarmName: strFarmName,
+            EmployeeFirstName: strEmployeeFirstName,
+            EmployeeLastName: strEmployeeLastName,
+            PayRate: strPayRate,
+            Position: strPosition
+          }, function(result){
+            result = JSON.parse(result);
+            console.log(result)
+            if(!result){
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+              })
+            } else {
+              $.getJSON('http://localhost:8000/employees', function(data) {
+                data = JSON.parse(data);
+                console.log(data);
+                $('#tblEmployee').empty();
+                $.each(data, function(index, value) {
+                    $('#tblEmployee').append('<tr><td>' + value.EmployeeID + '</td><td>' + value.FarmName + '</td><td>' + value.EmployeeFirstName + '</td><td>' + value.EmployeeLastName + '</td><td>' + value.PayRate + '</td><td>' + value.Position + '</td><td><button class="btn btn-primary edit-employee" data-toggle="modal" data-target="#modalEditEmployee">Edit</button></td><td><button class="btn btn-danger delete-employee" data-toggle="modal" data-target="#modalDelete">Delete</button></td></tr>');
+                });
+            });
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'Employee has been Added!',
+              })
+          }
+          })
+        }
+       
+
       })
 
+      $('#confirmEditEmployee').click(function(){
+        let strEmployeeID = $('#txtEditEmployeeID').val();
+        let strFarmName = $('#txtEditEmpFarmName').val();
+        let strEmployeeFirstName = $('#txtEditEmpFirstName').val();
+        let strEmployeeLastName = $('#txtEditEmpLastName').val();
+        let strPayRate = $('#txtEditPayRate').val();
+        let strPosition = $('#txtEditPosition').val();
+
+        let intEmployeeIDLength = $('#txtEditEmployeeID').val().length;
+        let intFarmNameLength = $('#txtEditEmpFarmName').val().length;
+        let intEmployeeFirstNameLength = $('#txtEditEmpFirstName').val().length;
+        let intEmployeeLastNameLength = $('#txtEditEmpLastName').val().length;
+        let intPayRateLength = $('#txtEditPayRate').val().length;
+        let intPositionLength = $('#txtEditPosition').val().length;
+
+        let blnErrorFound = false;
+        let strErrorMessage = '';
+
+        if(intEmployeeIDLength < 1){
+          blnErrorFound = true;
+          strErrorMessage += "You must enter an Employee ID. ";
+        }
+
+        if(intFarmNameLength < 1){
+          blnErrorFound = true;
+          strErrorMessage += "You must enter a Farm Name. ";
+        }
+
+        if(intEmployeeFirstNameLength < 1){
+          blnErrorFound = true;
+          strErrorMessage += "You must enter a First Name. ";
+        }
+
+        if(intEmployeeLastNameLength < 1){
+          blnErrorFound = true;
+          strErrorMessage += "You must enter a Last Name. ";
+        }
+
+        if(intPayRateLength < 1){
+          blnErrorFound = true;
+          strErrorMessage += "You must enter a Pay Rate. ";
+        }
+
+        if(intPositionLength < 1){
+          blnErrorFound = true;
+          strErrorMessage += "You must enter a Position. ";
+        }
+
+        if(blnErrorFound == true){
+          swal.fire ({
+            icon: 'error',
+            title: 'Oops...',
+            text: strErrorMessage,
+            })
+        } else {
+          $('#modalEditEmployee').modal('hide')
+          $('#txtEditEmployeeID').val('');
+          $('#txtEditEmpFarmName').val('');
+          $('#txtEditEmpFirstName').val('');
+          $('#txtEditEmpLastName').val('');
+          $('#txtEditPayRate').val('');
+          $('#txtEditPosition').val('');
+          swal.fire({
+            title: 'Success!',
+            text: 'Employee Updated!',
+            icon: 'success',
+            confirmButtonText: 'OK'
+          })
+
+          $.put(strhost + '/employees',{
+            EmployeeID: strEmployeeID,
+            FarmName: strFarmName,
+            EmployeeFirstName: strEmployeeFirstName,
+            EmployeeLastName: strEmployeeLastName,
+            PayRate: strPayRate,
+            Position: strPosition
+          }, function(result){
+            result = JSON.parse(result);
+            console.log(result)
+            if(!result){
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+              })
+            } else {
+              $.getJSON('http://localhost:8000/employees', function(data) {
+                data = JSON.parse(data);
+                console.log(data);
+                $('#tblEmployee').empty();
+                $.each(data, function(index, value) {
+                    $('#tblEmployee').append('<tr><td>' + value.EmployeeID + '</td><td>' + value.FarmName + '</td><td>' + value.EmployeeFirstName + '</td><td>' + value.EmployeeLastName + '</td><td>' + value.PayRate + '</td><td>' + value.Position + '</td><td><button class="btn btn-primary edit-employee" data-toggle="modal" data-target="#modalEditEmployee">Edit</button></td><td><button class="btn btn-danger delete-employee" data-toggle="modal" data-target="#modalDelete">Delete</button></td></tr>');
+                });
+            });
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'Employee has been Updated!',
+              })
+            }
+          })
+        }
+
+      })
+
+      
+      //Product CRUD Functions
       $('#add-product').click(function(){
         $('#modalAddProduct').modal('show')
+        //post
+        //append table
       })
 
-      $('#btnCloseProduct').click(function(){
-        $('#modalAddProduct').modal('hide')
+      $('#confirmAddProduct').click(function(){
+        let strProductID = $('#txtProductID').val();
+        let strProductFarmName = $('#txtProductFarmName').val();
+        let strProductType = $('#txtProductType1').val();
+        let strFixedCost = $('#txtProductFixedCost').val();
+        let strDatePlanted = $('#txtDatePlanted').val();
+        let strDateHarvested = $('#txtDateHarvested').val();
+        let strHarvestWeight = $('#txtHarvestWeight').val();
+        let strHarvestQuantity = $('#txtHarvestQuantity').val();
+
+        let intProductIDLength = $('#txtProductID').val().length;
+        let intProductFarmNameLength = $('#txtProductFarmName').val().length;
+        let intProductTypeLength = $('#txtProductType1').val().length;
+        let intFixedCostLength = $('#txtProductFixedCost').val().length;
+        let intDatePlantedLength = $('#txtDatePlanted').val().length;
+        let intDateHarvestedLength = $('#txtDateHarvested').val().length;
+        let intHarvestWeightLength = $('#txtHarvestWeight').val().length;
+        let intHarvestQuantityLength = $('#txtHarvestQuantity').val().length;
+
+        let blnErrorFound2 = false;
+        let strErrorMessage2 = '';
+
+        if(intProductIDLength < 1){
+          blnErrorFound2 = true;
+          strErrorMessage2 += "You must enter a Product ID. ";
+        }
+
+        if(intProductFarmNameLength < 1){
+          blnErrorFound2 = true;
+          strErrorMessage2 += "You must enter a Farm Name. ";
+        }
+
+        if(intProductTypeLength < 1){
+          blnErrorFound2 = true;
+          strErrorMessage2 += "You must enter a Product Type. ";
+        }
+
+        if(intFixedCostLength < 1){
+          blnErrorFound2 = true;
+          strErrorMessage2 += "You must enter a Fixed Cost. ";
+        }
+
+        if(intDatePlantedLength < 1){
+          blnErrorFound2 = true;
+          strErrorMessage2 += "You must enter a Date Planted. ";
+        }
+
+        if(intDateHarvestedLength < 1){
+          blnErrorFound2 = true;
+          strErrorMessage2 += "You must enter a Date Harvested. ";
+        }
+
+        if(intHarvestWeightLength < 1){
+          blnErrorFound2 = true;
+          strErrorMessage2 += "You must enter a Harvest Weight. ";
+        }
+
+        if(intHarvestQuantityLength < 1){
+          blnErrorFound2 = true;
+          strErrorMessage2 += "You must enter a Harvest Quantity. ";
+        }
+
+        if(blnErrorFound2 == true){
+          swal.fire ({
+            title: "Error",
+            text: strErrorMessage2,
+            icon: "error",
+            confirmButtonText: "OK"
+          })
+        } else {
+          swal.fire ({
+            title: "Success",
+            text: "Product Added",
+            icon: "success",
+            confirmButtonText: "OK"
+          })
+          $('#modalAddProduct').modal('hide')
+
+          $('#txtProductID').val('');
+          $('#txtProductFarmName').val('');
+          $('#txtProductType1').val('');
+          $('#txtProductFixedCost').val('');
+          $('#txtDatePlanted').val('');
+          $('#txtDateHarvested').val('');
+          $('#txtHarvestWeight').val('');
+          $('#txtHarvestQuantity').val('');
+
+          $.post(strHost + '/products', {ProductID: strProductID, ProductFarmName: strProductFarmName, ProductType: strProductType, FixedCost: strFixedCost, DatePlanted: strDatePlanted, 
+            DateHarvested: strDateHarvested, HarvestWeight: strHarvestWeight, HarvestQuantity: strHarvestQuantity}, function(result){
+            console.log(result);
+            result = JSON.parse(result);
+            if(result == 'success'){
+              swal.fire ({
+                title: "Success",
+                text: "Product Added",
+                icon: "success",
+                confirmButtonText: "OK"
+              })
+              $.getJSON(strHost + '/products', function(result){
+                console.log(result);
+                $('#tblProducts').empty();
+                $('#tblProducts').append('<tr><th>Product ID</th><th>Farm Name</th><th>Product Type</th><th>Fixed Cost</th><th>Date Planted</th><th>Date Harvested</th><th>Harvest Weight</th><th>Harvest Quantity</th><th>Edit</th><th>Delete</th></tr>');
+                for(let i = 0; i < result.length; i++){
+                  $('#tblProducts').append('<tr><td>' + result[i].ProductID + '</td><td>' + result[i].ProductFarmName + '</td><td>' + result[i].ProductType + '</td><td>' + 
+                    result[i].FixedCost + '</td><td>' + result[i].DatePlanted + '</td><td>' + result[i].DateHarvested + '</td><td>' + result[i].HarvestWeight + '</td><td>' + 
+                    result[i].HarvestQuantity + '</td><td><button class="btn btn-primary edit-product" data-productid="' + result[i].ProductID + '" data-productfarmname="' + 
+                    result[i].ProductFarmName + '" data-producttype="' + result[i].ProductType + '" data-fixedcost="' + result[i].FixedCost + '" data-dateplanted="' + 
+                    result[i].DatePlanted + '" data-dateharvested="' + result[i].DateHarvested + '" data-harvestweight="' + result[i].HarvestWeight + '" data-harvestquantity="' + 
+                    result[i].HarvestQuantity + '">Edit</button></td><td><button class="btn btn-danger delete-product" data-productid="' + result[i].ProductID + '">Delete</button></td></tr>');
+                }
+              })
+            }
+            else{
+              swal.fire ({
+                title: "Error",
+                text: "Product Not Added",
+                icon: "error",
+                confirmButtonText: "OK"
+              })
+            }
+          })
+
+        }
+
+
+      })
+      
+      $('.edit-product').click(function(){
+        $('#modalEditProduct').modal('show')
       })
 
-      $('.productClose').click(function(){
-        $('#modalAddProduct').modal('hide')
+      $('#btnConfirmEditProduct').click(function(){
+        let strProductID = $('#txtEditProductID').val();
+        let strProductFarmName = $('#txtEditProductFarmName').val();
+        let strProductType = $('#txtEditProductType1').val();
+        let strFixedCost = $('#txtEditProductFixedCost').val();
+        let strDatePlanted = $('#txtEditDatePlanted').val();
+        let strDateHarvested = $('#txtEditDateHarvested').val();
+        let strHarvestWeight = $('#txtEditHarvestWeight').val();
+        let strHarvestQuantity = $('#txtEditHarvestQuantity').val();
+
+        let intProductIDLength = $('#txtEditProductID').val().length;
+        let intProductFarmNameLength = $('#txtEditProductFarmName').val().length;
+        let intProductTypeLength = $('#txtEditProductType1').val().length;
+        let intFixedCostLength = $('#txtEditProductFixedCost').val().length;
+        let intDatePlantedLength = $('#txtEditDatePlanted').val().length;
+        let intDateHarvestedLength = $('#txtEditDateHarvested').val().length;
+        let intHarvestWeightLength = $('#txtEditHarvestWeight').val().length;
+        let intHarvestQuantityLength = $('#txtEditHarvestQuantity').val().length;
+
+        let blnErrorFound2 = false;
+        let strErrorMessage2 = '';
+
+        if(intProductIDLength < 1){
+          blnErrorFound2 = true;
+          strErrorMessage2 += "You must enter a Product ID. ";
+        }
+
+        if(intProductFarmNameLength < 1){
+          blnErrorFound2 = true;
+          strErrorMessage2 += "You must enter a Farm Name. ";
+        }
+
+        if(intProductTypeLength < 1){
+          blnErrorFound2 = true;
+          strErrorMessage2 += "You must enter a Product Type. ";
+        }
+
+        if(intFixedCostLength < 1){
+          blnErrorFound2 = true;
+          strErrorMessage2 += "You must enter a Fixed Cost. ";
+        }
+
+        if(intDatePlantedLength < 1){
+          blnErrorFound2 = true;
+          strErrorMessage2 += "You must enter a Date Planted. ";
+        }
+
+        if(intDateHarvestedLength < 1){
+          blnErrorFound2 = true;
+          strErrorMessage2 += "You must enter a Date Harvested. ";
+        }
+
+        if(intHarvestWeightLength < 1){
+          blnErrorFound2 = true;
+          strErrorMessage2 += "You must enter a Harvest Weight. ";
+        }
+
+        if(intHarvestQuantityLength < 1){
+          blnErrorFound2 = true;
+          strErrorMessage2 += "You must enter a Harvest Quantity. ";
+        }
+
+        if(blnErrorFound2 == true){
+          swal.fire ({
+            title: "Error",
+            text: strErrorMessage2,
+            icon: "error",
+            confirmButtonText: "OK"
+          })
+        } else {
+          swal.fire ({
+            title: "Success",
+            text: "Product Updated",
+            icon: "success",
+            confirmButtonText: "OK"
+          })
+
+          $('#modalEditProduct').modal('hide')
+
+          $('#txtEditProductID').val('');
+          $('#txtEditProductFarmName').val('');
+          $('#txtEditProductType1').val('');
+          $('#txtEditProductFixedCost').val('');
+          $('#txtEditDatePlanted').val('');
+          $('#txtEditDateHarvested').val('');
+          $('#txtEditHarvestWeight').val('');
+          $('#txtEditHarvestQuantity').val('');
+
+        $.put(strhost + '/products', {
+          ProductID: strProductID,
+          ProductFarmName: strProductFarmName,
+          ProductType: strProductType,
+          FixedCost: strFixedCost,
+          DatePlanted: strDatePlanted,
+          DateHarvested: strDateHarvested,
+          HarvestWeight: strHarvestWeight,
+          HarvestQuantity: strHarvestQuantity
+        }, function(result){
+          result = JSON.parse(result)
+          if(result == "Success"){
+            swal.fire ({
+              title: "Success",
+              text: "Product Updated",
+              icon: "success",
+              confirmButtonText: "OK"
+            })
+            $.getJSON(strhost + '/products', {
+              ProductID: strProductID,
+              ProductFarmName: strProductFarmName,
+              ProductType: strProductType,
+              FixedCost: strFixedCost,
+              DatePlanted: strDatePlanted,
+              DateHarvested: strDateHarvested,
+              HarvestWeight: strHarvestWeight,
+              HarvestQuantity: strHarvestQuantity
+            }, function(result){
+              result = JSON.parse(result)
+              $('#tblProducts').empty()
+              for(let i = 0; i < result.length; i++){
+                $('#tblProducts').append('<tr><td>' + result[i].ProductID + '</td><td>' + result[i].ProductFarmName + 
+                  '</td><td>' + result[i].ProductType + '</td><td>' + result[i].FixedCost + '</td><td>' + result[i].DatePlanted + 
+                  '</td><td>' + result[i].DateHarvested + '</td><td>' + result[i].HarvestWeight + '</td><td>' + result[i].HarvestQuantity + 
+                  '</td><td><button class="btn btn-primary edit-product" data-productid="' + result[i].ProductID + '" data-productfarmname="' + 
+                  result[i].ProductFarmName + '" data-producttype="' + result[i].ProductType + '" data-fixedcost="' + result[i].FixedCost + 
+                  '" data-dateplanted="' + result[i].DatePlanted + '" data-dateharvested="' + result[i].DateHarvested + '" data-harvestweight="' + 
+                  result[i].HarvestWeight + '" data-harvestquantity="' + result[i].HarvestQuantity + 
+                  '">Edit</button></td><td><button class="btn btn-danger delete-product" data-productid="' + result[i].ProductID + '">Delete</button></td></tr>');
+            }
+            })
+          }
+          else{
+            swal.fire ({
+              title: "Error",
+              text: "Product Not Updated",
+              icon: "error",
+              confirmButtonText: "OK"
+            })
+          }
+        })
+        
+        
+        }
+
       })
 
 
-
+      //NavBar Buttons
       $('#btnSwollenFarms').click(function(){
         if ($("#divLogin").css("display") == "none") {
           $('#divRegistration').slideToggle()
           $('#divLogin').slideToggle() 
           }
         else {
-          pass
+          return
         }
-      });
-
-      $('#btnEmployees').click(function(){
-        $('#divDashboard').slideToggle()
-        $('#divEmployees').slideToggle()
-      });
-
-      $('#btnFarms').click(function(){
-        $('#divDashboard').slideToggle()
-        $('#divFarms').slideToggle()
-      });
-
-      $('#btnInventory').click(function(){
-        $('#divDashboard').slideToggle()
-        $('#divInventory').slideToggle()
-      });
-
-      $('#btnProducts').click(function(){
-        $('#divDashboard').slideToggle()
-        $('#divProducts').slideToggle()
-      });
-      
-      $('#btnBackToDashboard').click(function(){
-        $('#divProfile').slideToggle()
-        $('#divDashboard').slideToggle()
-      });
-
-      $('#btnTasks').click(function(){
-        $('#divDashboard').slideToggle()
-        $('#divTasks').slideToggle()
       });
 
       $('#btnProfile').click(function(){
@@ -1191,7 +2440,6 @@
         }
       });
 
-
       $("#btnDashboard").click(function(){
         if ($("#divDashboard").css("display") == "none") {
             $("#divDashboard").slideToggle();
@@ -1208,31 +2456,15 @@
         else {
           pass
         }
+        $('#btnBackToDashboard').click(function(){
+        $('#divProfile').slideToggle()
+        $('#divDashboard').slideToggle()
+      });
       })
       
-      
 
 
-
-
-      $('#btnLogout').click(function(){
-        $('#divNavBarDashboard').slideToggle()
-        $('#divNavBarStandard').slideToggle()
-        $('#divLogin').slideToggle()
-        $('#divDashboard').hide()
-        $('#divProfile').hide()
-        
-
-      });
-   
-    // $('#btnCreateAccount').onclick.slideup();  
-    
-    // $('#btnLogout').click(function(){
-    //     $('#divDashboard').slideToggle()
-    //     $('#divLogin').slideToggle()
-    //   });
-
-
+    //Registration
     $('#btnCreateAccount').click(function(){
         let strFirst = $('#txtFirstName').val();
         let intFirstNameLength = $('#txtFirstName').val().length;
@@ -1296,26 +2528,79 @@
         } else {
           $('#divRegistration').slideToggle()
           $('#divDashboard').slideToggle()
-  
           $('#divNavBarStandard').slideToggle()
           $('#divNavBarDashboard').slideToggle()
+          $('#txtFirstName').val('')
+          $('#txtLastName').val('')
+          $('#txtEmail').val('')
+          $('#txtPassword').val('')
+          $('#txtMobileNumber').val('')
+          $('#checkbox1').prop('checked', false)
+          $('#txtLoginPassword').val('')
+          $('#txtEmailAddress').val('')
+
+          $.post(strhost + '/users', {
+            FirstName: strFirst,
+            LastName: strLast,
+            Email: strEmail,
+            Password: strPassword,
+            MobileNumber: strMobileNumber
+          }, function(data){
+            data = JSON.parse(data)
+            console.log(data)
+            if (data == 'success'){
+              Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Account Created',
+                }) 
+
+                let strSessionID = uuidv4();
+                $.post(strhost + '/sessions', {
+                  SessionID: strSessionID,
+                  Email: strEmail,
+                  Password: strPassword
+                }, function(result){
+                  result = JSON.parse(result)
+                  console.log(result)
+                  if (result == 'success'){
+                    Swal.fire({
+                      icon: 'success',
+                      title: 'Success',
+                      text: 'Session Created',
+                      }) 
+                      sessionStorage.setItem('SessionID', strSessionID)
+                      console.log(sessionStorage.getItem('SessionID'))
+                        $.get(strhost + '/sessions', {
+                          SessionID: strSessionID,
+                          Email: strEmail,
+                        }, function(data){
+                          data = JSON.parse(data)
+                          console.log(data)
+                          sessionStorage.setItem('SessionID', data[0].SessionID)
+                          console.log(sessionStorage.getItem('SessionID'))
+                        })
+                  }
+                  else{
+                    Swal.fire({
+                      icon: 'error',
+                      title: 'Oops...',
+                      text: 'Session Not Created',
+                      })  
+                  }
+                }) 
+            }
+            else{
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Account Not Created',
+                })  
+            }
+          })
         }
-        
-
-
-        // if(blnErrorFound1 != true){
-        //   $('#divRegistration').slideToggle()
-        //   $('#divDashboard').slideToggle()
-        // }
-
-        // if(pswError != true){
-        //   $('#divRegistration').slideToggle()
-        //   $('#divDashboard').slideToggle()
-        // }
-    })
-
-    
-    
+      })
+            
     $('#btnCreateFarm').click(function(){    
 
         let strFarmName = $('#txtFarmName').val();
@@ -1363,8 +2648,51 @@
         }
 
         if(blnErrorFound2 == true){
-            alert(strErrorMessage2)
+           swal.fire ({
+                icon: 'Error',
+                title: 'Error',
+                text: strErrorMessage2
+            })
+        } else {
+            $('#divFarm').slideToggle()
+            $('#divDashboard').slideToggle()
+            $('#divNavBarStandard').slideToggle()
+            $('#divNavBarDashboard').slideToggle()
+            $('#txtFarmName').val('')
+            $('#txtStreetAddress1').val('')
+            $('#txtStreetAddress2').val('')
+            $('#txtCity').val('')
+            $('#txtState').val('')
+            $('#txtZipCode').val('')
+            $('#checkbox2').prop('checked', false)
+
+            $.post(strhost + '/farms', {
+                FarmName: strFarmName,
+                StreetAddress1: strStreetAddress1,
+                StreetAddress2: strStreetAddress2,
+                City: strCity,
+                State: strState,
+                ZipCode: strZipCode
+            }, function(data){
+                data = JSON.parse(data)
+                console.log(data)
+                if (data == 'success'){
+                    swal.fire ({
+                        icon: 'Success',
+                        title: 'Success',
+                        text: 'Farm Created'
+                    })
+                }
+                else{
+                    swal.fire ({
+                        icon: 'Error',
+                        title: 'Error',
+                        text: 'Farm Not Created'
+                    })
+                }
+            })
         }
+
     })
   </script> 
   
