@@ -16,54 +16,54 @@ const pool = mysql.createPool({
 const HTTP_PORT = 8000;
 // End Step One
 
-class Session {
-    constructor(strSessionID, objUser, datStartDateTime, datLastUsedDateTime){
-        this.SessionID = strSessionID;
-        this.User = objUser;
-        this.StartDateTime = datStartDateTime;
-        this.LastUsedDateTime = datLastUsedDateTime;
-}}
+// class Session {
+//     constructor(strSessionID, objUser, datStartDateTime, datLastUsedDateTime){
+//         this.SessionID = strSessionID;
+//         this.User = objUser;
+//         this.StartDateTime = datStartDateTime;
+//         this.LastUsedDateTime = datLastUsedDateTime;
+// }}
 
-class User {
-    constructor(strEmail, strFirstName, strLastName, strMobileNumber, objFarm, blnOwner){
-        this.Email = strEmail;
-        this.FirstName = strFirstName;
-        this.LastName = strLastName;
-        this.MobileNumber = strMobileNumber;
-        this.Farm = objFarm;
-        this.Owner = blnOwner;
-    }
-}
+// class User {
+//     constructor(strEmail, strFirstName, strLastName, strMobileNumber, objFarm, blnOwner){
+//         this.Email = strEmail;
+//         this.FirstName = strFirstName;
+//         this.LastName = strLastName;
+//         this.MobileNumber = strMobileNumber;
+//         this.Farm = objFarm;
+//         this.Owner = blnOwner;
+//     }
+// }
 
-class Farm {
-    constructor(strFarmID, strFarmName, strStreetAddress1, strStreetAddress2, strCity, strState, strZip) {
-        this.FarmID = strFarmID;
-        this.FarmName = strFarmName;
-        this.StreetAddress1 = strStreetAddress1;
-        this.StreetAddress2 = strStreetAddress2;
-        this.City = strCity;
-        this.State = strState;
-        this.Zip = strZip;
-    }
-}
+// class Farm {
+//     constructor(strFarmID, strFarmName, strStreetAddress1, strStreetAddress2, strCity, strState, strZip) {
+//         this.FarmID = strFarmID;
+//         this.FarmName = strFarmName;
+//         this.StreetAddress1 = strStreetAddress1;
+//         this.StreetAddress2 = strStreetAddress2;
+//         this.City = strCity;
+//         this.State = strState;
+//         this.Zip = strZip;
+//     }
+// }
 
-class Product {
-    constructor(strProductID, strShortName, strLongName, strDescription, strStatus, objFarm){
-        this.ProductID = strProductID;
-        this.ShortName = strShortName;
-        this.LongName = strLongName;
-        this.Description = strDescription;
-        this.Status = strStatus;
-        this.Farm = objFarm;
-    }
-}
+// class Product {
+//     constructor(strProductID, strShortName, strLongName, strDescription, strStatus, objFarm){
+//         this.ProductID = strProductID;
+//         this.ShortName = strShortName;
+//         this.LongName = strLongName;
+//         this.Description = strDescription;
+//         this.Status = strStatus;
+//         this.Farm = objFarm;
+//     }
+// }
 
-class message {
-    constructor(strType, strMessage){
-        this.Type = strType;
-        this.Message = strMessage;
-    }
-}
+// class message {
+//     constructor(strType, strMessage){
+//         this.Type = strType;
+//         this.Message = strMessage;
+//     }
+// }
 
 //Step Two
 var app = express();

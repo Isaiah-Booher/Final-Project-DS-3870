@@ -2952,17 +2952,17 @@
                 text: strErrorMessage2
             })
         } else {
-            $('#divFarm').slideToggle()
-            $('#divDashboard').slideToggle()
-            $('#divNavBarStandard').slideToggle()
-            $('#divNavBarDashboard').slideToggle()
-            $('#txtFarmName').val('')
-            $('#txtStreetAddress1').val('')
-            $('#txtStreetAddress2').val('')
-            $('#txtCity').val('')
-            $('#txtState').val('')
-            $('#txtZipCode').val('')
-            $('#checkbox2').prop('checked', false)
+            // $('#divRegistration').slideToggle()
+            // $('#divDashboard').slideToggle()
+            // $('#divNavBarStandard').slideToggle()
+            // $('#divNavBarDashboard').slideToggle()
+            // $('#txtFarmName').val('')
+            // $('#txtStreetAddress1').val('')
+            // $('#txtStreetAddress2').val('')
+            // $('#txtCity').val('')
+            // $('#txtState').val('')
+            // $('#txtZipCode').val('')
+            // $('#checkbox2').prop('checked', false)
 
             $.post(strhost + '/farms', {
                 FarmName: strFarmName,
@@ -2980,6 +2980,17 @@
                         title: 'Success',
                         text: 'Farm Created'
                     })
+                    $('#divRegistration').slideToggle()
+                    $('#divDashboard').slideToggle()
+                    $('#divNavBarStandard').slideToggle()
+                    $('#divNavBarDashboard').slideToggle()
+                    $('#txtFarmName').val('')
+                    $('#txtStreetAddress1').val('')
+                    $('#txtStreetAddress2').val('')
+                    $('#txtCity').val('')
+                    $('#txtState').val('')
+                    $('#txtZipCode').val('')
+                    $('#checkbox2').prop('checked', false)
                 }
                 else{
                     swal.fire ({
