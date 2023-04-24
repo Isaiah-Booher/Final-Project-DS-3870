@@ -481,7 +481,7 @@
                         <div class="container table-responsive">
                           <h2>Products</h2>
                           <button class="btn btn-primary mb-2" id="add-product">Add Product</button>
-                          <table id="tblProduct" class="table table-bordered table-striped table-hover">
+                          <table id="tblProducts" class="table table-bordered table-striped table-hover">
                             <thead>
                               <tr>
                                 <th>Product_ID</th>
@@ -508,7 +508,7 @@
                                 <td>14</td>
                                 <td>
                                   <button class="btn btn-sm btn-info edit-product" data-id="1">Edit</button>
-                                  <button class="btn btn-sm btn-danger delete-button" data-id="1">Delete</button>
+                                  <button class="btn btn-sm btn-danger delete-button" id="delete-product" data-id="1">Delete</button>
                                 </td>
                               </tr>
                             </tbody>
@@ -590,6 +590,25 @@
             </div>
           </div>
         </div>
+      <div class="modal fade" id="modalDeleteProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Delete</h5>
+              <button type="button" class="terminateModal" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <h3>Are you sure you want to Delete this information?</h3>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="btnCloseModal" class="btn btn-secondary btnCloseModal" data-dismiss="modal">Close</button>
+              <button type="button" id="confirmDeleteProduct" class="btn btn-danger modal-delete">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
       </div>
     <div id="divEmployees" class="h-100 h-custom gradient-custom-2" style="display: none;">
       <div class="container py-5 h-100">
@@ -629,7 +648,7 @@
                                 <td>Mechanic</td>
                                 <td>
                                   <button class="btn btn-sm btn-info edit-employee" data-id="1">Edit</button>
-                                  <button class="btn btn-sm btn-danger delete-button" data-id="1">Delete</button>
+                                  <button class="btn btn-sm btn-danger delete-button" id="delete-employee" data-id="1">Delete</button>
                                 </td>
                               </tr>
                             </tbody>
@@ -699,6 +718,25 @@
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary btnCloseModal" data-dismiss="modal">Close</button>
               <button id="confirmEditEmployee" type="button" class="btn btn-primary">Edit Employee</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="modalDeleteEmployee" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Delete</h5>
+              <button type="button" class="terminateModal" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <h3>Are you sure you want to Delete this information?</h3>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="btnCloseModal" class="btn btn-secondary btnCloseModal" data-dismiss="modal">Close</button>
+              <button type="button" id="confirmDeleteEmployee" class="btn btn-danger modal-delete">Delete</button>
             </div>
           </div>
         </div>
@@ -874,7 +912,9 @@
                                 <td>Bravo</td>
                                 <td>
                                   <button class="btn btn-sm btn-info edit-task" data-id="1">Edit</button>
-                                  <button class="btn btn-sm btn-danger delete-button" data-id="1">Delete</button>
+                                  <button class="btn btn-sm btn-danger delete-button" id="delete-task" data-id="1">Delete</button>
+                                  <button class="btn btn-sm btn-primary begin-task" data-id="1">Begin</button>
+                                  <button class="btn btn-sm btn-success complete-task" data-id="1">Complete</button>
                                 </td>
                               </tr>
                             </tbody>
@@ -950,6 +990,25 @@
           </div>
         </div>
       </div>
+      <div class="modal fade" id="modalDeleteTask" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Delete</h5>
+              <button type="button" class="terminateModal" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <h3>Are you sure you want to Delete this information?</h3>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="btnCloseModal" class="btn btn-secondary btnCloseModal" data-dismiss="modal">Close</button>
+              <button type="button" id="confirmDeleteTask" class="btn btn-danger modal-delete">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
       </div>
     <div id="divInventory" class="h-100 h-custom gradient-custom-2" style="display: none;">
       <div class="container py-5 h-100">
@@ -989,7 +1048,7 @@
                                 <td>4/15/2023</td>
                                 <td>
                                   <button class="btn btn-sm btn-info edit-item" data-id="1">Edit</button>
-                                  <button class="btn btn-sm btn-danger delete-button" data-id="1">Delete</button>
+                                  <button class="btn btn-sm btn-danger delete-button" id="delete-item" data-id="1">Delete</button>
                                 </td>
                               </tr>
                             </tbody>
@@ -1057,6 +1116,25 @@
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary btnCloseModal" data-dismiss="modal">Close</button>
               <button id="confirmEditItem" type="button" class="btn btn-primary">Edit Item</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="modalDeleteItem" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Delete</h5>
+              <button type="button" class="terminateModal" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <h3>Are you sure you want to Delete this information?</h3>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="btnCloseModal" class="btn btn-secondary btnCloseModal" data-dismiss="modal">Close</button>
+              <button type="button" id="confirmDeleteItem" class="btn btn-danger modal-delete">Delete</button>
             </div>
           </div>
         </div>
@@ -1141,7 +1219,7 @@
         </div>
         </div>
        </div>
-    <div>
+    <!-- <div>
       <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: none;">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
@@ -1160,7 +1238,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   
   
@@ -1215,45 +1293,44 @@
       
               $('#divNavBarStandard').slideToggle()
               $('#divNavBarDashboard').slideToggle()
+              //create session
               $.post(strhost + '/sessions', {
                   Email: strEmail,
                   Password: strPassword
-                }, function(result){
-                  result = JSON.parse(result)
-                  console.log(result)
-                  if (result == 'success'){
+                }, function(data){
+                  data = JSON.parse(data)
+                  console.log(data)
+                  if (data == 'success'){
                     Swal.fire({
                       icon: 'success',
                       title: 'Success',
-                      text: 'Session Created',
+                      text: 'Logged In',
                       }) 
-                      
-
-                      sessionStorage.setItem('SessionID', strSessionID)
-                      console.log(sessionStorage.getItem('SessionID'))
-                        $.get(strhost + '/sessions', {
-                          SessionID: strSessionID,
-                          Email: strEmail,
-                        }, function(data){
-                          data = JSON.parse(data)
-                          console.log(data)
-                          sessionStorage.setItem('SessionID', data[0].SessionID)
-                          console.log(sessionStorage.getItem('SessionID'))
-                        })
+                      $('#divLogin').slideToggle()
+                      $('#divDashboard').slideToggle()
+                      $('#divNavBarStandard').slideToggle()
+                      $('#divNavBarDashboard').slideToggle()
+                      $.getJSON(strhost + '/sessions' , function(sessionsResults) {
+                        sessionResults = JSON.parse(sessionResults)
+                        console.log(sessionResults)
+                        if(sessionResults.SessionID){
+                          sessionStorage.setItem('SessionID', sessionResults.SessionID)
+                        } else {
+                          swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Session Not Created',
+                            })
+                        }
+                        
+                      } )
                   }
                   else{
-                    Swal.fire({
-                      icon: 'error',
-                      title: 'Oops...',
-                      text: 'Session Not Created',
-                      })  
+                    return
                   }
                 })
-              Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: 'You have successfully logged in',
-                })
+              //get session
+              //store session ID
             }
           })
 
@@ -1280,14 +1357,11 @@
       $(document).ready(function() {
         $('.delete-button').click(function() {
           var $row = $(this).closest('tr');
-          $('#modalDelete').modal('show')
+          // $('#modalDelete').modal('show')
 
           $('.modal-delete').click(function(){
             $row.remove();
-            $('#modalDelete').modal('hide')
-        });
-        $('.closeModel').click(function(){
-            $('#modalDelete').modal('hide')
+            // $('#modalDelete').modal('hide')
         });
       });
     });
@@ -1307,7 +1381,33 @@
         $("#divInventory").hide();
         $("#divFinancialReporting").hide();
         //Delete Session
-      });
+        let strSessionID = sessionStorage.getItem('SessionID')
+
+        $.ajax({
+          url: strhost + '/sessions',
+          type: 'DELETE',
+          data: {
+            SessionID: strSessionID
+          },
+          success: function(result) {
+            console.log(result)
+            sessionStorage.removeItem('SessionID')
+            swal.fire({
+              icon: 'success',
+              title: 'Success',
+              text: 'You have successfully logged out',
+            })
+          },
+          error: function(result) {
+            console.log(result)
+            swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!',
+            })
+            }
+          })
+        })
 
 
       //Terminate Modal Button
@@ -1323,6 +1423,10 @@
         $('#modalEditProduct').modal('hide')
         $('#modalEditItem').modal('hide')
         $('#modalDelete').modal('hide')
+        $('#modalDeleteItem').modal('hide')
+        $('#modalDeleteProduct').modal('hide')
+        $('#modalDeleteEmployee').modal('hide')
+        $('#modalDeleteTask').modal('hide')
 
     
       })
@@ -1340,7 +1444,12 @@
         $('#modalEditEmployee').modal('hide')
         $('#modalEditProduct').modal('hide')
         $('#modalEditItem').modal('hide')
-        this.form.reset()
+        $('#modalDeleteItem').modal('hide')
+        $('#modalDeleteProduct').modal('hide')
+        $('#modalDeleteEmployee').modal('hide')
+        $('#modalDeleteTask').modal('hide')
+
+
       })
 
       // $('#btnFarms').click(function(){
@@ -1372,7 +1481,7 @@
                 } else {
                     $('#tblEmployee').empty();
                     $.each(data, function(index, value) {
-                        $('#tblEmployee').append('<tr><td>' + value.EmployeeID + '</td><td>' + value.FarmName + '</td><td>' + value.EmployeeFirstName + '</td><td>' + value.EmployeeLastName + '</td><td>' + value.PayRate + '</td><td>' + value.Position + '</td><td><button class="btn btn-primary edit-employee" data-toggle="modal" data-target="#modalEditEmployee">Edit</button></td><td><button class="btn btn-danger delete-employee" data-toggle="modal" data-target="#modalDelete">Delete</button></td></tr>');
+                        $('#tblEmployee').append('<tr><td>' + value.EmployeeID + '</td><td>' + value.FarmName + '</td><td>' + value.EmployeeFirstName + '</td><td>' + value.EmployeeLastName + '</td><td>' + value.PayRate + '</td><td>' + value.Position + '</td><td><button class="btn btn-primary edit-employee" data-toggle="modal" data-target="#modalEditEmployee">Edit</button></td><td><button class="btn btn-danger delete-employee" id="delete-employee" data-toggle="modal" data-target="#modalDelete">Delete</button></td></tr>');
                     });
                 }
             });
@@ -1395,7 +1504,7 @@
                 } else {
                   $('#tblInventory').empty();
                   $.each(data, function(index, value) {
-                      $('#tblInventory').append('<tr><td>' + value.InventoryID + '</td><td>' + value.FarmName + '</td><td>' + value.Item + '</td><td>' + value.ItemDescription + '</td><td>' + value.ItemCost + '</td><td>' + value.DateRecorded + '</td><td><button class="btn btn-primary edit-item" data-toggle="modal" data-target="#modalEditItem">Edit</button></td><td><button class="btn btn-danger delete-item" data-toggle="modal" data-target="#modalDelete">Delete</button></td></tr>');
+                      $('#tblInventory').append('<tr><td>' + value.InventoryID + '</td><td>' + value.FarmName + '</td><td>' + value.Item + '</td><td>' + value.ItemDescription + '</td><td>' + value.ItemCost + '</td><td>' + value.DateRecorded + '</td><td><button class="btn btn-primary edit-item" data-toggle="modal" data-target="#modalEditItem">Edit</button></td><td><button class="btn btn-danger delete-item" id="delete-item" data-toggle="modal" data-target="#modalDelete">Delete</button></td></tr>');
                   });
 
                 }
@@ -1417,9 +1526,9 @@
                         text: 'No Products Found',
                     })
                 } else {
-                  $('#tblProduct').empty();
+                  $('#tblProducts').empty();
                   $.each(data, function(index, value) {
-                      $('#tblProduct').append('<tr><td>' + value.ProductID + '</td><td>' + value.FarmName + '</td><td>' + value.ProductName + '</td><td>' + value.ProductDescription + '</td><td>' + value.ProductPrice + '</td><td>' + value.DateRecorded + '</td><td><button class="btn btn-primary edit-product" data-toggle="modal" data-target="#modalEditProduct">Edit</button></td><td><button class="btn btn-danger delete-product" data-toggle="modal" data-target="#modalDelete">Delete</button></td></tr>');
+                      $('#tblProducts').append('<tr><td>' + value.ProductID + '</td><td>' + value.FarmName + '</td><td>' + value.ProductName + '</td><td>' + value.ProductDescription + '</td><td>' + value.ProductPrice + '</td><td>' + value.DateRecorded + '</td><td><button class="btn btn-primary edit-product" data-toggle="modal" data-target="#modalEditProduct">Edit</button></td><td><button class="btn btn-danger delete-product" id="delete-product" data-toggle="modal" data-target="#modalDelete">Delete</button></td></tr>');
                   });
                 }
             });
@@ -1441,11 +1550,16 @@
                 } else {
                   $('#tblTask').empty();
                   $.each(data, function(index, value) {
-                      $('#tblTask').append('<tr><td>' + value.TaskID + '</td><td>' + value.FarmName + '</td><td>' + value.TaskName + '</td><td>' + value.TaskDescription + '</td><td>' + value.TaskDate + '</td><td>' + value.TaskTime + '</td><td><button class="btn btn-primary edit-task" data-toggle="modal" data-target="#modalEditTask">Edit</button></td><td><button class="btn btn-danger delete-task" data-toggle="modal" data-target="#modalDelete">Delete</button></td></tr>');
+                      $('#tblTask').append('<tr><td>' + value.TaskID + '</td><td>' + value.FarmName + '</td><td>' + value.TaskName + '</td><td>' + value.TaskDescription + '</td><td>' + value.TaskDate + 
+                        '</td><td><button class="btn btn-primary edit-task" data-toggle="modal" data-target="#modalEditTask">Edit</button><button class="btn btn-danger delete-task" id="delete-task" data-toggle="modal" data-target="#modalDelete">Delete</button><button class="btn btn-sm btn-primary begin-task" data-id="1">Begin</button>' + 
+                          '<button class="btn btn-sm btn-success complete-task" data-id="1">Complete</button>' + '</td></tr>');
+                  
                   });
-                }
-            });
-      });
+                  };
+                })
+              });
+      
+      
 
       
       //Inventory CRUD Functions
@@ -1456,7 +1570,55 @@
       $('.edit-item').click(function(){
         $('#modalEditItem').modal('show')
       });
-      
+
+      $('#delete-item').click(function(){
+        $('#modalDeleteItem').modal('show')
+        var row = $(this).closest('tr');
+        $('#confirmDeleteItem').click(function(){
+          $('#modalDeleteItem').modal('hide')
+          $.ajax(strhost + '/inventory' , {
+            type: 'DELETE',
+            data: {
+              InventoryID: row.find('td:eq(0)').text()
+            },
+            success: function(data, status, xhr) {
+              console.log(data);
+              swal.fire ({
+                icon: 'success',
+                title: 'Success',
+                text: 'Item Deleted',
+              })
+              row.remove()
+            },
+            error: function(jqXhr, textStatus, errorMessage) {
+              console.log(errorMessage);
+              swal.fire ({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Item Not Deleted',
+              })
+            }
+          });
+          $.getJSON(strhost + '/inventory', function(data) {
+            data = JSON.parse(data);
+            console.log(data);
+            if(!data){
+                return;
+                swal.fire ({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'No Inventory Found',
+                })
+            } else {
+              $('#tblInventory').empty();
+              $.each(data, function(index, value) {
+                  $('#tblInventory').append('<tr><td>' + value.InventoryID + '</td><td>' + value.FarmName + '</td><td>' + value.Item + '</td><td>' + value.ItemDescription + '</td><td>' + value.ItemCost + '</td><td>' + value.DateRecorded + '</td><td><button class="btn btn-primary edit-item" data-toggle="modal" data-target="#modalEditItem">Edit</button></td><td><button class="btn btn-danger delete-item" id="delete-item" data-toggle="modal" data-target="#modalDelete">Delete</button></td></tr>');
+              });
+            }
+          });
+        });
+      });
+    
       $('#btnConfirmAddItem').click(function(){
         let strInventoryID = $('#txtInventoryID').val();
         let strFarmID = $('#txtFarmID4').val();
@@ -1545,7 +1707,7 @@
                 console.log(data);
                 $('#tblInventory').empty();
                 $.each(data, function(index, value) {
-                  $('#tblInventory').append('<tr><td>' + value.inventoryID + '</td><td>' + value.farmID + '</td><td>' + value.item + '</td><td>' + value.itemDescription + '</td><td>' + value.itemCost + '</td><td>' + value.dateRecorded + '</td><td><button class="btn btn-primary edit-item" data-toggle="modal" data-target="#modalEditItem">Edit</button></td><td><button class="btn btn-danger delete-item" data-toggle="modal" data-target="#modalDelete">Delete</button></td></tr>');
+                  $('#tblInventory').append('<tr><td>' + value.inventoryID + '</td><td>' + value.farmID + '</td><td>' + value.item + '</td><td>' + value.itemDescription + '</td><td>' + value.itemCost + '</td><td>' + value.dateRecorded + '</td><td><button class="btn btn-primary edit-item" data-toggle="modal" data-target="#modalEditItem">Edit</button></td><td><button class="btn btn-danger delete-item" id="delete-item" data-toggle="modal" data-target="#modalDelete">Delete</button></td></tr>');
                 });
               });
               swal.fire({
@@ -1615,7 +1777,7 @@
             text: strErrorMessage,
             })
         } else {
-          $('#modalAddItem').modal('hide')
+          $('#modalEditItem').modal('hide')
           $('#txtEditInventoryID').val('');
           $('#txtEditFarmID4').val('');
           $('#txtEditItem').val('');
@@ -1623,40 +1785,49 @@
           $('#txtEditItemCost').val('');
           $('#txtEditDateRecorded').val('');
 
-          $.put(strhost + '/inventory', {
-            inventoryID: strInventoryID,
-            farmID: strFarmID,
-            item: strItem,
-            itemDescription: strItemDescription,
-            itemCost: strItemCost,
-            dateRecorded: strDateRecorded
-          }, function(data){
-            data = JSON.parse(data);
-            console.log(data)
-            if(!data){
-              Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Something went wrong!',
+          $.ajax({
+            url: strhost + '/inventory',
+            type: 'PUT',
+            data: {
+              inventoryID: strInventoryID,
+              farmID: strFarmID,
+              item: strItem,
+              itemDescription: strItemDescription,
+              itemCost: strItemCost,
+              dateRecorded: strDateRecorded
+            },
+            success: function(data){
+              console.log(data);
+              data = JSON.parse(data);
+              if(!data){
+                swal.fire({
+                  title: "Error",
+                  text: "The Item has not been edited.",
+                  icon: "error",
+                  button: "Close",
                 })
-            } else {
-              Swal.fire({
-                icon: 'success',
-                title: 'Success!',
-                text: 'Item has been updated!',
-                })
+                
+              } else {
                 $.getJSON('http://localhost:8000/inventory', function(data) {
                   data = JSON.parse(data);
                   console.log(data);
                   $('#tblInventory').empty();
                   $.each(data, function(index, value) {
-                    $('#tblInventory').append('<tr><td>' + value.inventoryID + '</td><td>' + value.farmID + '</td><td>' + value.item + '</td><td>' + value.itemDescription + '</td><td>' + value.itemCost + '</td><td>' + value.dateRecorded + '</td><td><button class="btn btn-primary edit-item" data-toggle="modal" data-target="#modalEditItem">Edit</button></td><td><button class="btn btn-danger delete-item" data-toggle="modal" data-target="#modalDelete">Delete</button></td></tr>');
+                    $('#tblInventory').append('<tr><td>' + value.inventoryID + '</td><td>' + value.farmID + '</td><td>' + value.item + '</td><td>' + value.itemDescription + '</td><td>' + value.itemCost + '</td><td>' + value.dateRecorded + '</td><td><button class="btn btn-primary edit-item" data-toggle="modal" data-target="#modalEditItem">Edit</button></td><td><button class="btn btn-danger delete-item" id="delete-item" data-toggle="modal" data-target="#modalDelete">Delete</button></td></tr>');
                   });
                 });
+                swal.fire({
+                  title: "Item Edited",
+                  text: "The Item has been edited.",
+                  icon: "success",
+                  button: "Close",
+                });
+              }
             }
-          })
-        }
+          });
 
+    
+      }
         
 
       });
@@ -1747,7 +1918,7 @@
             $('#txtFirstName1').val('');
             $('#txtLastName2').val('');
 
-            $.post(strhost + '/task', {
+            $.post(strhost + '/tasks', {
                 taskID: strTaskID,
                 title: strTitle,
                 productType: strProductType,
@@ -1765,13 +1936,15 @@
                         text: 'Something went wrong!',
                       })
                 } else {
-                    $.getJSON('http://localhost:8000/task', function(data) {
+                    $.getJSON('http://localhost:8000/tasks', function(data) {
                         data = JSON.parse(data);
                         console.log(data);
                         $('#tblTask').empty();
                         $.each(data, function(index, value) {
-                            $('#tblTask').append('<tr><td>' + value.taskID + '</td><td>' + value.title + '</td><td>' + value.productType + '</td><td>' + value.description + '</td><td>' + value.duration + '</td><td>' + value.firstName + '</td><td>' + value.lastName + '</td><td><button class="btn btn-primary edit-task" data-toggle="modal" data-target="#modalEditTask">Edit</button></td><td><button class="btn btn-danger delete-task" data-toggle="modal" data-target="#modalDelete">Delete</button></td></tr>');
-                        });
+                          $('#tblTask').append('<tr><td>' + value.TaskID + '</td><td>' + value.FarmName + '</td><td>' + value.TaskName + '</td><td>' + value.TaskDescription + '</td><td>' + value.TaskDate + 
+                        '</td><td><button class="btn btn-primary edit-task" data-toggle="modal" data-target="#modalEditTask">Edit</button><button class="btn btn-danger delete-task" id="delete-task" data-toggle="modal" data-target="#modalDelete">Delete</button><button class="btn btn-sm btn-primary begin-task" data-id="1">Begin</button>' + 
+                          '<button class="btn btn-sm btn-success complete-task" data-id="1">Complete</button>' + '</td></tr>');                  
+                              });
                     });
 
                     Swal.fire({
@@ -1786,6 +1959,48 @@
 
       })
      
+      $('#delete-task').click(function(){
+        $('#modalDeleteTask').modal('show')
+        var row = $(this).closest('tr');
+        $('#confirmDeleteTask').click(function(){
+          $('#modalDeleteTask').modal('hide')
+          $.ajax(strhost + '/tasks', {
+            type: 'DELETE',
+            data: {
+              taskID: row.find('td:eq(0)').text()
+            },
+            success: function(data) {
+              console.log(data);
+              row.remove();
+              Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'Task has been deleted!',
+              })
+              row.remove()
+            },
+            error: function(data) {
+              console.log(data);
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+              })
+            }
+          })
+          $.getJSON(strhost + "/tasks", function(data) {
+            data = JSON.parse(data);
+            console.log(data);
+            $('#tblTask').empty();
+            $.each(data, function(index, value) {
+              $('#tblTask').append('<tr><td>' + value.TaskID + '</td><td>' + value.FarmName + '</td><td>' + value.TaskName + '</td><td>' + value.TaskDescription + '</td><td>' + value.TaskDate + 
+                        '</td><td><button class="btn btn-primary edit-task" data-toggle="modal" data-target="#modalEditTask">Edit</button><button class="btn btn-danger delete-task" id="delete-task" data-toggle="modal" data-target="#modalDelete">Delete</button><button class="btn btn-sm btn-primary begin-task" data-id="1">Begin</button>' + 
+                          '<button class="btn btn-sm btn-success complete-task" data-id="1">Complete</button>' + '</td></tr>');            });
+
+        })
+      })
+      })
+
       $('.edit-task').click(function(){
         $('#modalEditTask').modal('show')
       })
@@ -1853,11 +2068,11 @@
               })
         }
         else{
-          Swal.fire({
-              icon: 'success',
-              title: 'Success!',
-              text: 'Task has been added!',
-            })
+          // Swal.fire({
+          //     icon: 'success',
+          //     title: 'Success!',
+          //     text: 'Task has been added!',
+          //   })
   
             $('#modalEditTask').modal('hide')
             
@@ -1869,40 +2084,52 @@
             $('#txtEditFirstName1').val('');
             $('#txtEditLastName1').val('');
 
-            $.put(strhost + '/task', {
-                taskID: strTaskID,
-                title: strTitle,
-                productType: strProductType,
-                description: strDescription,
-                duration: strDuration,
-                firstName: strFirstName,
-                lastName: strLastName
-            }, function(data){
-                console.log(data)
-                if(!data){
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Something went wrong!',
-                      })
-                } else {
-                    $.getJSON('http://localhost:8000/task', function(data) {
-                        data = JSON.parse(data);
-                        console.log(data);
-                        $('#tblTask').empty();
-                        $.each(data, function(index, value) {
-                            $('#tblTask').append('<tr><td>' + value.taskID + '</td><td>' + value.title + '</td><td>' + value.productType + '</td><td>' + value.description + '</td><td>' + value.duration + '</td><td>' + value.firstName + '</td><td>' + value.lastName + '</td><td><button class="btn btn-primary edit-task" data-toggle="modal" data-target="#modalEditTask">Edit</button></td><td><button class="btn btn-danger delete-task" data-toggle="modal" data-target="#modalDelete">Delete</button></td></tr>');
+            $.ajax(strhost + '/tasks', {
+                type: 'PUT',
+                data: {
+                    taskID: strTaskID,
+                    title: strTitle,
+                    productType: strProductType,
+                    description: strDescription,
+                    duration: strDuration,
+                    firstName: strFirstName,
+                    lastName: strLastName
+                },
+                success: function(data){
+                    data = JSON.parse(data);
+                    console.log(data)
+                    if(!data){
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Something went wrong!',
+                          })
+                    } else {
+                        $.getJSON('http://localhost:8000/tasks', function(data) {
+                            data = JSON.parse(data);
+                            console.log(data);
+                            $('#tblTask').empty();
+                            $.each(data, function(index, value) {
+                              $('#tblTask').append('<tr><td>' + value.TaskID + '</td><td>' + value.FarmName + '</td><td>' + value.TaskName + '</td><td>' + value.TaskDescription + '</td><td>' + value.TaskDate + 
+                        '</td><td><button class="btn btn-primary edit-task" data-toggle="modal" data-target="#modalEditTask">Edit</button><button class="btn btn-danger delete-task" id="delete-task" data-toggle="modal" data-target="#modalDelete">Delete</button><button class="btn btn-sm btn-primary begin-task" data-id="1">Begin</button>' + 
+                          '<button class="btn btn-sm btn-success complete-task" data-id="1">Complete</button>' + '</td></tr>');                            });
                         });
-                    });
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Success!',
-                        text: 'Task has been Updated!',
-                      })
-                }
+    
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success!',
+                            text: 'Task has been added!',
+                          })
+                        }
+                      }
+            }
+            
+            )}
+
             })
-        }
-      })
+
+
+      
 
 
       //Employee CRUD Functions
@@ -1912,6 +2139,46 @@
 
       $('.edit-employee').click(function(){
         $('#modalEditEmployee').modal('show')
+      })
+
+      $('#delete-employee').click(function(){
+        $('#modalDeleteEmployee').modal('show')
+        var row = $(this).closest('tr');
+        $('#confirmDeleteEmployee').click(function(){
+          $('#modalDeleteEmployee').modal('hide')
+          $.ajax(strhost + '/employees', {
+            type: 'DELETE',
+            data: {
+              employeeID: row.find('td:eq(0)').text()
+            },
+            success: function(data){
+              console.log(data);
+              swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'Employee has been deleted!',
+              }
+              )
+              row.remove();
+            },
+            error: function(data){
+              console.log(data);
+              swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+              })
+            }
+          })
+        })
+        $.getJSON(strhost + '/employees', function(data){
+          data = JSON.parse(data);
+          console.log(data);
+          $('#tblEmployee').empty();
+          $.each(data, function(index, value){
+            $('#tblEmployee').append('<tr><td>' + value.employeeID + '</td><td>' + value.farmName + '</td><td>' + value.firstName + '</td><td>' + value.lastName + '</td><td>' + value.payRate + '</td><td>' + value.position + '</td><td><button class="btn btn-primary edit-employee" data-toggle="modal" data-target="#modalEditEmployee">Edit</button></td><td><button class="btn btn-danger delete-employee" id="delete-employee" data-toggle="modal" data-target="#modalDeleteEmployee">Delete</button></td></tr>');
+          })
+        })
       })
 
       $('#confirmAddEmployee').click(function(){
@@ -2006,7 +2273,7 @@
                 console.log(data);
                 $('#tblEmployee').empty();
                 $.each(data, function(index, value) {
-                    $('#tblEmployee').append('<tr><td>' + value.EmployeeID + '</td><td>' + value.FarmName + '</td><td>' + value.EmployeeFirstName + '</td><td>' + value.EmployeeLastName + '</td><td>' + value.PayRate + '</td><td>' + value.Position + '</td><td><button class="btn btn-primary edit-employee" data-toggle="modal" data-target="#modalEditEmployee">Edit</button></td><td><button class="btn btn-danger delete-employee" data-toggle="modal" data-target="#modalDelete">Delete</button></td></tr>');
+                    $('#tblEmployee').append('<tr><td>' + value.EmployeeID + '</td><td>' + value.FarmName + '</td><td>' + value.EmployeeFirstName + '</td><td>' + value.EmployeeLastName + '</td><td>' + value.PayRate + '</td><td>' + value.Position + '</td><td><button class="btn btn-primary edit-employee" data-toggle="modal" data-target="#modalEditEmployee">Edit</button></td><td><button class="btn btn-danger delete-employee" data-toggle="modal" id="delete-employee" data-target="#modalDelete">Delete</button></td></tr>');
                 });
             });
             Swal.fire({
@@ -2083,43 +2350,47 @@
           $('#txtEditEmpLastName').val('');
           $('#txtEditPayRate').val('');
           $('#txtEditPosition').val('');
-          swal.fire({
-            title: 'Success!',
-            text: 'Employee Updated!',
-            icon: 'success',
-            confirmButtonText: 'OK'
-          })
+          // swal.fire({
+          //   title: 'Success!',
+          //   text: 'Employee Updated!',
+          //   icon: 'success',
+          //   confirmButtonText: 'OK'
+          // })
 
-          $.put(strhost + '/employees',{
-            EmployeeID: strEmployeeID,
-            FarmName: strFarmName,
-            EmployeeFirstName: strEmployeeFirstName,
-            EmployeeLastName: strEmployeeLastName,
-            PayRate: strPayRate,
-            Position: strPosition
-          }, function(result){
-            result = JSON.parse(result);
-            console.log(result)
-            if(!result){
+          $.ajax(strhost + '/employees', {
+            type: 'PUT',
+            data: {
+              EmployeeID: strEmployeeID,
+              FarmName: strFarmName,
+              EmployeeFirstName: strEmployeeFirstName,
+              EmployeeLastName: strEmployeeLastName,
+              PayRate: strPayRate,
+              Position: strPosition
+            },
+            success: function(result){
+              result = JSON.parse(result);
+              console.log(result)
+              if(!result){
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Oops...',
+                  text: 'Something went wrong!',
+                })
+              } else {
+                $.getJSON('http://localhost:8000/employees', function(data) {
+                  data = JSON.parse(data);
+                  console.log(data);
+                  $('#tblEmployee').empty();
+                  $.each(data, function(index, value) {
+                      $('#tblEmployee').append('<tr><td>' + value.EmployeeID + '</td><td>' + value.FarmName + '</td><td>' + value.EmployeeFirstName + '</td><td>' + value.EmployeeLastName + '</td><td>' + value.PayRate + '</td><td>' + value.Position + '</td><td><button class="btn btn-primary edit-employee" data-toggle="modal" data-target="#modalEditEmployee">Edit</button></td><td><button class="btn btn-danger delete-employee" data-toggle="modal" id="delete-employee" data-target="#modalDelete">Delete</button></td></tr>');
+                  });
+              });
               Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Something went wrong!',
-              })
-            } else {
-              $.getJSON('http://localhost:8000/employees', function(data) {
-                data = JSON.parse(data);
-                console.log(data);
-                $('#tblEmployee').empty();
-                $.each(data, function(index, value) {
-                    $('#tblEmployee').append('<tr><td>' + value.EmployeeID + '</td><td>' + value.FarmName + '</td><td>' + value.EmployeeFirstName + '</td><td>' + value.EmployeeLastName + '</td><td>' + value.PayRate + '</td><td>' + value.Position + '</td><td><button class="btn btn-primary edit-employee" data-toggle="modal" data-target="#modalEditEmployee">Edit</button></td><td><button class="btn btn-danger delete-employee" data-toggle="modal" data-target="#modalDelete">Delete</button></td></tr>');
-                });
-            });
-            Swal.fire({
-                icon: 'success',
-                title: 'Success!',
-                text: 'Employee has been Updated!',
-              })
+                  icon: 'success',
+                  title: 'Success!',
+                  text: 'Employee has been Updated!',
+                })
+            }
             }
           })
         }
@@ -2221,7 +2492,7 @@
           $('#txtHarvestWeight').val('');
           $('#txtHarvestQuantity').val('');
 
-          $.post(strHost + '/products', {ProductID: strProductID, ProductFarmName: strProductFarmName, ProductType: strProductType, FixedCost: strFixedCost, DatePlanted: strDatePlanted, 
+          $.post(strhost + '/products', {ProductID: strProductID, ProductFarmName: strProductFarmName, ProductType: strProductType, FixedCost: strFixedCost, DatePlanted: strDatePlanted, 
             DateHarvested: strDateHarvested, HarvestWeight: strHarvestWeight, HarvestQuantity: strHarvestQuantity}, function(result){
             console.log(result);
             result = JSON.parse(result);
@@ -2235,15 +2506,9 @@
               $.getJSON(strHost + '/products', function(result){
                 console.log(result);
                 $('#tblProducts').empty();
-                $('#tblProducts').append('<tr><th>Product ID</th><th>Farm Name</th><th>Product Type</th><th>Fixed Cost</th><th>Date Planted</th><th>Date Harvested</th><th>Harvest Weight</th><th>Harvest Quantity</th><th>Edit</th><th>Delete</th></tr>');
-                for(let i = 0; i < result.length; i++){
-                  $('#tblProducts').append('<tr><td>' + result[i].ProductID + '</td><td>' + result[i].ProductFarmName + '</td><td>' + result[i].ProductType + '</td><td>' + 
-                    result[i].FixedCost + '</td><td>' + result[i].DatePlanted + '</td><td>' + result[i].DateHarvested + '</td><td>' + result[i].HarvestWeight + '</td><td>' + 
-                    result[i].HarvestQuantity + '</td><td><button class="btn btn-primary edit-product" data-productid="' + result[i].ProductID + '" data-productfarmname="' + 
-                    result[i].ProductFarmName + '" data-producttype="' + result[i].ProductType + '" data-fixedcost="' + result[i].FixedCost + '" data-dateplanted="' + 
-                    result[i].DatePlanted + '" data-dateharvested="' + result[i].DateHarvested + '" data-harvestweight="' + result[i].HarvestWeight + '" data-harvestquantity="' + 
-                    result[i].HarvestQuantity + '">Edit</button></td><td><button class="btn btn-danger delete-product" data-productid="' + result[i].ProductID + '">Delete</button></td></tr>');
-                }
+                $.each(result, function(index, value) {
+                    $('#tblProducts').append('<tr><td>' + value.ProductID + '</td><td>' + value.ProductFarmName + '</td><td>' + value.ProductType + '</td><td>' + value.FixedCost + '</td><td>' + value.DatePlanted + '</td><td>' + value.DateHarvested + '</td><td>' + value.HarvestWeight + '</td><td>' + value.HarvestQuantity + '</td><td><button class="btn btn-primary edit-product" data-toggle="modal" data-target="#modalEditProduct">Edit</button></td><td><button class="btn btn-danger delete-product" data-toggle="modal" id="delete-product" data-target="#modalDeleteProduct">Delete</button></td></tr>');
+                });
               })
             }
             else{
@@ -2260,7 +2525,47 @@
 
 
       })
-      
+  
+      $('#delete-product').click(function(){
+        $('#modalDeleteProduct').modal('show')
+        var row = $(this).closest('tr');
+        $('#confirmDeleteProduct').click(function(){
+        $('#modalDeleteProduct').modal('hide')
+          $.ajax(strhost + '/products', {
+            type: 'Delete',
+            data: {productID : row.find('td:eq(0)').text()
+            },
+            success: function(data){
+              console.log(data);
+              swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'Product has been deleted!',
+              }
+              )
+              row.remove()
+            },
+            error: function(data){
+              console.log(data);
+              swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+              })
+            }
+        })
+        $.getJSON(strhost + '/products', function(data) {
+          data = JSON.parse(data);
+          console.log(data);
+          $('#tblProducts').empty();
+          $.each(data, function(index, value) {
+            $('#tblProducts').append('<tr><td>' + value.ProductID + '</td><td>' + value.ProductFarmName + '</td><td>' + value.ProductType + '</td><td>' + value.FixedCost + '</td><td>' + value.DatePlanted + '</td><td>' + value.DateHarvested + '</td><td>' + value.HarvestWeight + '</td><td>' + value.HarvestQuantity + '</td><td><button class="btn btn-primary edit-product" data-toggle="modal" data-target="#modalEditProduct">Edit</button></td><td><button class="btn btn-danger delete-product" data-toggle="modal" id="delete-product" data-target="#modalDeleteProduct">Delete</button></td></tr>');
+          })
+        } )
+      })
+
+      })
+
       $('.edit-product').click(function(){
         $('#modalEditProduct').modal('show')
       })
@@ -2335,12 +2640,12 @@
             confirmButtonText: "OK"
           })
         } else {
-          swal.fire ({
-            title: "Success",
-            text: "Product Updated",
-            icon: "success",
-            confirmButtonText: "OK"
-          })
+          // swal.fire ({
+          //   title: "Success",
+          //   text: "Product Updated",
+          //   icon: "success",
+          //   confirmButtonText: "OK"
+          // })
 
           $('#modalEditProduct').modal('hide')
 
@@ -2353,62 +2658,46 @@
           $('#txtEditHarvestWeight').val('');
           $('#txtEditHarvestQuantity').val('');
 
-        $.put(strhost + '/products', {
-          ProductID: strProductID,
-          ProductFarmName: strProductFarmName,
-          ProductType: strProductType,
-          FixedCost: strFixedCost,
-          DatePlanted: strDatePlanted,
-          DateHarvested: strDateHarvested,
-          HarvestWeight: strHarvestWeight,
-          HarvestQuantity: strHarvestQuantity
-        }, function(result){
-          result = JSON.parse(result)
-          if(result == "Success"){
-            swal.fire ({
-              title: "Success",
-              text: "Product Updated",
-              icon: "success",
-              confirmButtonText: "OK"
-            })
-            $.getJSON(strhost + '/products', {
-              ProductID: strProductID,
-              ProductFarmName: strProductFarmName,
-              ProductType: strProductType,
-              FixedCost: strFixedCost,
-              DatePlanted: strDatePlanted,
-              DateHarvested: strDateHarvested,
-              HarvestWeight: strHarvestWeight,
-              HarvestQuantity: strHarvestQuantity
-            }, function(result){
-              result = JSON.parse(result)
-              $('#tblProducts').empty()
-              for(let i = 0; i < result.length; i++){
-                $('#tblProducts').append('<tr><td>' + result[i].ProductID + '</td><td>' + result[i].ProductFarmName + 
-                  '</td><td>' + result[i].ProductType + '</td><td>' + result[i].FixedCost + '</td><td>' + result[i].DatePlanted + 
-                  '</td><td>' + result[i].DateHarvested + '</td><td>' + result[i].HarvestWeight + '</td><td>' + result[i].HarvestQuantity + 
-                  '</td><td><button class="btn btn-primary edit-product" data-productid="' + result[i].ProductID + '" data-productfarmname="' + 
-                  result[i].ProductFarmName + '" data-producttype="' + result[i].ProductType + '" data-fixedcost="' + result[i].FixedCost + 
-                  '" data-dateplanted="' + result[i].DatePlanted + '" data-dateharvested="' + result[i].DateHarvested + '" data-harvestweight="' + 
-                  result[i].HarvestWeight + '" data-harvestquantity="' + result[i].HarvestQuantity + 
-                  '">Edit</button></td><td><button class="btn btn-danger delete-product" data-productid="' + result[i].ProductID + '">Delete</button></td></tr>');
+        $.ajax(strhost + '/products', {
+          type: 'PUT',
+          data: {
+            ProductID: strProductID,
+            ProductFarmName: strProductFarmName,
+            ProductType: strProductType,
+            FixedCost: strFixedCost,
+            DatePlanted: strDatePlanted,
+            DateHarvested: strDateHarvested,
+            HarvestWeight: strHarvestWeight,
+            HarvestQuantity: strHarvestQuantity
+          },
+          success: function(result){
+            if(result.affectedRows == 1){
+              swal.fire ({
+                title: "Success",
+                text: "Product Updated",
+                icon: "success",
+                confirmButtonText: "OK"
+              })
+              $.getJSON(strhost + '/products', function(result){
+                $('#tblProducts tbody').empty();
+                $.each(result, function(index, value){
+                  $('#tblProducts tbody').append('<tr><td>' + value.ProductID + '</td><td>' + value.ProductFarmName + '</td><td>' + value.ProductType + '</td><td>' + value.FixedCost + '</td><td>' + value.DatePlanted + '</td><td>' + value.DateHarvested + '</td><td>' + value.HarvestWeight + '</td><td>' + value.HarvestQuantity + '</td><td><button class="btn btn-primary edit-product" data-toggle="modal" data-target="#modalEditProduct">Edit</button></td><td><button class="btn btn-danger delete-product" data-toggle="modal" id="delete-product" data-target="#modalDeleteProduct">Delete</button></td></tr>');
+                })
+              })
+
             }
-            })
-          }
-          else{
-            swal.fire ({
-              title: "Error",
-              text: "Product Not Updated",
-              icon: "error",
-              confirmButtonText: "OK"
-            })
+            else{
+              swal.fire ({
+                title: "Error",
+                text: "Product Not Updated",
+                icon: "error",
+                confirmButtonText: "OK"
+              })
+            }
           }
         })
-        
-        
-        }
-
-      })
+        }   
+        })
 
 
       //NavBar Buttons
@@ -2555,40 +2844,49 @@
                 text: 'Account Created',
                 }) 
 
-                let strSessionID = uuidv4();
                 $.post(strhost + '/sessions', {
-                  SessionID: strSessionID,
                   Email: strEmail,
                   Password: strPassword
-                }, function(result){
-                  result = JSON.parse(result)
-                  console.log(result)
-                  if (result == 'success'){
+                }, function(data){
+                  data = JSON.parse(data)
+                  console.log(data)
+                  if (data == 'success'){
                     Swal.fire({
                       icon: 'success',
                       title: 'Success',
-                      text: 'Session Created',
+                      text: 'Logged In',
                       }) 
-                      sessionStorage.setItem('SessionID', strSessionID)
-                      console.log(sessionStorage.getItem('SessionID'))
-                        $.get(strhost + '/sessions', {
-                          SessionID: strSessionID,
-                          Email: strEmail,
-                        }, function(data){
-                          data = JSON.parse(data)
-                          console.log(data)
-                          sessionStorage.setItem('SessionID', data[0].SessionID)
-                          console.log(sessionStorage.getItem('SessionID'))
-                        })
+                      $('#divLogin').slideToggle()
+                      $('#divDashboard').slideToggle()
+                      $('#divNavBarStandard').slideToggle()
+                      $('#divNavBarDashboard').slideToggle()
+                      $('#txtFirstName').val('')
+                      $('#txtLastName').val('')
+                      $('#txtEmail').val('')
+                      $('#txtPassword').val('')
+                      $('#txtMobileNumber').val('')
+                      $('#checkbox1').prop('checked', false)
+                      $('#txtLoginPassword').val('')
+                      $('#txtEmailAddress').val('')
+                      $.getJSON(strhost + '/sessions' , function(sessionsResults) {
+                        sessionResults = JSON.parse(sessionResults)
+                        console.log(sessionResults)
+                        if(sessionResults.SessionID){
+                          sessionStorage.setItem('SessionID', sessionResults.SessionID)
+                        } else {
+                          swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Session Not Created',
+                            })
+                        }
+                        
+                      } )
                   }
                   else{
-                    Swal.fire({
-                      icon: 'error',
-                      title: 'Oops...',
-                      text: 'Session Not Created',
-                      })  
+                    return
                   }
-                }) 
+                })
             }
             else{
               Swal.fire({
