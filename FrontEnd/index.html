@@ -626,7 +626,7 @@
                         <div class="container table-responsive">
                           <h2>Employee List</h2>
                           <button class="btn btn-primary mb-2" id="add-employee">Add Employee</button>
-                          <table id="tblEmployee" class="table table-bordered table-striped table-hover">
+                          <table id="tblEmployees" class="table table-bordered table-striped table-hover">
                             <thead>
                               <tr>
                                 <th>Employee ID</th>
@@ -638,7 +638,7 @@
                                 <th>Actions</th>                               
                               </tr>
                             </thead>
-                            <tbody id="user-table">
+                            <tbody>
                               <tr>
                                 <td>1</td>
                                 <td>TN-Homestead</td>
@@ -1194,7 +1194,7 @@
                         <!-- Transactions -->
                         <section id="transactions" class="mt-3">
                           <h2>Transactions</h2>
-                          <table class="table">
+                          <table class="table table-responsive" >
                             <thead>
                               <tr>
                                 <th>Farm</th>
@@ -1280,65 +1280,37 @@
           $.getJSON(strhost + '/users', {
             email: strEmail,
             password: strPassword
-          }, function(data){
-            if(data.length == 0){
-              Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Invalid Email or Password',
-                })
-            } else {
+          }, function(result){
+            // result = JSON.parse(result)
+            console.log(result)
+            if (result){
+              // JSON.parse(result)
               $('#divLogin').slideToggle()
               $('#divDashboard').slideToggle()
       
               $('#divNavBarStandard').slideToggle()
               $('#divNavBarDashboard').slideToggle()
-              //create session
-              $.post(strhost + '/sessions', {
-                  Email: strEmail,
-                  Password: strPassword
-                }, function(data){
-                  data = JSON.parse(data)
-                  console.log(data)
-                  if (data == 'success'){
-                    Swal.fire({
-                      icon: 'success',
-                      title: 'Success',
-                      text: 'Logged In',
-                      }) 
-                      $('#divLogin').slideToggle()
-                      $('#divDashboard').slideToggle()
-                      $('#divNavBarStandard').slideToggle()
-                      $('#divNavBarDashboard').slideToggle()
-                      $.getJSON(strhost + '/sessions' , function(sessionsResults) {
-                        sessionResults = JSON.parse(sessionResults)
-                        console.log(sessionResults)
-                        if(sessionResults.SessionID){
-                          sessionStorage.setItem('SessionID', sessionResults.SessionID)
-                        } else {
-                          swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'Session Not Created',
-                            })
-                        }
-                        
-                      } )
-                  }
-                  else{
-                    return
-                  }
+              sessionStorage.setItem('SessionID', result.Message)
+              Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Login Successful',
                 })
-              //get session
-              //store session ID
+            }
+            else{
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Login Unsuccessful',
+                })  
             }
           })
 
-          $('#divLogin').slideToggle()
-          $('#divDashboard').slideToggle()
+          // $('#divLogin').slideToggle()
+          // $('#divDashboard').slideToggle()
   
-          $('#divNavBarStandard').slideToggle()
-          $('#divNavBarDashboard').slideToggle()
+          // $('#divNavBarStandard').slideToggle()
+          // $('#divNavBarDashboard').slideToggle()
 
           $('#txtEmailAddress').val('')
           $('#txtLoginPassword').val('')
@@ -1382,32 +1354,34 @@
         $("#divFinancialReporting").hide();
         //Delete Session
         let strSessionID = sessionStorage.getItem('SessionID')
+        sessionStorage.removeItem('SessionID')
+      })
 
-        $.ajax({
-          url: strhost + '/sessions',
-          type: 'DELETE',
-          data: {
-            SessionID: strSessionID
-          },
-          success: function(result) {
-            console.log(result)
-            sessionStorage.removeItem('SessionID')
-            swal.fire({
-              icon: 'success',
-              title: 'Success',
-              text: 'You have successfully logged out',
-            })
-          },
-          error: function(result) {
-            console.log(result)
-            swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'Something went wrong!',
-            })
-            }
-          })
-        })
+        // $.ajax({
+        //   url: strhost + '/sessions',
+        //   type: 'DELETE',
+        //   data: {
+        //     SessionID: strSessionID
+        //   },
+        //   success: function(result) {
+        //     console.log(result)
+        //     sessionStorage.removeItem('SessionID')
+        //     swal.fire({
+        //       icon: 'success',
+        //       title: 'Success',
+        //       text: 'You have successfully logged out',
+        //     })
+        //   },
+        //   error: function(result) {
+        //     console.log(result)
+        //     swal.fire({
+        //       icon: 'error',
+        //       title: 'Oops...',
+        //       text: 'Something went wrong!',
+        //     })
+        //     }
+        //   })
+        // })
 
 
       //Terminate Modal Button
@@ -1468,10 +1442,10 @@
         $('#divDashboard').slideToggle()
         $('#divEmployees').slideToggle()
         //Get Employees
-        $.getJSON('http://localhost:8000/employees', function(data) {
-                data = JSON.parse(data);
-                console.log(data);
-                if(!data){
+        $.getJSON('http://localhost:8000/employees', function(result) {
+                // result = JSON.parse(result);
+                console.log(result);
+                if(!result){
                     return;
                     swal.fire ({
                         icon: 'error',
@@ -1479,9 +1453,16 @@
                         text: 'No Employees Found',
                     })
                 } else {
-                    $('#tblEmployee').empty();
-                    $.each(data, function(index, value) {
-                        $('#tblEmployee').append('<tr><td>' + value.EmployeeID + '</td><td>' + value.FarmName + '</td><td>' + value.EmployeeFirstName + '</td><td>' + value.EmployeeLastName + '</td><td>' + value.PayRate + '</td><td>' + value.Position + '</td><td><button class="btn btn-primary edit-employee" data-toggle="modal" data-target="#modalEditEmployee">Edit</button></td><td><button class="btn btn-danger delete-employee" id="delete-employee" data-toggle="modal" data-target="#modalDelete">Delete</button></td></tr>');
+                    // console.log(result)
+                    swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: 'Employees Found',
+                    })
+                    $('#tblEmployees tbody').empty();
+                    $.each(result, function(index, value) {
+                        $('#tblEmployees tbody').append('<tr><td>' + value.EmpID + '</td><td>' + value.FarmName + '</td><td>' + value.FirstName + '</td><td>' + value.LastName + '</td><td>' + value.PayRateHr + '</td><td>' + value.Position + 
+                        '</td><td><button type="button" class="btn btn-sm btn-info edit-employee" data-id="1">Edit</button><button type="button" class="btn btn-sm btn-danger delete-button" id="delete-employee" data-id="1">Delete</button></td></tr>');
                     });
                 }
             });
@@ -2141,6 +2122,11 @@
         $('#modalEditEmployee').modal('show')
       })
 
+     
+      // document.getElementById("#delete-employee'").addEventListener("click", function() {
+      //   alert("Button clicked!");
+      // });
+     
       $('#delete-employee').click(function(){
         $('#modalDeleteEmployee').modal('show')
         var row = $(this).closest('tr');
@@ -2252,12 +2238,12 @@
           })
 
           $.post(strhost + '/employees' ,{
-            EmployeeID: strEmployeeID,
-            FarmName: strFarmName,
-            EmployeeFirstName: strEmployeeFirstName,
-            EmployeeLastName: strEmployeeLastName,
-            PayRate: strPayRate,
-            Position: strPosition
+            employeeID: strEmployeeID,
+            farmname: strFarmName,
+            employeefirstname: strEmployeeFirstName,
+            employeelastname: strEmployeeLastName,
+            payrate: strPayRate,
+            position: strPosition
           }, function(result){
             result = JSON.parse(result);
             console.log(result)
@@ -2268,12 +2254,12 @@
                 text: 'Something went wrong!',
               })
             } else {
-              $.getJSON('http://localhost:8000/employees', function(data) {
-                data = JSON.parse(data);
-                console.log(data);
+              $.getJSON('http://localhost:8000/employees', function(result) {
+                result = JSON.parse(result);
+                console.log(result);
                 $('#tblEmployee').empty();
                 $.each(data, function(index, value) {
-                    $('#tblEmployee').append('<tr><td>' + value.EmployeeID + '</td><td>' + value.FarmName + '</td><td>' + value.EmployeeFirstName + '</td><td>' + value.EmployeeLastName + '</td><td>' + value.PayRate + '</td><td>' + value.Position + '</td><td><button class="btn btn-primary edit-employee" data-toggle="modal" data-target="#modalEditEmployee">Edit</button></td><td><button class="btn btn-danger delete-employee" data-toggle="modal" id="delete-employee" data-target="#modalDelete">Delete</button></td></tr>');
+                    $('#tblEmployee').append('<tr><td>' + value.EmployeeID + '</td><td>' + value.FarmName + '</td><td>' + value.FirstName + '</td><td>' + value.LastName + '</td><td>' + value.PayRate + '</td><td>' + value.Position + '</td><td><button class="btn btn-primary edit-employee" data-toggle="modal" data-target="#modalEditEmployee">Edit</button></td><td><button class="btn btn-danger delete-employee" data-toggle="modal" id="delete-employee" data-target="#modalDelete">Delete</button></td></tr>');
                 });
             });
             Swal.fire({
@@ -2815,78 +2801,36 @@
             text: message,
             })  
         } else {
-          $('#divRegistration').slideToggle()
-          $('#divDashboard').slideToggle()
-          $('#divNavBarStandard').slideToggle()
-          $('#divNavBarDashboard').slideToggle()
-          $('#txtFirstName').val('')
-          $('#txtLastName').val('')
-          $('#txtEmail').val('')
-          $('#txtPassword').val('')
-          $('#txtMobileNumber').val('')
-          $('#checkbox1').prop('checked', false)
-          $('#txtLoginPassword').val('')
-          $('#txtEmailAddress').val('')
 
           $.post(strhost + '/users', {
-            FirstName: strFirst,
-            LastName: strLast,
-            Email: strEmail,
-            Password: strPassword,
-            MobileNumber: strMobileNumber
-          }, function(data){
-            data = JSON.parse(data)
-            console.log(data)
-            if (data == 'success'){
+            firstname: strFirst,
+            lastname: strLast,
+            email: strEmail,
+            password: strPassword,
+            mobilenumber: strMobileNumber
+          }, function(result){
+            result = JSON.parse(result)
+            console.log(result)
+            if (result){
+              // JSON.parse(result)
+              sessionStorage.setItem('SessionID',result.Message)
               Swal.fire({
                 icon: 'success',
                 title: 'Success',
                 text: 'Account Created',
-                }) 
-
-                $.post(strhost + '/sessions', {
-                  Email: strEmail,
-                  Password: strPassword
-                }, function(data){
-                  data = JSON.parse(data)
-                  console.log(data)
-                  if (data == 'success'){
-                    Swal.fire({
-                      icon: 'success',
-                      title: 'Success',
-                      text: 'Logged In',
-                      }) 
-                      $('#divLogin').slideToggle()
-                      $('#divDashboard').slideToggle()
-                      $('#divNavBarStandard').slideToggle()
-                      $('#divNavBarDashboard').slideToggle()
-                      $('#txtFirstName').val('')
-                      $('#txtLastName').val('')
-                      $('#txtEmail').val('')
-                      $('#txtPassword').val('')
-                      $('#txtMobileNumber').val('')
-                      $('#checkbox1').prop('checked', false)
-                      $('#txtLoginPassword').val('')
-                      $('#txtEmailAddress').val('')
-                      $.getJSON(strhost + '/sessions' , function(sessionsResults) {
-                        sessionResults = JSON.parse(sessionResults)
-                        console.log(sessionResults)
-                        if(sessionResults.SessionID){
-                          sessionStorage.setItem('SessionID', sessionResults.SessionID)
-                        } else {
-                          swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'Session Not Created',
-                            })
-                        }
-                        
-                      } )
-                  }
-                  else{
-                    return
-                  }
                 })
+                $('#divRegistration').slideToggle()
+                $('#divDashboard').slideToggle()
+                $('#divNavBarStandard').slideToggle()
+                $('#divNavBarDashboard').slideToggle()
+                $('#txtFirstName').val('')
+                $('#txtLastName').val('')
+                $('#txtEmail').val('')
+                $('#txtPassword').val('')
+                $('#txtMobileNumber').val('')
+                $('#checkbox1').prop('checked', false)
+                $('#txtLoginPassword').val('')
+                $('#txtEmailAddress').val('')
             }
             else{
               Swal.fire({
@@ -2906,6 +2850,9 @@
 
         let strStreetAddress1 = $('#txtStreetAddress1').val();
         let intStreetAddress1Length = $('#txtStreetAddress1').val().length;
+
+        let strStreetAddress2 = $('#txtStreetAddress2').val();
+        let intStreetAddress2Length = $('#txtStreetAddress2').val().length;
 
         let strCity = $('#txtCity').val();
         let intCityLength = $('#txtCity').val().length;
@@ -2965,16 +2912,16 @@
             // $('#checkbox2').prop('checked', false)
 
             $.post(strhost + '/farms', {
-                FarmName: strFarmName,
-                StreetAddress1: strStreetAddress1,
-                StreetAddress2: strStreetAddress2,
-                City: strCity,
-                State: strState,
-                ZipCode: strZipCode
-            }, function(data){
-                data = JSON.parse(data)
-                console.log(data)
-                if (data == 'success'){
+                farmname: strFarmName,
+                streetaddress1: strStreetAddress1,
+                streetaddress2: strStreetAddress2,
+                city: strCity,
+                state: strState,
+                zipcode: strZipCode
+            }, function(result){
+                result = JSON.parse(result)
+                console.log(result)
+                if (result){
                     swal.fire ({
                         icon: 'Success',
                         title: 'Success',
