@@ -14,8 +14,8 @@ CREATE TABLE tblProducts (
     Farm_ID INT,
     Prod_Type varchar(15),
     Fixed_Cost decimal(9,2),
-    Date_Planted DATETIME,
-    Date_Harvested DATETIME,
+    Date_Planted varchar(20),
+    Date_Harvested varchar(20),
     Harvest_Weight_LBS decimal(9,2),
     Quantity INT,
     PRIMARY KEY (Product_ID),
@@ -30,7 +30,7 @@ CREATE TABLE tblUsers (
     Email varchar(30),
     UserPassword varchar(30),
     Phone varchar(10),
-    Date_Recorded sysdate(),
+    Date_Recorded varchar(20),
     PRIMARY KEY (User_ID),
     FOREIGN KEY (Farm_ID) REFERENCES tblFarms(Farm_ID)
 );
@@ -64,7 +64,7 @@ CREATE TABLE tblInventory (
     Item varchar(15),
     Item_Description varchar(250),
     Item_Cost decimal(9,2),
-    Date_Recorded DATETIME,
+    Date_Recorded varchar(20),
     PRIMARY KEY (Inventory_ID),
     FOREIGN KEY (Farm_ID) REFERENCES tblFarms(Farm_ID)
 );
@@ -72,8 +72,8 @@ CREATE TABLE tblInventory (
 CREATE TABLE tblSessions (
     Session_ID INT NOT NULL AUTO_INCREMENT,
     User_ID INT,
-    Session_Start DATETIME,
-    Session_End DATETIME,
+    Session_Start varchar(20),
+    Session_End varchar(20),
     PRIMARY KEY (Session_ID),
     FOREIGN KEY (User_ID) REFERENCES tblUsers(User_ID)
 );
@@ -81,7 +81,7 @@ CREATE TABLE tblSessions (
 CREATE TABLE tblCosts (
     Cost_ID INT NOT NULL AUTO_INCREMENT,
     Farm_ID INT,
-    Cost_Date DATETIME,
+    Cost_Date varchar(20),
     Cost_Type varchar(25),
     Cost_Description varchar(250),
     Cost_Amount decimal(9,2),
