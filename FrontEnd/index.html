@@ -2127,45 +2127,49 @@
       //   alert("Button clicked!");
       // });
      
-      $('#delete-employee').click(function(){
-        $('#modalDeleteEmployee').modal('show')
-        var row = $(this).closest('tr');
-        $('#confirmDeleteEmployee').click(function(){
-          $('#modalDeleteEmployee').modal('hide')
-          $.ajax(strhost + '/employees', {
-            type: 'DELETE',
-            data: {
-              employeeID: row.find('td:eq(0)').text()
-            },
-            success: function(data){
-              console.log(data);
-              swal.fire({
-                icon: 'success',
-                title: 'Success!',
-                text: 'Employee has been deleted!',
+      $(document).ready(function(){
+        $('#delete-employee').click(function(){
+          $('#modalDeleteEmployee').modal('show')
+          var row = $(this).closest('tr');
+          $('#confirmDeleteEmployee').click(function(){
+            $('#modalDeleteEmployee').modal('hide')
+            $.ajax(strhost + '/employees', {
+              type: 'DELETE',
+              data: {
+                employeeID: row.find('td:eq(0)').text()
+              },
+              success: function(data){
+                console.log(data);
+                swal.fire({
+                  icon: 'success',
+                  title: 'Success!',
+                  text: 'Employee has been deleted!',
+                }
+                )
+                row.remove();
+              },
+              error: function(data){
+                console.log(data);
+                swal.fire({
+                  icon: 'error',
+                  title: 'Oops...',
+                  text: 'Something went wrong!',
+                })
               }
-              )
-              row.remove();
-            },
-            error: function(data){
-              console.log(data);
-              swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Something went wrong!',
-              })
-            }
+            })
+          })
+          $.getJSON(strhost + '/employees', function(data){
+            data = JSON.parse(data);
+            console.log(data);
+            $('#tblEmployee').empty();
+            $.each(data, function(index, value){
+              $('#tblEmployee').append('<tr><td>' + value.employeeID + '</td><td>' + value.farmName + '</td><td>' + value.firstName + '</td><td>' + value.lastName + '</td><td>' + value.payRate + '</td><td>' + value.position + '</td><td><button class="btn btn-primary edit-employee" data-toggle="modal" data-target="#modalEditEmployee">Edit</button></td><td><button class="btn btn-danger delete-employee" id="delete-employee" data-toggle="modal" data-target="#modalDeleteEmployee">Delete</button></td></tr>');
+            })
           })
         })
-        $.getJSON(strhost + '/employees', function(data){
-          data = JSON.parse(data);
-          console.log(data);
-          $('#tblEmployee').empty();
-          $.each(data, function(index, value){
-            $('#tblEmployee').append('<tr><td>' + value.employeeID + '</td><td>' + value.farmName + '</td><td>' + value.firstName + '</td><td>' + value.lastName + '</td><td>' + value.payRate + '</td><td>' + value.position + '</td><td><button class="btn btn-primary edit-employee" data-toggle="modal" data-target="#modalEditEmployee">Edit</button></td><td><button class="btn btn-danger delete-employee" id="delete-employee" data-toggle="modal" data-target="#modalDeleteEmployee">Delete</button></td></tr>');
-          })
-        })
+        
       })
+
 
       $('#confirmAddEmployee').click(function(){
         let strEmployeeID = $('#txtEmployeeID').val();
