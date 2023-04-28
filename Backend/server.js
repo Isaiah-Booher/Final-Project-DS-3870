@@ -370,14 +370,14 @@ app.delete("/products", (req,res,next) => {
 })
             
 app.post('/employees', (req,res,next) => {
-    let strEmployeeID = req.query.employeeID || req.body.employeeID;
+    let strEmployeeID = req.query.employeeid || req.body.employeeid;
     let strFarmName = req.query.farmname || req.body.farmname;
     let strEmployeeFirstName = req.query.employeefirstname || req.body.employeefirstname;
     let strEmployeeLastName = req.query.employeelastname || req.body.employeelastname;
     let strPayRate = req.query.payrate || req.body.payrate;
     let strPosition = req.query.position || req.body.position;
 
-    pool.query('INSERT INTO tblEmployees (EmpID, FarmName, FirstName, LastName, PayRateHr, Position) VALUES(?, ?, ?, ?, ?, ?)',
+    pool.query('INSERT INTO tblEmployees (EmpID, FarmName, FirstName, LastName, PayRateHr, Position) VALUES(?, ?, ?, ?, ?, ?) order by FirstName DESC',
     [strEmployeeID, strFarmName, strEmployeeFirstName, strEmployeeLastName, strPayRate, strPosition], function(error, results){
         if(!error){
             let objMessage = new message("Success", "New Employee Created");
@@ -391,7 +391,7 @@ app.post('/employees', (req,res,next) => {
 })
 
 app.get("/employees", (req,res,next) => {
-    pool.query('SELECT * FROM tblEmployees', function(error, results){
+    pool.query('SELECT * FROM tblEmployees order by FirstName asc', function(error, results){
         if(!error){
             if(results.length > 0){
                 // let objEmployee = new Employee(results[0].Employee_ID, results[0].Farm_Name, results[0].Employee_First_Name, results[0].Employee_Last_Name, results[0].Pay_Rate, results[0].Position);
