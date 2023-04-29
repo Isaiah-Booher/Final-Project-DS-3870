@@ -490,12 +490,12 @@
                           <table id="tblProducts" class="table table-bordered table-striped table-hover">
                             <thead>
                               <tr>
-                                <th>Product_ID</th>
+                                <th>Product ID</th>
                                 <th>Farm Name</th>
-                                <th>Prod_Type</th>
+                                <th>Product Type/Name</th>
                                 <th>Fixed Cost</th>
                                 <th>Date Planted</th>
-                                <th>Date Harvested</th>
+                                <th>Date Harvested/Butchered</th>
                                 <th>Harvest Weight (lbs)</th>
                                 <th>Quantity</th>
                                 <!-- <th>Actions</th> -->
@@ -539,21 +539,21 @@
               </div>
               <div class="modal-body p-3">
                 <label for="txtProductID" class="form-label">Product ID: </label>
-                <input type="text" class="form-control" id="txtProductID" />
+                <input type="text" class="form-control" placeholder="Enter an Integer" id="txtProductID" />
                 <label for="txtProductFarmName" class="form-label">Farm Name:  </label>
-                <input type="text" class="form-control" id="txtProductFarmName" />
-                <label for="txtProductType1" class="form-label">Product Type:  </label>
-                <input type="text" class="form-control" id="txtProductType1" />
+                <input type="text" class="form-control" placeholder="Enter text" id="txtProductFarmName" />
+                <label for="txtProductType1" class="form-label">Product Type and/or Name:  </label>
+                <input type="text" class="form-control" placeholder="Enter text" id="txtProductType1" />
                 <label for="txtProductFixedCost" class="form-label">Fixed Cost:  </label>
-                <input type="text" class="form-control" id="txtProductFixedCost" />
+                <input type="text" class="form-control" placeholder="Round price to two decimal places" id="txtProductFixedCost" />
                 <label for="txtDatePlanted" class="form-label">Date Planted:  </label>
-                <input type="text" class="form-control" id="txtDatePlanted" />
-                <label for="txtDateHarvested" class="form-label">Date Harvested:  </label>
-                <input type="text" class="form-control" id="txtDateHarvested" />
+                <input type="text" class="form-control" placeholder="Enter a date" id="txtDatePlanted" />
+                <label for="txtDateHarvested" class="form-label">Date Harvested/Butchered:  </label>
+                <input type="text" class="form-control" placeholder="Enter a date" id="txtDateHarvested" />
                 <label for="txtHarvestWeight" class="form-label">Harvest Weight (lbs):  </label>
-                <input type="text" class="form-control" id="txtHarvestWeight" />
+                <input type="text" class="form-control" placeholder="Enther an Integer" id="txtHarvestWeight" />
                 <label for="txtHarvestQuantity" class="form-label">Quantity:  </label>
-                <input type="text" class="form-control" id="txtHarvestQuantity" />
+                <input type="text" class="form-control" placeholder="Enter an Integer" id="txtHarvestQuantity" />
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary btnCloseModal" data-dismiss="modal">Close</button>
@@ -1580,21 +1580,20 @@
         $('#divDashboard').slideToggle()
         $('#divProducts').slideToggle()
         //Get Products
-        $.getJSON(strhost + '/products', function(data) {
-                data = JSON.parse(data);
-                console.log(data);
-                if(!data){
-                    return;
+        $.getJSON(strhost + '/products', function(result) {
+                // data = JSON.parse(data);
+                console.log(result);
+                if(!result){
                     swal.fire ({
                         icon: 'error',
                         title: 'Oops...',
                         text: 'No Products Found',
                     })
                 } else {
-                  $('#tblProducts').empty();
-                  $.each(data, function(index, value) {
-                      $('#tblProducts').append('<tr><td>' + value.ProductID + '</td><td>' + value.FarmName + '</td><td>' + value.ProductName + '</td><td>' + value.ProductDescription + '</td><td>' + value.ProductPrice + '</td><td>' + value.DateRecorded + '</td><td><button class="btn btn-primary edit-product" data-toggle="modal" data-target="#modalEditProduct">Edit</button></td><td><button class="btn btn-danger delete-product" id="delete-product" data-toggle="modal" data-target="#modalDelete">Delete</button></td></tr>');
-                  });
+                  $('#tblProducts tbody').empty();
+                  $.each(result, function(index, value){
+                    $('#tblProducts tbody').append('<tr><td>' + value.ProductID + '</td><td>' + value.FarmName + '</td><td>' + value.ProdType + '</td><td>' + value.FixedCost + '</td><td>' + value.DatePlanted + '</td><td>' + value.DateHarvested + '</td><td>' + value.HarvestWeight + '</td><td>' + value.Quantity + '</td></tr>');
+                  })
                 }
             });
       });    
@@ -2366,14 +2365,24 @@
               data: {
                 employeeid: strEmpID
               },
-              success: function(data){
-                console.log(data);
+              success: function(result){
+                result = JSON.parse(result);
+                console.log(result);
                 swal.fire({
                   icon: 'success',
                   title: 'Success!',
                   text: 'Employee has been deleted!',
                 }
                 )
+                $.getJSON(strhost + '/employees', function(result){
+                  // result = JSON.parse(result);
+                  console.log(result);
+                  $('#tblEmployees tbody').empty();
+                  $.each(result, function(index, value) {
+                          $('#tblEmployees tbody').append('<tr><td>' + value.EmpID + '</td><td>' + value.FarmName + '</td><td>' + value.FirstName + '</td><td>' + value.LastName + '</td><td>' + value.PayRateHr + '</td><td>' + value.Position + 
+                          '</td></tr>');
+                  });
+                })
               },
               error: function(result){
                 console.log(result);
@@ -2385,14 +2394,6 @@
               }
             })
           }
-          $.getJSON(strhost + '/employees', function(result){
-            data = JSON.parse(result);
-            console.log(result);
-            $('#tblEmployee').empty();
-            $.each(result, function(index, value){
-              $('#tblEmployee').append('<tr><td>' + value.employeeID + '</td><td>' + value.farmName + '</td><td>' + value.firstName + '</td><td>' + value.lastName + '</td><td>' + value.payRate + '</td><td>' + value.position + '</td><td><button class="btn btn-primary edit-employee" data-toggle="modal" data-target="#modalEditEmployee">Edit</button></td><td><button class="btn btn-danger delete-employee" id="delete-employee" data-toggle="modal" data-target="#modalDeleteEmployee">Delete</button></td></tr>');
-            })
-          })
           })
         })
 
@@ -2589,12 +2590,12 @@
           $.ajax(strhost + '/employees', {
             type: 'PUT',
             data: {
-              EmployeeID: strEmployeeID,
-              FarmName: strFarmName,
-              EmployeeFirstName: strEmployeeFirstName,
-              EmployeeLastName: strEmployeeLastName,
-              PayRate: strPayRate,
-              Position: strPosition
+              employeeid: strEmployeeID,
+              farmname: strFarmName,
+              employeefirstname: strEmployeeFirstName,
+              employeelastname: strEmployeeLastName,
+              payrate: strPayRate,
+              position: strPosition
             },
             success: function(result){
               result = JSON.parse(result);
@@ -2606,12 +2607,13 @@
                   text: 'Something went wrong!',
                 })
               } else {
-                $.getJSON('http://localhost:8000/employees', function(data) {
-                  data = JSON.parse(data);
-                  console.log(data);
-                  $('#tblEmployee').empty();
-                  $.each(data, function(index, value) {
-                      $('#tblEmployee').append('<tr><td>' + value.EmployeeID + '</td><td>' + value.FarmName + '</td><td>' + value.EmployeeFirstName + '</td><td>' + value.EmployeeLastName + '</td><td>' + value.PayRate + '</td><td>' + value.Position + '</td><td><button class="btn btn-primary edit-employee" data-toggle="modal" data-target="#modalEditEmployee">Edit</button></td><td><button class="btn btn-danger delete-employee" data-toggle="modal" id="delete-employee" data-target="#modalDelete">Delete</button></td></tr>');
+                $.getJSON('http://localhost:8000/employees', function(result) {
+                  // result = JSON.parse(result);
+                  console.log(result);
+                  $('#tblEmployees tbody').empty();
+                  $.each(result, function(index, value) {
+                          $('#tblEmployees tbody').append('<tr><td>' + value.EmpID + '</td><td>' + value.FarmName + '</td><td>' + value.FirstName + '</td><td>' + value.LastName + '</td><td>' + value.PayRateHr + '</td><td>' + value.Position + 
+                          '</td></tr>');
                   });
               });
               Swal.fire({
@@ -2677,25 +2679,25 @@
           strErrorMessage2 += "You must enter a Fixed Cost. ";
         }
 
-        if(intDatePlantedLength < 1){
-          blnErrorFound2 = true;
-          strErrorMessage2 += "You must enter a Date Planted. ";
-        }
+        // if(intDatePlantedLength < 1){
+        //   blnErrorFound2 = true;
+        //   strErrorMessage2 += "You must enter a Date Planted. ";
+        // }
 
-        if(intDateHarvestedLength < 1){
-          blnErrorFound2 = true;
-          strErrorMessage2 += "You must enter a Date Harvested. ";
-        }
+        // if(intDateHarvestedLength < 1){
+        //   blnErrorFound2 = true;
+        //   strErrorMessage2 += "You must enter a Date Harvested. ";
+        // }
 
-        if(intHarvestWeightLength < 1){
-          blnErrorFound2 = true;
-          strErrorMessage2 += "You must enter a Harvest Weight. ";
-        }
+        // if(intHarvestWeightLength < 1){
+        //   blnErrorFound2 = true;
+        //   strErrorMessage2 += "You must enter a Harvest Weight. ";
+        // }
 
-        if(intHarvestQuantityLength < 1){
-          blnErrorFound2 = true;
-          strErrorMessage2 += "You must enter a Harvest Quantity. ";
-        }
+        // if(intHarvestQuantityLength < 1){
+        //   blnErrorFound2 = true;
+        //   strErrorMessage2 += "You must enter a Harvest Quantity. If none, enter 0. ";
+        // }
 
         if(blnErrorFound2 == true){
           swal.fire ({
@@ -2722,24 +2724,40 @@
           $('#txtHarvestWeight').val('');
           $('#txtHarvestQuantity').val('');
 
-          $.post(strhost + '/products', {ProductID: strProductID, ProductFarmName: strProductFarmName, ProductType: strProductType, FixedCost: strFixedCost, DatePlanted: strDatePlanted, 
-            DateHarvested: strDateHarvested, HarvestWeight: strHarvestWeight, HarvestQuantity: strHarvestQuantity}, function(result){
+          $.post(strhost + '/products', 
+          {productid: strProductID, 
+            productfarmname: strProductFarmName, 
+            producttype: strProductType, 
+            fixedcost: strFixedCost, 
+            dateplanted: strDatePlanted, 
+            dateharvested: strDateHarvested, 
+            harvestweight: strHarvestWeight, 
+            harvestquantity: strHarvestQuantity}, 
+            function(result){
             console.log(result);
             result = JSON.parse(result);
-            if(result == 'success'){
+            if(result){
               swal.fire ({
                 title: "Success",
                 text: "Product Added",
                 icon: "success",
                 confirmButtonText: "OK"
               })
-              $.getJSON(strHost + '/products', function(result){
+              $.getJSON(strhost + '/products', function(result) {
                 console.log(result);
-                $('#tblProducts').empty();
-                $.each(result, function(index, value) {
-                    $('#tblProducts').append('<tr><td>' + value.ProductID + '</td><td>' + value.ProductFarmName + '</td><td>' + value.ProductType + '</td><td>' + value.FixedCost + '</td><td>' + value.DatePlanted + '</td><td>' + value.DateHarvested + '</td><td>' + value.HarvestWeight + '</td><td>' + value.HarvestQuantity + '</td><td><button class="btn btn-primary edit-product" data-toggle="modal" data-target="#modalEditProduct">Edit</button></td><td><button class="btn btn-danger delete-product" data-toggle="modal" id="delete-product" data-target="#modalDeleteProduct">Delete</button></td></tr>');
-                });
-              })
+                if(!result){
+                    swal.fire ({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'No Products Found',
+                    })
+                } else {
+                  $('#tblProducts tbody').empty();
+                  $.each(result, function(index, value){
+                    $('#tblProducts tbody').append('<tr><td>' + value.ProductID + '</td><td>' + value.FarmName + '</td><td>' + value.ProdType + '</td><td>' + value.FixedCost + '</td><td>' + value.DatePlanted + '</td><td>' + value.DateHarvested + '</td><td>' + value.HarvestWeight + '</td><td>' + value.Quantity + '</td></tr>');
+                  })
+                }
+            });
             }
             else{
               swal.fire ({
@@ -2781,7 +2799,7 @@
             $('#modalDeleteProduct').modal('hide')
             $('#txtDeleteProduct').val('');
               $.ajax(strhost + '/products', {
-                type: 'Delete',
+                type: 'DELETE',
                 data: {productid : strProductID
                 },
                 success: function(result){
@@ -2792,6 +2810,21 @@
                     text: 'Product has been deleted!',
                   }
                   )
+                  $.getJSON(strhost + '/products', function(result) {
+                console.log(result);
+                if(!result){
+                    swal.fire ({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'No Products Found',
+                    })
+                } else {
+                  $('#tblProducts tbody').empty();
+                  $.each(result, function(index, value){
+                    $('#tblProducts tbody').append('<tr><td>' + value.ProductID + '</td><td>' + value.FarmName + '</td><td>' + value.ProdType + '</td><td>' + value.FixedCost + '</td><td>' + value.DatePlanted + '</td><td>' + value.DateHarvested + '</td><td>' + value.HarvestWeight + '</td><td>' + value.Quantity + '</td></tr>');
+                  })
+                }
+            });  
                 },
                 error: function(result){
                   console.log(result);
@@ -2801,15 +2834,7 @@
                     text: 'Product was not deleted!',
                   })
                 }
-            })
-            $.getJSON(strhost + '/products', function(result) {
-              data = JSON.parse(result);
-              console.log(result);
-              $('#tblProducts').empty();
-              $.each(result, function(index, value) {
-                $('#tblProducts').append('<tr><td>' + value.ProductID + '</td><td>' + value.ProductFarmName + '</td><td>' + value.ProductType + '</td><td>' + value.FixedCost + '</td><td>' + value.DatePlanted + '</td><td>' + value.DateHarvested + '</td><td>' + value.HarvestWeight + '</td><td>' + value.HarvestQuantity + '</td><td><button class="btn btn-primary edit-product" data-toggle="modal" data-target="#modalEditProduct">Edit</button></td><td><button class="btn btn-danger delete-product" data-toggle="modal" id="delete-product" data-target="#modalDeleteProduct">Delete</button></td></tr>');
-              })
-            } )    
+            })    
           }
       })
 

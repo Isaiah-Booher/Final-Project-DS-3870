@@ -303,7 +303,13 @@ app.post("/products", (req,res,next) => {
     let strHarvestWeight = req.query.harvestweight || req.body.harvestweight;
     let strHarvestQuantity = req.query.harvestquantity || req.body.harvestquantity;
 
-    pool.query('INSERT INTO tblProducts (Product_ID, Product_Farm_Name, Product_Type, Fixed_Cost, Date_Planted, Date_Harvested, Harvest_Weight, Harvest_Quantity, Date_Recorded) VALUES(?, ?, ?, ?, ?, ?, ?, ?, SYSDATE())',
+    if(strDateHarvested.length < 1){
+        strDatePlanted += 'N/A';
+        strDateHarvested += 'Not Harvested/Butchered Yet';
+        strHarvestWeight += '-';
+        strHarvestQuantity += '-';
+    }
+    pool.query('INSERT INTO tblProducts (ProductID, FarmName, ProdType, FixedCost, DatePlanted, DateHarvested, HarvestWeight, Quantity) values (?,?,?,?,?,?,?,?)',
     [strProductID, strProductFarmName, strProductType, strFixedCost, strDatePlanted, strDateHarvested, strHarvestWeight, strHarvestQuantity], function(error, results){
             if(!error){
                 let objMessage = new message("Success", "New Product Created");
@@ -313,6 +319,7 @@ app.post("/products", (req,res,next) => {
                 res.status(400).send(JSON.stringify(objMessage));
             }
         })
+    
 
 })
 
@@ -321,8 +328,8 @@ app.get("/products", (req,res,next) => {
     pool.query('SELECT * FROM tblProducts' , function(error, results){
         if(!error){
             if(results.length > 0){
-                let objProduct = new Product(results[0].Product_ID, results[0].Product_Farm_Name, results[0].Product_Type, results[0].Fixed_Cost, results[0].Date_Planted, results[0].Date_Harvested, results[0].Harvest_Weight, results[0].Harvest_Quantity, results[0].Date_Recorded);
-                res.status(200).send(JSON.stringify(objProduct));
+                // let objProduct = new Product("Success","Products Found");
+                res.status(200).send(JSON.stringify(results));
             } else {
                 let objMessage = new message("Error", "Invalid Product ID");
                 res.status(400).send(JSON.stringify(objMessage));
@@ -358,7 +365,7 @@ app.put("/products", (req,res,next) => {
 
 app.delete("/products", (req,res,next) => {
     let strProductID = req.query.productid || req.body.productid;
-    pool.query('DELETE FROM tblProducts WHERE Product_ID = ?', strProductID, function(error, results){
+    pool.query('DELETE FROM tblProducts WHERE ProductID = ?', strProductID, function(error, results){
         if(!error){
             let objMessage = new message("Success", "Product Deleted");
             res.status(200).send(JSON.stringify(objMessage));
@@ -377,7 +384,7 @@ app.post('/employees', (req,res,next) => {
     let strPayRate = req.query.payrate || req.body.payrate;
     let strPosition = req.query.position || req.body.position;
 
-    pool.query('INSERT INTO tblEmployees (EmpID, FarmName, FirstName, LastName, PayRateHr, Position) VALUES(?, ?, ?, ?, ?, ?) order by FirstName DESC',
+    pool.query('INSERT INTO tblEmployees (EmpID, FarmName, FirstName, LastName, PayRateHr, Position) VALUES(?, ?, ?, ?, ?, ?)',
     [strEmployeeID, strFarmName, strEmployeeFirstName, strEmployeeLastName, strPayRate, strPosition], function(error, results){
         if(!error){
             let objMessage = new message("Success", "New Employee Created");
@@ -391,7 +398,7 @@ app.post('/employees', (req,res,next) => {
 })
 
 app.get("/employees", (req,res,next) => {
-    pool.query('SELECT * FROM tblEmployees order by FirstName asc', function(error, results){
+    pool.query('SELECT * FROM tblEmployees', function(error, results){
         if(!error){
             if(results.length > 0){
                 // let objEmployee = new Employee(results[0].Employee_ID, results[0].Farm_Name, results[0].Employee_First_Name, results[0].Employee_Last_Name, results[0].Pay_Rate, results[0].Position);
@@ -415,7 +422,7 @@ app.put('/employees', (req,res,next) => {
     let strPayRate = req.query.payrate || req.body.payrate;
     let strPosition = req.query.position || req.body.position;
 
-    pool.query('UPDATE tblEmployees SET Farm_Name = ?, Employee_First_Name = ?, Employee_Last_Name = ?, Pay_Rate = ?, Position = ? WHERE Employee_ID = ?',
+    pool.query('UPDATE tblEmployees SET FarmName = ?, FirstName = ?, LastName = ?, PayRateHr = ?, Position = ? WHERE EmpID = ?',
     [strFarmName, strEmployeeFirstName, strEmployeeLastName, strPayRate, strPosition, strEmployeeID], function(error, results){
         if(!error){
             let objMessage = new message("Success", "Employee Updated");
@@ -430,7 +437,7 @@ app.put('/employees', (req,res,next) => {
 
 app.delete("/employees", (req,res,next) => {
     let strEmployeeID = req.query.employeeid || req.body.employeeid;
-    pool.query('DELETE FROM tblEmployees WHERE Employee_ID = ?', strEmployeeID, function(error, results){
+    pool.query('DELETE FROM tblEmployees WHERE EmpID = ?', strEmployeeID, function(error, results){
         if(!error){
             let objMessage = new message("Success", "Employee Deleted");
             res.status(200).send(JSON.stringify(objMessage));
