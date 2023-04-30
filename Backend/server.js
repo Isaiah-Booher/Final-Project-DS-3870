@@ -307,7 +307,7 @@ app.post("/products", (req,res,next) => {
         strDatePlanted += 'N/A';
         strDateHarvested += 'Not Harvested/Butchered Yet';
         strHarvestWeight += '-';
-        strHarvestQuantity += '-';
+        strHarvestQuantity += '0';
     }
     pool.query('INSERT INTO tblProducts (ProductID, FarmName, ProdType, FixedCost, DatePlanted, DateHarvested, HarvestWeight, Quantity) values (?,?,?,?,?,?,?,?)',
     [strProductID, strProductFarmName, strProductType, strFixedCost, strDatePlanted, strDateHarvested, strHarvestWeight, strHarvestQuantity], function(error, results){
@@ -351,7 +351,14 @@ app.put("/products", (req,res,next) => {
     let strHarvestWeight = req.query.harvestweight || req.body.harvestweight;
     let strHarvestQuantity = req.query.harvestquantity || req.body.harvestquantity;
 
-    pool.query('UPDATE tblProducts SET Product_Farm_Name = ?, Product_Type = ?, Fixed_Cost = ?, Date_Planted = ?, Date_Harvested = ?, Harvest_Weight = ?, Harvest_Quantity = ? WHERE Product_ID = ?',
+    if(strDateHarvested.length < 1){
+        strDatePlanted += 'N/A';
+        strDateHarvested += 'Not Harvested/Butchered Yet';
+        strHarvestWeight += '-';
+        strHarvestQuantity += '0';
+    }
+
+    pool.query('UPDATE tblProducts SET FarmName = ?, ProdType = ?, FixedCost = ?, DatePlanted = ?, DateHarvested = ?, HarvestWeight = ?, Quantity = ? WHERE ProductID = ?',
     [strProductFarmName, strProductType, strFixedCost, strDatePlanted, strDateHarvested, strHarvestWeight, strHarvestQuantity, strProductID], function(error, results){
         if(!error){
             let objMessage = new message("Success", "Product Updated");
@@ -450,13 +457,14 @@ app.delete("/employees", (req,res,next) => {
 
 app.post("/inventory", (req,res,next) => {
     let strInventoryID = req.query.inventoryid || req.body.inventoryid;
-    let strFarmID = req.query.farmid || req.body.farmid;
+    let strFarmName = req.query.farmname || req.body.farmname;
     let strItem = req.query.item || req.body.item;
     let strItemDescription = req.query.itemdescription || req.body.itemdescription;
     let strItemCost = req.query.itemcost || req.body.itemcost;
+
     // let strDateRecorded = req.query.daterecorded || req.body.daterecorded;
-    pool.query('INSERT INTO tblInventory (Inventory_ID, Farm_ID, Item, Item_Description, Item_Cost, Date_Recorded) VALUES(?, ?, ?, ?, ?, SYSDATE())',
-    [strInventoryID, strFarmID, strItem, strItemDescription, strItemCost], function(error, results){
+    pool.query("insert into tblinventory (InventoryID, FarmName, ItemName, Description, ItemCost, DateRecorded) values(?, ?, ?, ?, ?, Date(now()))",
+    [strInventoryID, strFarmName, strItem, strItemDescription, strItemCost], function(error, results){
         if(!error){
             let objMessage = new message("Success", "New Item Created");
             res.status(201).send(JSON.stringify(objMessage));
@@ -472,8 +480,8 @@ app.get("/inventory", (req,res,next) => {
     pool.query('SELECT * FROM tblInventory', function(error, results){
         if(!error){
             if(results.length > 0){
-                let objInventory = new Inventory(results[0].Inventory_ID, results[0].Farm_ID, results[0].Item, results[0].Item_Description, results[0].Item_Cost, results[0].Date_Recorded);
-                res.status(200).send(JSON.stringify(objInventory));
+                // let objInventory = new Inventory(results[0].Inventory_ID, results[0].Farm_ID, results[0].Item, results[0].Item_Description, results[0].Item_Cost, results[0].Date_Recorded);
+                res.status(200).send(JSON.stringify(results));
             } else {
                 let objMessage = new message("Error", "Invalid Item ID");
                 res.status(400).send(JSON.stringify(objMessage));
@@ -505,7 +513,7 @@ app.put('/inventory', (req,res,next) => {
 
 app.delete("/inventory", (req,res,next) => {
     let strInventoryID = req.query.inventoryid || req.body.inventoryid;
-    pool.query('DELETE FROM tblInventory WHERE Inventory_ID = ?', strInventoryID, function(error, results){
+    pool.query('DELETE FROM tblInventory WHERE InventoryID = ?', strInventoryID, function(error, results){
         if(!error){
             let objMessage = new message("Success", "Item Deleted");
             res.status(200).send(JSON.stringify(objMessage));

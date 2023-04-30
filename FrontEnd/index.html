@@ -1105,7 +1105,7 @@
                             <thead>
                               <tr>
                                 <th>Inventory ID</th>
-                                <th>Farm ID</th>
+                                <th>Farm Name</th>
                                 <th>Item Name</th>
                                 <th>Description</th>
                                 <th>Item Cost</th>
@@ -1144,10 +1144,10 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body p-3">
                 <label for="txtInventoryID" class="form-label">Inventory ID: </label>
                 <input type="text" class="form-control" id="txtInventoryID" />
-                <label for="txtFarmID4" class="form-label">Farm ID:  </label>
+                <label for="txtFarmID4" class="form-label">Farm Name:  </label>
                 <input type="text" class="form-control" id="txtFarmID4" />
                 <label for="txtItem" class="form-label">Item:  </label>
                 <input type="text" class="form-control" id="txtItem" />
@@ -1177,7 +1177,7 @@
             <div class="modal-body p-3">
               <label for="txtEditInventoryID" class="form-label">Inventory ID: </label>
               <input type="text" class="form-control" id="txtEditInventoryID" />
-              <label for="txtEditFarmID4" class="form-label">Farm ID:  </label>
+              <label for="txtEditFarmID4" class="form-label">Farm Name:  </label>
               <input type="text" class="form-control" id="txtEditFarmID4" />
               <label for="txtEditItem" class="form-label">Item:  </label>
               <input type="text" class="form-control" id="txtEditItem" />
@@ -1557,7 +1557,7 @@
         $('#divInventory').slideToggle()
         //Get Inventory
         $.getJSON(strhost + '/inventory', function(data) {
-                data = JSON.parse(data);
+                // data = JSON.parse(data);
                 console.log(data);
                 if(!data){
                     return;
@@ -1567,9 +1567,9 @@
                         text: 'No Inventory Found',
                     })
                 } else {
-                  $('#tblInventory').empty();
+                  $('#tblInventory tbody').empty();
                   $.each(data, function(index, value) {
-                      $('#tblInventory').append('<tr><td>' + value.InventoryID + '</td><td>' + value.FarmName + '</td><td>' + value.Item + '</td><td>' + value.ItemDescription + '</td><td>' + value.ItemCost + '</td><td>' + value.DateRecorded + '</td><td><button class="btn btn-primary edit-item" data-toggle="modal" data-target="#modalEditItem">Edit</button></td><td><button class="btn btn-danger delete-item" id="delete-item" data-toggle="modal" data-target="#modalDelete">Delete</button></td></tr>');
+                      $('#tblInventory tbody').append('<tr><td>' + value.InventoryID + '</td><td>' + value.FarmName + '</td><td>' + value.ItemName + '</td><td>' + value.Description + '</td><td>' + value.ItemCost + '</td><td>' + value.DateRecorded + '</td></tr>');
                   });
 
                 }
@@ -1669,6 +1669,24 @@
                   title: 'Success',
                   text: 'Item Deleted',
                 })
+                $.getJSON(strhost + '/inventory', function(data) {
+                // data = JSON.parse(data);
+                console.log(data);
+                if(!data){
+                    return;
+                    swal.fire ({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'No Inventory Found',
+                    })
+                } else {
+                  $('#tblInventory tbody').empty();
+                  $.each(data, function(index, value) {
+                      $('#tblInventory tbody').append('<tr><td>' + value.InventoryID + '</td><td>' + value.FarmName + '</td><td>' + value.ItemName + '</td><td>' + value.Description + '</td><td>' + value.ItemCost + '</td><td>' + value.DateRecorded + '</td></tr>');
+                  });
+
+                }
+            });
               },
               error: function(result) {
                 console.log(result);
@@ -1679,29 +1697,13 @@
                 })
               }
             });
-            $.getJSON(strhost + '/inventory', function(result) {
-              result = JSON.parse(result);
-              console.log(result);
-              if(!result){
-                  return;
-                  swal.fire ({
-                      icon: 'error',
-                      title: 'Oops...',
-                      text: 'No Inventory Found',
-                  })
-              } else {
-                $('#tblInventory').empty();
-                $.each(result, function(index, value) {
-                    $('#tblInventory').append('<tr><td>' + value.InventoryID + '</td><td>' + value.FarmName + '</td><td>' + value.Item + '</td><td>' + value.ItemDescription + '</td><td>' + value.ItemCost + '</td><td>' + value.DateRecorded + '</td><td><button class="btn btn-primary edit-item" data-toggle="modal" data-target="#modalEditItem">Edit</button></td><td><button class="btn btn-danger delete-item" id="delete-item" data-toggle="modal" data-target="#modalDelete">Delete</button></td></tr>');
-                });
-              }
-            });
           }
         });
       });
     
       $('#ConfirmAddItem').click(function(){
         let strInventoryID = $('#txtInventoryID').val();
+        console.log(strInventoryID)
         let strFarmID = $('#txtFarmID4').val();
         let strItem = $('#txtItem').val();
         let strItemDescription = $('#txtItemDescription').val();
@@ -1786,9 +1788,9 @@
               $.getJSON('http://localhost:8000/inventory', function(data) {
                 data = JSON.parse(data);
                 console.log(data);
-                $('#tblInventory').empty();
+                $('#tblInventory tbody').empty();
                 $.each(data, function(index, value) {
-                  $('#tblInventory').append('<tr><td>' + value.inventoryID + '</td><td>' + value.farmID + '</td><td>' + value.item + '</td><td>' + value.itemDescription + '</td><td>' + value.itemCost + '</td><td>' + value.dateRecorded + '</td><td><button class="btn btn-primary edit-item" data-toggle="modal" data-target="#modalEditItem">Edit</button></td><td><button class="btn btn-danger delete-item" id="delete-item" data-toggle="modal" data-target="#modalDelete">Delete</button></td></tr>');
+                  $('#tblInventory tbody').append('<tr><td>' + value.inventoryID + '</td><td>' + value.farmID + '</td><td>' + value.item + '</td><td>' + value.itemDescription + '</td><td>' + value.itemCost + '</td><td>' + value.dateRecorded + '</td><td><button class="btn btn-primary edit-item" data-toggle="modal" data-target="#modalEditItem">Edit</button></td><td><button class="btn btn-danger delete-item" id="delete-item" data-toggle="modal" data-target="#modalDelete">Delete</button></td></tr>');
                 });
               });
               swal.fire({
@@ -2886,25 +2888,25 @@
           strErrorMessage2 += "You must enter a Fixed Cost. ";
         }
 
-        if(intDatePlantedLength < 1){
-          blnErrorFound2 = true;
-          strErrorMessage2 += "You must enter a Date Planted. ";
-        }
+        // if(intDatePlantedLength < 1){
+        //   blnErrorFound2 = true;
+        //   strErrorMessage2 += "You must enter a Date Planted. ";
+        // }
 
-        if(intDateHarvestedLength < 1){
-          blnErrorFound2 = true;
-          strErrorMessage2 += "You must enter a Date Harvested. ";
-        }
+        // if(intDateHarvestedLength < 1){
+        //   blnErrorFound2 = true;
+        //   strErrorMessage2 += "You must enter a Date Harvested. ";
+        // }
 
-        if(intHarvestWeightLength < 1){
-          blnErrorFound2 = true;
-          strErrorMessage2 += "You must enter a Harvest Weight. ";
-        }
+        // if(intHarvestWeightLength < 1){
+        //   blnErrorFound2 = true;
+        //   strErrorMessage2 += "You must enter a Harvest Weight. ";
+        // }
 
-        if(intHarvestQuantityLength < 1){
-          blnErrorFound2 = true;
-          strErrorMessage2 += "You must enter a Harvest Quantity. ";
-        }
+        // if(intHarvestQuantityLength < 1){
+        //   blnErrorFound2 = true;
+        //   strErrorMessage2 += "You must enter a Harvest Quantity. ";
+        // }
 
         if(blnErrorFound2 == true){
           swal.fire ({
@@ -2935,29 +2937,39 @@
         $.ajax(strhost + '/products', {
           type: 'PUT',
           data: {
-            ProductID: strProductID,
-            ProductFarmName: strProductFarmName,
-            ProductType: strProductType,
-            FixedCost: strFixedCost,
-            DatePlanted: strDatePlanted,
-            DateHarvested: strDateHarvested,
-            HarvestWeight: strHarvestWeight,
-            HarvestQuantity: strHarvestQuantity
+            productid: strProductID,
+            productfarmname: strProductFarmName,
+            producttype: strProductType,
+            fixedcost: strFixedCost,
+            dateplanted: strDatePlanted,
+            dateharvested: strDateHarvested,
+            harvestweight: strHarvestWeight,
+            harvestquantity: strHarvestQuantity
           },
           success: function(result){
-            if(result.affectedRows == 1){
+            if(result){
               swal.fire ({
                 title: "Success",
                 text: "Product Updated",
                 icon: "success",
                 confirmButtonText: "OK"
               })
-              $.getJSON(strhost + '/products', function(result){
-                $('#tblProducts tbody').empty();
-                $.each(result, function(index, value){
-                  $('#tblProducts tbody').append('<tr><td>' + value.ProductID + '</td><td>' + value.ProductFarmName + '</td><td>' + value.ProductType + '</td><td>' + value.FixedCost + '</td><td>' + value.DatePlanted + '</td><td>' + value.DateHarvested + '</td><td>' + value.HarvestWeight + '</td><td>' + value.HarvestQuantity + '</td><td><button class="btn btn-primary edit-product" data-toggle="modal" data-target="#modalEditProduct">Edit</button></td><td><button class="btn btn-danger delete-product" data-toggle="modal" id="delete-product" data-target="#modalDeleteProduct">Delete</button></td></tr>');
-                })
-              })
+              $.getJSON(strhost + '/products', function(result) {
+                // data = JSON.parse(data);
+                console.log(result);
+                if(!result){
+                    swal.fire ({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'No Products Found',
+                    })
+                } else {
+                  $('#tblProducts tbody').empty();
+                  $.each(result, function(index, value){
+                    $('#tblProducts tbody').append('<tr><td>' + value.ProductID + '</td><td>' + value.FarmName + '</td><td>' + value.ProdType + '</td><td>' + value.FixedCost + '</td><td>' + value.DatePlanted + '</td><td>' + value.DateHarvested + '</td><td>' + value.HarvestWeight + '</td><td>' + value.Quantity + '</td></tr>');
+                  })
+                }
+            });
 
             }
             else{
