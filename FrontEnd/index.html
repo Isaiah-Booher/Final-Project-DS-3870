@@ -309,17 +309,34 @@
                         <h2 class="card-title">Profile Information</h2>
                         <div class="card p-3">
                           <div class="card-body">
-                            <h4 class="card-title">Your User Information</h4>
-                            <div>
-                              <div><label>First Name: </label></div>
-                              <div><label>Last Name: </label></div>
-                              <div><label>User Type: </label></div>
-                              <div><label>Email: </label></div>
-                              <div><label>Mobile Number: </label></div>
-                            </div>    
+                            <div class="mb-4 ms-4">
+                              <h4>Your Profile Picture</h4>
+                              <img class="rounded-circle" alt="avatar1" src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp" />
+                            </div>
+                            <div class="p-4">
+                              <h4 class="card-title">Your User Information</h4>
+                              <div class="">
+                                <div><label>First Name: </label></div>
+                                <div><label>Last Name: </label></div>
+                                <div><label>User Type: </label></div>
+                                <div><label>Email: </label></div>
+                                <div><label>Mobile Number: </label></div>
+                              </div>
+                            </div>
+                            <div class="p-4">
+                              <h4 class="card-title">Your Farm Information</h4>
+                              <div>
+                                <div><label>Farm Name: </label></div>
+                                <div><label>Street Address 1: </label></div>
+                                <div><label>Street Address 2: </label></div>
+                                <div><label>City: </label></div>
+                                <div><label>State: </label></div>
+                                <div><label>Zip: </label></div>
+                              </div>    
+                            </div>
                           </div>
                         </div>
-                        <div class="card p-3">
+                        <!-- <div class="card p-3">
                           <div class="card-body">
                             <h4 class="card-title">Your Farm Information</h4>
                             <div>
@@ -331,7 +348,7 @@
                               <div><label>Zip: </label></div>
                             </div>    
                           </div>
-                        </div>
+                        </div> -->
                         <div>
                           <button class="btn btn-primary" type="button" id="btnBackToDashboard">Back to Dashboard</button>
                         </div>
@@ -1093,7 +1110,7 @@
                       </div>       
                       <div id="datatable">
                         <div class="container table-responsive">
-                          <h2>Items</h2>
+                          <h2>Inventory</h2>
                           <div class="row">
                             <div class="col d-inline">
                               <button class="btn btn-primary mb-2" id="add-item">Add Item</button>
@@ -1135,20 +1152,20 @@
             </div>
         </div>
       </div>
-      <div class="modal fade" id="modalAddItem" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: none;">
+      <div class="modal fade" id="modalAddItem" tabindex="-1" role="dialog" aria-labelledby="Modal Add Item" style="display: none;">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">New Inventory Item</h5>
+              <h5 class="modal-title" id="newItem">New Inventory Item</h5>
               <button type="button" class="terminateModal" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body p-3">
-                <label for="txtInventoryID" class="form-label">Inventory ID: </label>
-                <input type="text" class="form-control" id="txtInventoryID" />
-                <label for="txtFarmID4" class="form-label">Farm Name:  </label>
-                <input type="text" class="form-control" id="txtFarmID4" />
+                <label for="theInventoryID" class="form-label">Inventory ID: </label>
+                <input type="text" class="form-control" id="theInventoryID" />
+                <label for="txtItemFarmName" class="form-label">Farm Name:  </label>
+                <input type="text" class="form-control" id="txtItemFarmName" />
                 <label for="txtItem" class="form-label">Item:  </label>
                 <input type="text" class="form-control" id="txtItem" />
                 <label for="txtItemDescription" class="form-label">Item Description:  </label>
@@ -1185,8 +1202,8 @@
               <input type="text" class="form-control" id="txtEditItemDescription" />
               <label for="txtEditItemCost" class="form-label">Item Cost:  </label>
               <input type="text" class="form-control" id="txtEditItemCost" />
-              <label for="txtEditDateRecorded" class="form-label">Date Recorded: </label>
-              <input type="text" class="form-control" id="txtEditDateRecorded" />
+              <!-- <label for="txtEditDateRecorded" class="form-label">Date Recorded: </label>
+              <input type="text" class="form-control" id="txtEditDateRecorded" /> -->
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary btnCloseModal" data-dismiss="modal">Close</button>
@@ -1569,7 +1586,7 @@
                 } else {
                   $('#tblInventory tbody').empty();
                   $.each(data, function(index, value) {
-                      $('#tblInventory tbody').append('<tr><td>' + value.InventoryID + '</td><td>' + value.FarmName + '</td><td>' + value.ItemName + '</td><td>' + value.Description + '</td><td>' + value.ItemCost + '</td><td>' + value.DateRecorded + '</td></tr>');
+                      $('#tblInventory tbody').append('<tr><td>' + value.InventoryID + '</td><td>' + value.FarmName + '</td><td>' + value.ItemName + '</td><td>' + value.ItemDescription + '</td><td>' + value.ItemCost + '</td><td>' + value.DateRecorded + '</td></tr>');
                   });
 
                 }
@@ -1682,7 +1699,7 @@
                 } else {
                   $('#tblInventory tbody').empty();
                   $.each(data, function(index, value) {
-                      $('#tblInventory tbody').append('<tr><td>' + value.InventoryID + '</td><td>' + value.FarmName + '</td><td>' + value.ItemName + '</td><td>' + value.Description + '</td><td>' + value.ItemCost + '</td><td>' + value.DateRecorded + '</td></tr>');
+                      $('#tblInventory tbody').append('<tr><td>' + value.InventoryID + '</td><td>' + value.FarmName + '</td><td>' + value.ItemName + '</td><td>' + value.ItemDescription + '</td><td>' + value.ItemCost + '</td><td>' + value.DateRecorded + '</td></tr>');
                   });
 
                 }
@@ -1702,20 +1719,23 @@
       });
     
       $('#ConfirmAddItem').click(function(){
-        let strInventoryID = $('#txtInventoryID').val();
+        let strInventoryID = $('#theInventoryID').val();
         console.log(strInventoryID)
-        let strFarmID = $('#txtFarmID4').val();
+        let strFarmID = $('#txtItemFarmName').val();
+        console.log(strFarmID)
         let strItem = $('#txtItem').val();
         let strItemDescription = $('#txtItemDescription').val();
         let strItemCost = $('#txtItemCost').val();
-        let strDateRecorded = $('#txtDateRecorded').val();
+        // let strDateRecorded = $('#txtDateRecorded').val();
 
-        let intInventoryIDLength = $('#txtInventoryID').val().length;
-        let intFarmIDLength = $('#txtFarmID4').val().length;
+        let intInventoryIDLength = $('#theInventoryID').val().length;
+        console.log(intInventoryIDLength)
+        let intFarmIDLength = $('#txtItemFarmName').val().length;
+        console.log()
         let intItemLength = $('#txtItem').val().length;
         let intItemDescriptionLength = $('#txtItemDescription').val().length;
         let intItemCostLength = $('#txtItemCost').val().length;
-        let intDateRecordedLength = $('#txtDateRecorded').val().length;
+        // let intDateRecordedLength = $('#txtDateRecorded').val().length;
 
         let blnErrorFound = false;
         let strErrorMessage = '';
@@ -1727,7 +1747,7 @@
 
         if(intFarmIDLength < 1){
           blnErrorFound = true;
-          strErrorMessage += "You must enter a Farm ID. ";
+          strErrorMessage += "You must enter a Farm Name. ";
         }
 
         if(intItemLength < 1){
@@ -1745,10 +1765,10 @@
           strErrorMessage += "You must enter a Item Cost. ";
         }
 
-        if(intDateRecordedLength < 1){
-          blnErrorFound = true;
-          strErrorMessage += "You must enter a Date Recorded. ";
-        }
+        // if(intDateRecordedLength < 1){
+        //   blnErrorFound = true;
+        //   strErrorMessage += "You must enter a Date Recorded. ";
+        // }
 
         if(blnErrorFound == true){
           Swal.fire({
@@ -1756,27 +1776,28 @@
             title: 'Oops...',
             text: strErrorMessage,
             })
-        } else {
+        } 
+
+        else {
           $('#modalAddItem').modal('hide')
 
-          $('#txtInventoryID').val('');
-          $('#txtFarmID4').val('');
+          $('#theInventoryID').val('');
+          $('#txtItemFarmName').val('');
           $('#txtItem').val('');
           $('#txtItemDescription').val('');
           $('#txtItemCost').val('');
-          $('#txtDateRecorded').val('');
 
           $.post(strhost + '/inventory', {
             inventoryid: strInventoryID,
             farmid: strFarmID,
             item: strItem,
             itemdescription: strItemDescription,
-            itemcost: strItemCost,
-            daterecorded: strDateRecorded
-          }) , function(data){
-            console.log(data);
-            data = JSON.parse(data);
-            if(!data){
+            itemcost: strItemCost
+          }, function(result){
+            console.log(result);
+            // result = JSON.parse(result);
+            if(!result){
+              console.log(result);
               swal.fire({
                 title: "Error",
                 text: "The Item has not been added to the Inventory.",
@@ -1784,14 +1805,24 @@
                 button: "Close",
               })
               
-            } else {
-              $.getJSON('http://localhost:8000/inventory', function(data) {
-                data = JSON.parse(data);
-                console.log(data);
-                $('#tblInventory tbody').empty();
-                $.each(data, function(index, value) {
-                  $('#tblInventory tbody').append('<tr><td>' + value.inventoryID + '</td><td>' + value.farmID + '</td><td>' + value.item + '</td><td>' + value.itemDescription + '</td><td>' + value.itemCost + '</td><td>' + value.dateRecorded + '</td><td><button class="btn btn-primary edit-item" data-toggle="modal" data-target="#modalEditItem">Edit</button></td><td><button class="btn btn-danger delete-item" id="delete-item" data-toggle="modal" data-target="#modalDelete">Delete</button></td></tr>');
-                });
+            } 
+            else {
+              $.getJSON(strhost + '/inventory', function(result) {
+                // data = JSON.parse(data);
+                  console.log(result);
+                  if(!result){
+                      swal.fire ({
+                          icon: 'error',
+                          title: 'Oops...',
+                          text: 'No Inventory Found',
+                      })
+                  } else {
+                    $('#tblInventory tbody').empty();
+                    $.each(result, function(index, value) {
+                        $('#tblInventory tbody').append('<tr><td>' + value.InventoryID + '</td><td>' + value.FarmName + '</td><td>' + value.ItemName + '</td><td>' + value.ItemDescription + '</td><td>' + value.ItemCost + '</td><td>' + value.DateRecorded + '</td></tr>');
+                    });
+
+                  }
               });
               swal.fire({
                 title: "Item Added",
@@ -1800,7 +1831,7 @@
                 button: "Close",
               });
             }
-          }
+          })
         }
   
       });
@@ -1811,14 +1842,14 @@
         let strItem = $('#txtEditItem').val();
         let strItemDescription = $('#txtEditItemDescription').val();
         let strItemCost = $('#txtEditItemCost').val();
-        let strDateRecorded = $('#txtEditDateRecorded').val();
+        // let strDateRecorded = $('#txtEditDateRecorded').val();
 
         let intInventoryIDLength = $('#txtEditInventoryID').val().length;
         let intFarmIDLength = $('#txtEditFarmID4').val().length;
         let intItemLength = $('#txtEditItem').val().length;
         let intItemDescriptionLength = $('#txtEditItemDescription').val().length;
         let intItemCostLength = $('#txtEditItemCost').val().length;
-        let intDateRecordedLength = $('#txtEditDateRecorded').val().length;
+        // let intDateRecordedLength = $('#txtEditDateRecorded').val().length;
 
         let blnErrorFound = false;
         let strErrorMessage = '';
@@ -1848,10 +1879,10 @@
           strErrorMessage += "You must enter a Item Cost. ";
         }
 
-        if(intDateRecordedLength < 1){
-          blnErrorFound = true;
-          strErrorMessage += "You must enter a Date Recorded. ";
-        }
+        // if(intDateRecordedLength < 1){
+        //   blnErrorFound = true;
+        //   strErrorMessage += "You must enter a Date Recorded. ";
+        // }
 
         if(blnErrorFound == true){
           Swal.fire({
@@ -1872,12 +1903,12 @@
             url: strhost + '/inventory',
             type: 'PUT',
             data: {
-              inventoryID: strInventoryID,
-              farmID: strFarmID,
+              inventoryid: strInventoryID,
+              farmid: strFarmID,
               item: strItem,
-              itemDescription: strItemDescription,
-              itemCost: strItemCost,
-              dateRecorded: strDateRecorded
+              itemdescription: strItemDescription,
+              itemcost: strItemCost,
+              // daterecorded: strDateRecorded
             },
             success: function(data){
               console.log(data);
@@ -1891,14 +1922,23 @@
                 })
                 
               } else {
-                $.getJSON('http://localhost:8000/inventory', function(data) {
-                  data = JSON.parse(data);
+                $.getJSON(strhost + '/inventory', function(data) {
+                // data = JSON.parse(data);
                   console.log(data);
-                  $('#tblInventory').empty();
-                  $.each(data, function(index, value) {
-                    $('#tblInventory').append('<tr><td>' + value.inventoryID + '</td><td>' + value.farmID + '</td><td>' + value.item + '</td><td>' + value.itemDescription + '</td><td>' + value.itemCost + '</td><td>' + value.dateRecorded + '</td><td><button class="btn btn-primary edit-item" data-toggle="modal" data-target="#modalEditItem">Edit</button></td><td><button class="btn btn-danger delete-item" id="delete-item" data-toggle="modal" data-target="#modalDelete">Delete</button></td></tr>');
-                  });
-                });
+                  if(!data){
+                      swal.fire ({
+                          icon: 'error',
+                          title: 'Oops...',
+                          text: 'No Inventory Found',
+                      })
+                  } else {
+                    $('#tblInventory tbody').empty();
+                    $.each(data, function(index, value) {
+                        $('#tblInventory tbody').append('<tr><td>' + value.InventoryID + '</td><td>' + value.FarmName + '</td><td>' + value.ItemName + '</td><td>' + value.ItemDescription + '</td><td>' + value.ItemCost + '</td><td>' + value.DateRecorded + '</td></tr>');
+                    });
+
+                  }
+              });
                 swal.fire({
                   title: "Item Edited",
                   text: "The Item has been edited.",

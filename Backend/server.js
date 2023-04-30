@@ -457,13 +457,13 @@ app.delete("/employees", (req,res,next) => {
 
 app.post("/inventory", (req,res,next) => {
     let strInventoryID = req.query.inventoryid || req.body.inventoryid;
-    let strFarmName = req.query.farmname || req.body.farmname;
+    let strFarmName = req.query.farmid || req.body.farmid;
     let strItem = req.query.item || req.body.item;
     let strItemDescription = req.query.itemdescription || req.body.itemdescription;
     let strItemCost = req.query.itemcost || req.body.itemcost;
 
     // let strDateRecorded = req.query.daterecorded || req.body.daterecorded;
-    pool.query("insert into tblinventory (InventoryID, FarmName, ItemName, Description, ItemCost, DateRecorded) values(?, ?, ?, ?, ?, Date(now()))",
+    pool.query("insert into tblinventory (InventoryID, FarmName, ItemName, ItemDescription, ItemCost, DateRecorded) values(?, ?, ?, ?, ?, now())",
     [strInventoryID, strFarmName, strItem, strItemDescription, strItemCost], function(error, results){
         if(!error){
             let objMessage = new message("Success", "New Item Created");
@@ -499,7 +499,7 @@ app.put('/inventory', (req,res,next) => {
     let strItem = req.query.item || req.body.item;
     let strItemDescription = req.query.itemdescription || req.body.itemdescription;
     let strItemCost = req.query.itemcost || req.body.itemcost;
-    pool.query('UPDATE tblInventory SET Farm_ID = ?, Item = ?, Item_Description = ?, Item_Cost = ? WHERE Inventory_ID = ?',
+    pool.query('update tblinventory set FarmName = ?, ItemName = ?, ItemDescription = ?, ItemCost = ?, DateRecorded = now() where inventoryID = ?',
     [strFarmID, strItem, strItemDescription, strItemCost, strInventoryID], function(error, results){
         if(!error){
             let objMessage = new message("Success", "Item Updated");
