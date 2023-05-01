@@ -88,6 +88,7 @@ app.listen(HTTP_PORT, () => {
 
 
 app.post("/users", (req,res,next) => {
+    let strFarmID = req.query.farmid || req.body.farmid;
     let strFirstName = req.query.firstname || req.body.firstname;
     let strLastName = req.query.lastname || req.body.lastname;
     let strEmail = req.query.email || req.body.email;
@@ -99,7 +100,8 @@ app.post("/users", (req,res,next) => {
     console.log(strPassword);
     bcrypt.hash(strPassword, 10).then(hash => {
         strPassword = hash;
-        pool.query('INSERT INTO tblUsers (FirstName, LastName, Email, MobileNumber) VALUES(?, ?, ?, ?)',[strEmail, strFirstName, strLastName, strPhone], function(error, results){
+        pool.query('INSERT INTO tblUsers (FarmID, FirstName, LastName, Email, Password, MobileNumber) VALUES(?, ?, ?, ?, ?, ?)',
+        [strFarmID, strFirstName, strLastName, strEmail, strPassword, strPhone], function(error, results){
             if(!error){
                 let strSession = uuidv4();
                 let objMessage = new message("SessionID", strSession);
@@ -116,17 +118,29 @@ app.post("/users", (req,res,next) => {
 app.get("/users", (req,res,next) => {
     let strEmail = req.query.email || req.body.email;
     let strPassword = req.query.password || req.body.password;
-    pool.query('SELECT Email FROM tblUsers WHERE Email = ?', strEmail, function(error, results){
+    console.log(strPassword);
+    // bcrypt.hash(strPassword, 10).then(hash => {
+    //     strPassword = hash;
+    pool.query("SELECT password FROM tblUsers WHERE Email = ?", strEmail, function(error, results){
+        console.log(results)
+        console.log(error)
         if(!error){
-            let strSession = uuidv4();
-            let objMessage = new message("SessionID", strSession);
-            res.status(200).send(JSON.stringify(objMessage));
+            if(results.length > 0 && bcrypt.compareSync(strPassword, results[0].password)) {
+                let strSession = uuidv4();
+                let objMessage = new message("SessionID", strSession);
+                res.status(200).send(JSON.stringify(objMessage));
+            }
+            else {
+                let objMessage = new message("Error", "Invalid Email or Password");
+                res.status(400).send(JSON.stringify(objMessage));
+            }
         } else {
             let objMessage = new message("Error", error);
             res.status(400).send(JSON.stringify(objMessage));
         }
     })
 })
+// })
 
 app.put("/users", (req,res,next) => {
     let strFirstName = req.query.firstname || req.body.firstname;
@@ -224,14 +238,15 @@ app.delete("/sessions", (req,res,next) => {
         
 
 app.post("/farms", (req,res,next) => {
+    let strFarmID = req.query.farmid || req.body.farmid;
     let strFarmName = req.query.farmname || req.body.farmname;
     let strStreetAddress1 = req.query.streetaddress1 || req.body.streetaddress1;
-    let strStreetAddress2 = req.query.streetaddress2 || req.body.streetddress2;
+    let strStreetAddress2 = req.query.streetaddress2 || req.body.streetaddress2;
     let strCity = req.query.city || req.body.city;
     let strState = req.query.state || req.body.state;
-    let strZip = req.query.zip || req.body.zip;
-    pool.query('INSERT INTO tblFarms (FarmID, FarmName, StreetAddress1,  StreetAddress2, City, State, Zip) VALUES("1", ?, ?, ?, ?, ?, ?)',
-    [strFarmName, strStreetAddress1, strStreetAddress2, strCity, strState, strZip], function(error, results){
+    let strZip = req.query.zipcode || req.body.zipcode;
+    pool.query('INSERT INTO tblFarms (FarmID, FarmName, StreetAddress1,  StreetAddress2, City, State, Zip) VALUES(?, ?, ?, ?, ?, ?, ?)',
+    [strFarmID, strFarmName, strStreetAddress1, strStreetAddress2, strCity, strState, strZip], function(error, results){
             if(!error){
                 let objMessage = new message("Success", "New Farm Created");
                 res.status(201).send(JSON.stringify(objMessage));
@@ -529,11 +544,11 @@ app.post("/tasks", (req,res,next) => {
     let strTitle = req.query.title || req.body.title;
     let strProductType = req.query.producttype || req.body.producttype;
     let strDescription = req.query.description || req.body.description;
-    let strDuration = req.query.duration || req.body.duration;
     let strFirstName = req.query.firstname || req.body.firstname;
+    let strLastName = req.query.lastname || req.body.lastname;
 
-    pool.query('INSERT INTO tblTasks (Task_ID, Title, Product_Type, Description, Duration, First_Name, Input_Date) VALUES(?, ?, ?, ?, ?, ?, SYSDATE())',
-    [strTaskID, strTitle, strProductType, strDescription, strDuration, strFirstName], function(error, results){
+    pool.query('INSERT INTO tblTasks (TaskID, Title, ProdType, Description, FirstName, LastName) VALUES(?, ?, ?, ?, ?, ?)',
+    [strTaskID, strTitle, strProductType, strDescription, strFirstName, strLastName], function(error, results){
         if(!error){
             let objMessage = new message("Success", "New Task Created");
             res.status(201).send(JSON.stringify(objMessage));
@@ -547,9 +562,9 @@ app.post("/tasks", (req,res,next) => {
 app.get("/tasks", (req,res,next) => {
     pool.query('SELECT * FROM tblTasks', function(error, results){
         if(!error){
-            if(results.length > 0){
-                let objTasks = new Tasks(results[0].Task_ID, results[0].Title, results[0].Product_Type, results[0].Description, results[0].Duration, results[0].First_Name, results[0].Input_Date);
-                res.status(200).send(JSON.stringify(objTasks));
+            if(results){
+                // let objTasks = new Tasks(results[0].Task_ID, results[0].Title, results[0].Product_Type, results[0].Description, results[0].Duration, results[0].First_Name, results[0].Input_Date);
+                res.status(200).send(JSON.stringify(results));
             } else {
                 let objMessage = new message("Error", "Invalid Task ID");
                 res.status(400).send(JSON.stringify(objMessage));
@@ -563,16 +578,15 @@ app.get("/tasks", (req,res,next) => {
 })
 
 app.put('/tasks', (req,res,next) => {
-    app.post("/employees", (req,res,next) => {
         let strTaskID = req.query.taskid || req.body.taskid;
         let strTitle = req.query.title || req.body.title;
         let strProductType = req.query.producttype || req.body.producttype;
         let strDescription = req.query.description || req.body.description;
-        let strDuration = req.query.duration || req.body.duration;
         let strFirstName = req.query.firstname || req.body.firstname;
+        let strLastName = req.query.lastname || req.body.lastname;
 
-        pool.query('UPDATE tblTasks SET Title = ?, Product_Type = ?, Description = ?, Duration = ?, First_Name = ? WHERE Task_ID = ?',
-        [strTitle, strProductType, strDescription, strDuration, strFirstName, strTaskID], function(error, results){
+        pool.query('UPDATE tblTasks SET Title = ?, ProdType = ?, Description = ?, FirstName = ?, LastName = ? WHERE TaskID = ?',
+        [strTitle, strProductType, strDescription, strFirstName, strLastName, strTaskID], function(error, results){
             if(!error){
                 let objMessage = new message("Success", "Task Updated");
                 res.status(200).send(JSON.stringify(objMessage));
@@ -582,11 +596,47 @@ app.put('/tasks', (req,res,next) => {
             }
         })
     })
+
+app.put('/begintask', (req,res,next) => {
+    let strTaskID = req.query.taskid || req.body.taskid;
+    pool.query('UPDATE tblTasks SET StartTime = now() WHERE TaskID = ?',
+    strTaskID, function(error, results){
+        if(!error){
+            let objMessage = new message("Success", "Task Updated");
+            res.status(200).send(JSON.stringify(objMessage));
+        } else {
+            let objMessage = new message("Error", error);
+            res.status(400).send(JSON.stringify(objMessage));
+        }
+    })
 })
+
+app.put('/endtask', (req,res,next) => {
+    let strTaskID = req.query.taskid || req.body.taskid;
+    pool.query('UPDATE tblTasks SET Endtime = now() WHERE TaskID = ?',
+    strTaskID, function(error, results){
+        if(!error){
+            pool.query('UPDATE tblTasks SET TotalMinutes = TIMESTAMPDIFF(MINUTE, StartTime, EndTime) WHERE EndTime IS NOT NULL AND StartTime IS NOT NULL AND TaskID = ?', 
+            strTaskID, function(error, results){
+                if(!error){
+                    let objMessage = new message("Success", "Task Updated");
+                    res.status(201).send(JSON.stringify(objMessage));
+                } else {
+                    let objMessage = new message("Error", error);
+                    res.status(400).send(JSON.stringify(objMessage));
+                }
+            })
+        } else {
+            let objMessage = new message("Error", error);
+            res.status(400).send(JSON.stringify(objMessage));
+        }
+    })
+})
+
 
 app.delete("/tasks", (req,res,next) => {
     let strTaskID = req.query.taskid || req.body.taskid;
-    pool.query('DELETE FROM tblTasks WHERE Task_ID = ?', strTaskID, function(error, results){
+    pool.query('DELETE FROM tblTasks WHERE TaskID = ?', strTaskID, function(error, results){
         if(!error){
             let objMessage = new message("Success", "Task Deleted");
             res.status(200).send(JSON.stringify(objMessage));
@@ -596,8 +646,14 @@ app.delete("/tasks", (req,res,next) => {
         }
     })
 })
+//Begin
+// Insert into tbltasks (TaskID, Title, Prodtype, Description, Firstname, Lastname, Starttime)
+// values ('1','Irrigation','Vegetables','Water the plants','Leroy','Jankins',now())
 
-
-
+//Complete
+//update tbltasks set endtime = now() where taskID = ?
     
         
+// UPDATE tbltasks 
+// SET totalminutes = TIMESTAMPDIFF(MINUTE, starttime, endtime) 
+// WHERE endtime IS NOT NULL AND starttime IS NOT NULL;

@@ -177,7 +177,7 @@
                                   site.
                                 </label>
                             </div>
-                            <div class="form-check d-flex justify-content-center mb-2 pb-3 mt-3">
+                            <!-- <div class="form-check d-flex justify-content-center mb-2 pb-3 mt-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person-add" viewBox="0 0 16 16">
                                     <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0Zm-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/>
                                     <path d="M8.256 14a4.474 4.474 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4s1 1 1 1h5.256Z"/>
@@ -185,7 +185,7 @@
                             </div>
                             
                             <button type="button" id="btnCreateAccount" class="btn btn-light btn-lg col-12 ms-2 bg-success text-light"
-                                data-mdb-ripple-color="dark">Create Account</button>
+                                data-mdb-ripple-color="dark">Create Account</button> -->
                            
                         </div>
       
@@ -196,13 +196,42 @@
                         <h3 class="fw-normal mb-1 text-decoration-underline">Create a New Farm</h3>
                         <h6 class="mb-4">Please complete the required fields to register a new farm. </h6>
       
-                        <div class="mb-4 pb-2">
+                        <!-- <div class="mb-4 pb-2">
                           <div class="form-outline form-white">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
                               </svg>
                             <label for="txtFarmName" class="form-label">Farm Name<p class="form-label text-danger d-inline">*</p></label>
                             <input class="form-control" placeholder="Ex: TN-Homestead" id="txtFarmName" aria-label="Farm Name">
+                          </div>
+                        </div> -->
+
+                        <div class="row">
+                          <div class="col-md-6 pb-2">
+      
+                            <div class="mb-4 pb-2">
+                              <div class="form-outline form-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                  </svg>
+                                <label for="txtRegistrationFarmID" class="form-label">Farm ID<p class="form-label text-danger d-inline">*</p></label>
+                                <input class="form-control" placeholder="Enter an Integer Value" id="txtRegistrationFarmID" aria-label="Farm ID">
+                              </div>
+                            </div>
+      
+                          </div>
+                          <div class="col-md-6 pb-2">
+      
+                            <div class="mb-4 pb-2">
+                              <div class="form-outline form-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                  </svg>
+                                <label for="txtFarmName" class="form-label">Farm Name<p class="form-label text-danger d-inline">*</p></label>
+                                <input class="form-control" placeholder="Ex: TN-Homestead" id="txtFarmName" aria-label="Farm Name">
+                              </div>
+                            </div>
+      
                           </div>
                         </div>
       
@@ -251,6 +280,38 @@
                             </div>
                           </div>
 
+                          <!-- safdasfsa -->
+                          <!-- <div class="row">
+                            <div class="col-md-6 mb-4 pb-2">
+        
+                              <div class="mb-4 pb-2">
+                                <div class="form-outline form-white">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                      <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                    </svg>
+                                  <label for="txtRegistrationFarmID" class="form-label">Farm ID<p class="form-label text-danger d-inline">*</p></label>
+                                  <input class="form-control" placeholder="Ex: TN-Homestead" id="txtRegistrationFarmID" aria-label="Farm ID">
+                                </div>
+                              </div>
+        
+                            </div>
+                            <div class="col-md-6 mb-4 pb-2">
+        
+                              <div class="mb-4 pb-2">
+                                <div class="form-outline form-white">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                      <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                    </svg>
+                                  <label for="txtFarmName" class="form-label">Farm Name<p class="form-label text-danger d-inline">*</p></label>
+                                  <input class="form-control" placeholder="Ex: TN-Homestead" id="txtFarmName" aria-label="Farm Name">
+                                </div>
+                              </div>
+        
+                            </div>
+                          </div> -->
+                          <!-- //dfsdfdsf -->
+
+
                           <div class="row">
                             <div class="col-md-6 mb-4 pb-2">
         
@@ -275,7 +336,7 @@
                             </div>
                           </div>
 
-                        <div class="form-check d-flex justify-content-center mb-2 pb-3">
+                        <!-- <div class="form-check d-flex justify-content-center mb-2 pb-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-house-add" viewBox="0 0 16 16">
                                 <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h4a.5.5 0 1 0 0-1h-4a.5.5 0 0 1-.5-.5V7.207l5-5 6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5Z"/>
                                 <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-3.5-2a.5.5 0 0 0-.5.5v1h-1a.5.5 0 0 0 0 1h1v1a.5.5 0 1 0 1 0v-1h1a.5.5 0 1 0 0-1h-1v-1a.5.5 0 0 0-.5-.5Z"/>
@@ -283,8 +344,24 @@
                         </div>
                         
                         <button type="button" id="btnCreateFarm" class="btn btn-light btn-lg col-12 ms-2 bg-success text-light"
-                            data-mdb-ripple-color="dark">Create Farm</button>      
+                            data-mdb-ripple-color="dark">Create Farm</button>       -->
                       </div>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <div class="col form-check d-flex justify-content-center mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person-add" viewBox="0 0 16 16">
+                            <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0Zm-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/>
+                            <path d="M8.256 14a4.474 4.474 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4s1 1 1 1h5.256Z"/>
+                          </svg>
+                      </div>
+
+                    </div>
+                    <div class="col-12 text-center">
+                      <button type="button" id="btnCreateAccount" class="btn btn-light btn-lg ms-2 bg-success text-light mb-5 col-6"
+                      data-mdb-ripple-color="dark">Create Account</button>
+
                     </div>
                   </div>
                 </div>
@@ -934,12 +1011,13 @@
                               <tr>
                                 <th>Task ID</th>
                                 <th>Title</th>
-                                <th>Product Type</th>
+                                <th>Product Type/Name</th>
                                 <th>Description</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Start Time</th>
-                                <th>End Time</th>                                 
+                                <th>End Time</th>
+                                <th>Total Minutes</th>                                 
                               </tr>
                             </thead>
                             <tbody id="user-table">
@@ -981,8 +1059,8 @@
                 <input type="text" class="form-control" id="txtTaskProductType" />
                 <label for="txtTaskDescription" class="form-label">Description:  </label>
                 <input type="text" class="form-control" id="txtTaskDescription" />
-                <label for="txtDuration" class="form-label">Task Duration (Minutes):  </label>
-                <input type="text" class="form-control" id="txtDuration" />
+                <!-- <label for="txtDuration" class="form-label">Task Duration (Minutes):  </label>
+                <input type="text" class="form-control" id="txtDuration" /> -->
                 <label for="txtFirstName1" class="form-label">First Name: </label>
                 <input type="text" class="form-control" id="txtFirstName1" />
                 <label for="txtLastName2" class="form-label">Last Name:  </label>
@@ -1013,8 +1091,8 @@
                 <input type="text" class="form-control" id="txtEditTaskProductType" />
                 <label for="txtEditTaskDescription" class="form-label">Description:  </label>
                 <input type="text" class="form-control" id="txtEditTaskDescription" />
-                <label for="txtEditDuration" class="form-label">Task Duration (Minutes):  </label>
-                <input type="text" class="form-control" id="txtEditDuration" />
+                <!-- <label for="txtEditDuration" class="form-label">Task Duration (Minutes):  </label>
+                <input type="text" class="form-control" id="txtEditDuration" /> -->
                 <label for="txtEditFirstName1" class="form-label">First Name: </label>
                 <input type="text" class="form-control" id="txtEditFirstName1" />
                 <label for="txtEditLastName1" class="form-label">Last Name:  </label>
@@ -1061,8 +1139,8 @@
                 <h3>Are you ready to begin a task?</h3>
                 <label for="">What is the Task ID?</label>
                 <input type="text" class="form-control" id="txtBeginTask">
-                <label for="">What is the Start Time?</label>
-                <input type="text" class="form-control" id="txtStartTime">
+                <!-- <label for="">What is the Start Time?</label>
+                <input type="text" class="form-control" id="txtStartTime"> -->
             </div>
             <div class="modal-footer">
               <button type="button" id="btnCloseModal" class="btn btn-secondary btnCloseModal" data-dismiss="modal">Close</button>
@@ -1084,8 +1162,8 @@
                   <h3>Fill out the information to complete the task.</h3>
                   <label for="">What is the Task ID?</label>
                   <input type="text" class="form-control mb-2" id="txtCompleteTask">
-                  <label for="">What is the End Time?</label>
-                  <input type="text" class="form-control" id="txtEndTime">
+                  <!-- <label for="">What is the End Time?</label>
+                  <input type="text" class="form-control" id="txtEndTime"> -->
               </div>
               <div class="modal-footer">
                 <button type="button" id="btnCloseModal" class="btn btn-secondary btnCloseModal" data-dismiss="modal">Close</button>
@@ -1343,6 +1421,20 @@
     <script>
       const strhost = 'http://localhost:8000';
      
+      
+        //Login
+      let strSessionID = sessionStorage.getItem('SessionID')
+      if(strSessionID != null){
+        $('#divLogin').slideToggle()
+        $('#divDashboard').slideToggle()
+
+        $('#divNavBarStandard').slideToggle()
+        $('#divNavBarDashboard').slideToggle()
+      } else {
+        console.log(strSessionID)
+      }
+    
+
       //Login Buttons
       $('#btnLogin').click(function(){
         let strEmail = $('#txtEmailAddress').val();
@@ -1377,8 +1469,14 @@
           }, function(result){
             // result = JSON.parse(result)
             console.log(result)
-            if (result){
-              // JSON.parse(result)
+            if(!result){
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Invalid Email or Password',
+                })
+              }
+            else{
               $('#divLogin').slideToggle()
               $('#divDashboard').slideToggle()
       
@@ -1389,15 +1487,15 @@
                 icon: 'success',
                 title: 'Success',
                 text: 'Login Successful',
-                })
+                }) 
             }
-            else{
-              Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Login Unsuccessful',
-                })  
-            }
+          })
+          .catch(error => {console.error('Error:', error)
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Invalid Username or Password',
+            })
           })
 
           // $('#divLogin').slideToggle()
@@ -1449,7 +1547,6 @@
         //Delete Session
         let strSessionID = sessionStorage.getItem('SessionID')
         sessionStorage.removeItem('SessionID')
-      })
 
         // $.ajax({
         //   url: strhost + '/sessions',
@@ -1476,7 +1573,8 @@
         //     }
         //   })
         // })
-
+          
+      })
 
       //Terminate Modal Button
       $('.terminateModal').click(function(){
@@ -1527,10 +1625,6 @@
 
       })
 
-      // $('#btnFarms').click(function(){
-      //   $('#divDashboard').slideToggle()
-      //   $('#divFarms').slideToggle()
-      // });
 
       //Access Buttons
       $('#btnFinance').click(function(){
@@ -1620,7 +1714,7 @@
         $('#divTasks').slideToggle()
         //Get Tasks
         $.getJSON(strhost + '/tasks', function(data) {
-                data = JSON.parse(data);
+                // data = JSON.parse(data);
                 console.log(data);
                 if(!data){
                   swal.fire ({
@@ -1629,11 +1723,9 @@
                       text: 'No Tasks Found',
                   })
                 } else {
-                  $('#tblTask').empty();
+                  $('#tblTask tbody').empty();
                   $.each(data, function(index, value) {
-                      $('#tblTask').append('<tr><td>' + value.TaskID + '</td><td>' + value.FarmName + '</td><td>' + value.TaskName + '</td><td>' + value.TaskDescription + '</td><td>' + value.TaskDate + 
-                        '</td><td><button class="btn btn-primary edit-task" data-toggle="modal" data-target="#modalEditTask">Edit</button><button class="btn btn-danger delete-task" id="delete-task" data-toggle="modal" data-target="#modalDelete">Delete</button><button class="btn btn-sm btn-primary begin-task" data-id="1">Begin</button>' + 
-                          '<button class="btn btn-sm btn-success complete-task" data-id="1">Complete</button>' + '</td></tr>');
+                      $('#tblTask tbody').append('<tr><td>' + value.TaskID + '</td><td>' + value.Title + '</td><td>' + value.ProdType + '</td><td>' + value.Description + '</td><td>' + value.FirstName + '</td><td>' + value.LastName + '</td><td>' + value.StartTime + '</td><td>' + value.Endtime + '</td><td>' + value.TotalMinutes + '</td></tr>');
                   
                   });
                   };
@@ -1967,7 +2059,7 @@
         let strTitle = $('#txtTitle').val();
         let strProductType = $('#txtTaskProductType').val();
         let strDescription = $('#txtTaskDescription').val();
-        let strDuration = $('#txtDuration').val();
+        // let strDuration = $('#txtDuration').val();
         let strFirstName = $('#txtFirstName1').val();
         let strLastName = $('#txtLastName2').val();
 
@@ -1975,7 +2067,7 @@
         let intTitleLength = $('#txtTitle').val().length;
         let intProductTypeLength = $('#txtTaskProductType').val().length;
         let intDescriptionLength = $('#txtTaskDescription').val().length;
-        let intDurationLength = $('#txtDuration').val().length;
+        // let intDurationLength = $('#txtDuration').val().length;
         let intFirstNameLength = $('#txtFirstName1').val().length;
         let intLastNameLength = $('#txtLastName2').val().length;
         
@@ -2002,10 +2094,10 @@
             strErrorMessage += "You must enter a Description. ";
         }
 
-        if(intDurationLength < 1){
-            blnErrorFound = true;
-            strErrorMessage += "You must enter a Duration. ";
-        }
+        // if(intDurationLength < 1){
+        //     blnErrorFound = true;
+        //     strErrorMessage += "You must enter a Duration. ";
+        // }
 
         if(intFirstNameLength < 1){
             blnErrorFound = true;
@@ -2042,13 +2134,12 @@
             $('#txtLastName2').val('');
 
             $.post(strhost + '/tasks', {
-                taskID: strTaskID,
+                taskid: strTaskID,
                 title: strTitle,
-                productType: strProductType,
+                producttype: strProductType,
                 description: strDescription,
-                duration: strDuration,
-                firstName: strFirstName,
-                lastName: strLastName
+                firstname: strFirstName,
+                lastname: strLastName
             }, function(data){
                 data = JSON.parse(data);
                 console.log(data)
@@ -2059,16 +2150,23 @@
                         text: 'Something went wrong!',
                       })
                 } else {
-                    $.getJSON('http://localhost:8000/tasks', function(data) {
-                        data = JSON.parse(data);
-                        console.log(data);
-                        $('#tblTask').empty();
+                  $.getJSON(strhost + '/tasks', function(data) {
+                      // data = JSON.parse(data);
+                      console.log(data);
+                      if(!data){
+                        swal.fire ({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'No Tasks Found',
+                        })
+                      } else {
+                        $('#tblTask tbody').empty();
                         $.each(data, function(index, value) {
-                          $('#tblTask').append('<tr><td>' + value.TaskID + '</td><td>' + value.FarmName + '</td><td>' + value.TaskName + '</td><td>' + value.TaskDescription + '</td><td>' + value.TaskDate + 
-                        '</td><td><button class="btn btn-primary edit-task" data-toggle="modal" data-target="#modalEditTask">Edit</button><button class="btn btn-danger delete-task" id="delete-task" data-toggle="modal" data-target="#modalDelete">Delete</button><button class="btn btn-sm btn-primary begin-task" data-id="1">Begin</button>' + 
-                          '<button class="btn btn-sm btn-success complete-task" data-id="1">Complete</button>' + '</td></tr>');                  
-                              });
-                    });
+                            $('#tblTask tbody').append('<tr><td>' + value.TaskID + '</td><td>' + value.Title + '</td><td>' + value.ProdType + '</td><td>' + value.Description + '</td><td>' + value.FirstName + '</td><td>' + value.LastName + '</td><td>' + value.StartTime + '</td><td>' + value.Endtime + '</td><td>' + value.TotalMinutes + '</td></tr>');
+                        
+                        });
+                        };
+                      })
 
                     Swal.fire({
                         icon: 'success',
@@ -2119,6 +2217,24 @@
                   title: 'Success!',
                   text: 'Task has been deleted!',
                 })
+                $(txtDeleteTask).val('')
+                $.getJSON(strhost + '/tasks', function(data) {
+                          // data = JSON.parse(data);
+                            console.log(data);
+                            if(!data){
+                              swal.fire ({
+                                  icon: 'error',
+                                  title: 'Oops...',
+                                  text: 'No Tasks Found',
+                              })
+                            } else {
+                              $('#tblTask tbody').empty();
+                              $.each(data, function(index, value) {
+                                  $('#tblTask tbody').append('<tr><td>' + value.TaskID + '</td><td>' + value.Title + '</td><td>' + value.ProdType + '</td><td>' + value.Description + '</td><td>' + value.FirstName + '</td><td>' + value.LastName + '</td><td>' + value.StartTime + '</td><td>' + value.Endtime + '</td><td>' + value.TotalMinutes + '</td></tr>');
+                              
+                              });
+                              };
+                            })
               },
               error: function(result) {
                 console.log(result);
@@ -2129,16 +2245,7 @@
                 })
               }
             })
-            $.getJSON(strhost + "/tasks", function(result) {
-              result = JSON.parse(result);
-              console.log(result);
-              $('#tblTask').empty();
-              $.each(result, function(index, value) {
-                $('#tblTask').append('<tr><td>' + value.TaskID + '</td><td>' + value.FarmName + '</td><td>' + value.TaskName + '</td><td>' + value.TaskDescription + '</td><td>' + value.TaskDate + 
-                          '</td><td><button class="btn btn-primary edit-task" data-toggle="modal" data-target="#modalEditTask">Edit</button><button class="btn btn-danger delete-task" id="delete-task" data-toggle="modal" data-target="#modalDelete">Delete</button><button class="btn btn-sm btn-primary begin-task" data-id="1">Begin</button>' + 
-                            '<button class="btn btn-sm btn-success complete-task" data-id="1">Complete</button>' + '</td></tr>');            });
-  
-          })
+            
 
 
           }
@@ -2155,7 +2262,7 @@
         let strTitle = $('#txtEditTitle').val();
         let strProductType = $('#txtEditTaskProductType').val();
         let strDescription = $('#txtEditTaskDescription').val();
-        let strDuration = $('#txtEditDuration').val();
+        // let strDuration = $('#txtEditDuration').val();
         let strFirstName = $('#txtEditFirstName1').val();
         let strLastName = $('#txtEditLastName1').val();
 
@@ -2163,7 +2270,7 @@
         let intTitleLength = $('#txtEditTitle').val().length;
         let intProductTypeLength = $('#txtEditTaskProductType').val().length;
         let intDescriptionLength = $('#txtEditTaskDescription').val().length;
-        let intDurationLength = $('#txtEditDuration').val().length;
+        // let intDurationLength = $('#txtEditDuration').val().length;
         let intFirstNameLength = $('#txtEditFirstName1').val().length;
         let intLastNameLength = $('#txtEditLastName1').val().length;
         
@@ -2190,10 +2297,10 @@
             strErrorMessage += "You must enter a Description. ";
         }
 
-        if(intDurationLength < 1){
-            blnErrorFound = true;
-            strErrorMessage += "You must enter a Duration. ";
-        }
+        // if(intDurationLength < 1){
+        //     blnErrorFound = true;
+        //     strErrorMessage += "You must enter a Duration. ";
+        // }
 
         if(intFirstNameLength < 1){
             blnErrorFound = true;
@@ -2232,13 +2339,12 @@
             $.ajax(strhost + '/tasks', {
                 type: 'PUT',
                 data: {
-                    taskID: strTaskID,
+                    taskid: strTaskID,
                     title: strTitle,
-                    productType: strProductType,
+                    producttype: strProductType,
                     description: strDescription,
-                    duration: strDuration,
-                    firstName: strFirstName,
-                    lastName: strLastName
+                    firstname: strFirstName,
+                    lastname: strLastName
                 },
                 success: function(data){
                     data = JSON.parse(data);
@@ -2250,15 +2356,29 @@
                             text: 'Something went wrong!',
                           })
                     } else {
-                        $.getJSON('http://localhost:8000/tasks', function(data) {
-                            data = JSON.parse(data);
-                            console.log(data);
-                            $('#tblTask').empty();
-                            $.each(data, function(index, value) {
-                              $('#tblTask').append('<tr><td>' + value.TaskID + '</td><td>' + value.FarmName + '</td><td>' + value.TaskName + '</td><td>' + value.TaskDescription + '</td><td>' + value.TaskDate + 
-                        '</td><td><button class="btn btn-primary edit-task" data-toggle="modal" data-target="#modalEditTask">Edit</button><button class="btn btn-danger delete-task" id="delete-task" data-toggle="modal" data-target="#modalDelete">Delete</button><button class="btn btn-sm btn-primary begin-task" data-id="1">Begin</button>' + 
-                          '<button class="btn btn-sm btn-success complete-task" data-id="1">Complete</button>' + '</td></tr>');                            });
-                        });
+                      $.getJSON(strhost + '/tasks', function(data) {
+                      // data = JSON.parse(data);
+                        console.log(data);
+                        if(!data){
+                          swal.fire ({
+                              icon: 'error',
+                              title: 'Oops...',
+                              text: 'No Tasks Found',
+                          })
+                        } else {
+                          $('#tblTask tbody').empty();
+                          $.each(data, function(index, value) {
+                              $('#tblTask tbody').append('<tr><td>' + value.TaskID + '</td><td>' + value.Title + '</td><td>' + value.ProdType + '</td><td>' + value.Description + '</td><td>' + value.FirstName + '</td><td>' + value.LastName + '</td><td>' + value.StartTime + '</td><td>' + value.Endtime + '</td><td>' + value.TotalMinutes + '</td></tr>');
+                          
+                          });
+                          };
+                        })
+
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success!',
+                        text: 'Task has been added!',
+                      })
     
                         Swal.fire({
                             icon: 'success',
@@ -2287,9 +2407,6 @@
         let strBeginTask = $('#txtBeginTask').val();
         let lengthBeginTask = $('#txtBeginTask').val().length;
 
-        let strStartTime = $('#txtStartTime').val();
-        let lengthStartTime = $('#txtStartTime').val().length;
-
         let strMessage = ""
         let blnErrorFound = false;
 
@@ -2298,10 +2415,10 @@
           blnErrorFound = true;
         }
 
-        if(lengthStartTime < 1){
-          strMessage += "You must enter a Start Time. ";
-          blnErrorFound = true;
-        }
+        // if(lengthStartTime < 1){
+        //   strMessage += "You must enter a Start Time. ";
+        //   blnErrorFound = true;
+        // }
 
         if(blnErrorFound == true){
           Swal.fire({
@@ -2313,12 +2430,46 @@
 
         else{
         $('#modalBeginTask').modal('hide')
-          //ajax call to update task status to in progress
-          Swal.fire({
-            icon: 'success',
-            title: 'Success!',
-            text: 'Task has been started!',
-          })
+        $.ajax(strhost + '/begintask', {
+          type: 'PUT',
+          data: {
+            taskid: strBeginTask
+          },
+          success: function(result) {
+            console.log(result);
+            Swal.fire({
+              icon: 'success',
+              title: 'Success!',
+              text: 'Task has been started!',
+            })
+            $.getJSON(strhost + '/tasks', function(data) {
+                // data = JSON.parse(data);
+                  console.log(data);
+                  if(!data){
+                    swal.fire ({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'No Tasks Found',
+                    })
+                  } else {
+                    $('#tblTask tbody').empty();
+                    $.each(data, function(index, value) {
+                        $('#tblTask tbody').append('<tr><td>' + value.TaskID + '</td><td>' + value.Title + '</td><td>' + value.ProdType + '</td><td>' + value.Description + '</td><td>' + value.FirstName + '</td><td>' + value.LastName + '</td><td>' + value.StartTime + '</td><td>' + value.Endtime + '</td><td>' + value.TotalMinutes + '</td></tr>');
+                    
+                    });
+                    };
+                  })
+          },
+          error: function(result) {
+            console.log(result);
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Task ID did not get started!',
+            })
+          }
+        })          
+
         }
         })
 
@@ -2326,8 +2477,8 @@
         let strCompleteTask = $('#txtCompleteTask').val();
         let lengthCompleteTask = $('#txtCompleteTask').val().length;
 
-        let strEndTime = $('#txtEndTime').val();
-        let lengthEndTime = $('#txtEndTime').val().length;
+        // let strEndTime = $('#txtEndTime').val();
+        // let lengthEndTime = $('#txtEndTime').val().length;
 
         let strMessage = ""
         let blnErrorFound = false;
@@ -2337,10 +2488,10 @@
           blnErrorFound = true;
         }
 
-        if(lengthEndTime < 1){
-          strMessage += "You must enter a End Time. ";
-          blnErrorFound = true;
-        }
+        // if(lengthEndTime < 1){
+        //   strMessage += "You must enter a End Time. ";
+        //   blnErrorFound = true;
+        // }
 
         if(blnErrorFound == true){
           Swal.fire({
@@ -2353,11 +2504,45 @@
         else{
         $('#modalCompleteTask').modal('hide')
           //ajax call to update task status to complete
-          Swal.fire({
-            icon: 'success',
-            title: 'Success!',
-            text: 'Task has been completed!',
-          })
+          $.ajax(strhost + '/endtask', {
+          type: 'PUT',
+          data: {
+            taskid: strCompleteTask
+          },
+          success: function(result) {
+            console.log(result);
+            Swal.fire({
+              icon: 'success',
+              title: 'Success!',
+              text: 'Task has been completed!',
+            })
+            $.getJSON(strhost + '/tasks', function(data) {
+                // data = JSON.parse(data);
+                  console.log(data);
+                  if(!data){
+                    swal.fire ({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'No Tasks Found',
+                    })
+                  } else {
+                    $('#tblTask tbody').empty();
+                    $.each(data, function(index, value) {
+                        $('#tblTask tbody').append('<tr><td>' + value.TaskID + '</td><td>' + value.Title + '</td><td>' + value.ProdType + '</td><td>' + value.Description + '</td><td>' + value.FirstName + '</td><td>' + value.LastName + '</td><td>' + value.StartTime + '</td><td>' + value.Endtime + '</td><td>' + value.TotalMinutes + '</td></tr>');
+                    
+                    });
+                    };
+                  })
+          },
+          error: function(result) {
+            console.log(result);
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Task ID did not get ended!',
+            })
+          }
+        })
         }
         })
       
@@ -3069,7 +3254,7 @@
             $("#divRegistration").hide();
           }
         else {
-          pass
+          return
         }
         $('#btnBackToDashboard').click(function(){
         $('#divProfile').slideToggle()
@@ -3096,6 +3281,27 @@
 
         let strMobileNumber = $('#txtMobileNumber').val();
         let intMobileNumberLength = $('#txtMobileNumber').val().length;
+
+        let strFarmName = $('#txtFarmName').val();
+        let intFarmNameLength = $('#txtFarmName').val().length;
+
+        let strStreetAddress1 = $('#txtStreetAddress1').val();
+        let intStreetAddress1Length = $('#txtStreetAddress1').val().length;
+
+        let strStreetAddress2 = $('#txtStreetAddress2').val();
+        let intStreetAddress2Length = $('#txtStreetAddress2').val().length;
+
+        let strCity = $('#txtCity').val();
+        let intCityLength = $('#txtCity').val().length;
+
+        let strState = $('#txtState').val();
+        let intStateLength = $('#txtState').val().length;
+
+        let strZipCode = $('#txtZipCode').val();
+        let intZipCodeLength = $('#txtZipCode').val().length;
+
+        let strFarmID = $('#txtRegistrationFarmID').val();
+        let intFarmIDLength = $('#txtRegistrationFarmID').val().length;
 
         var blnErrorFound1 = false;
         var strErrorMessage1 = '';
@@ -3133,6 +3339,36 @@
             strErrorMessage1 += "You must accept our terms and conditions, our privacy policy, and our cookie policy. ";
         }
 
+        if(intFarmIDLength < 1){
+            blnErrorFound1 = true;
+            strErrorMessage1 += "You must enter a Farm ID. ";
+        }
+
+        if(intFarmNameLength < 1){
+            blnErrorFound1 = true;
+            strErrorMessage1 += "You must enter a Farm Name. ";
+        }
+        if(intStreetAddress1Length < 1){
+            blnErrorFound1 = true;
+            strErrorMessage1 += "You must enter a Street Address. ";
+        }
+        if(intCityLength < 1){
+            blnErrorFound1 = true;
+            strErrorMessage1 += "You must enter a City. ";
+        }
+        if(intStateLength < 1){
+            blnErrorFound1 = true;
+            strErrorMessage1 += "You must enter a State. ";
+        }
+        if(intZipCodeLength < 1){
+            blnErrorFound1 = true;
+            strErrorMessage1 += "You must enter a Zip Code. ";
+        }
+        if($('#checkbox2').prop('checked') == false){
+            blnErrorFound1 = true;
+            strErrorMessage1 += "You must accept our terms and conditions, our privacy policy, and our cookie policy. ";
+        }
+
         if(blnErrorFound1 || pswError == true){
           let message = strErrorMessage1 += pswErrorMessage
           Swal.fire({
@@ -3140,9 +3376,11 @@
             title: 'Oops...',
             text: message,
             })  
-        } else {
+        } 
+        else {
 
           $.post(strhost + '/users', {
+            farmid: strFarmID,
             firstname: strFirst,
             lastname: strLast,
             email: strEmail,
@@ -3159,137 +3397,119 @@
                 title: 'Success',
                 text: 'Account Created',
                 })
-                $('#divRegistration').slideToggle()
-                $('#divDashboard').slideToggle()
-                $('#divNavBarStandard').slideToggle()
-                $('#divNavBarDashboard').slideToggle()
-                $('#txtFirstName').val('')
-                $('#txtLastName').val('')
-                $('#txtEmail').val('')
-                $('#txtPassword').val('')
-                $('#txtMobileNumber').val('')
-                $('#checkbox1').prop('checked', false)
-                $('#txtLoginPassword').val('')
-                $('#txtEmailAddress').val('')
             }
             else{
-              Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Account Not Created',
-                })  
+              return 
             }
           })
+          $.post(strhost + '/farms', {
+                    farmid: strFarmID,
+                    farmname: strFarmName,
+                    streetaddress1: strStreetAddress1,
+                    streetaddress2: strStreetAddress2,
+                    city: strCity,
+                    state: strState,
+                    zipcode: strZipCode
+                }, function(result){
+                    result = JSON.parse(result)
+                    console.log(result)
+                    if (result){
+                        swal.fire ({
+                            icon: 'success',
+                            title: 'Success',
+                            text: 'Farm Created'
+                        })
+                        $('#divRegistration').slideToggle()
+                        $('#divDashboard').slideToggle()
+                        $('#divNavBarStandard').slideToggle()
+                        $('#divNavBarDashboard').slideToggle()
+                        $('#txtFarmName').val('')
+                        $('#txtStreetAddress1').val('')
+                        $('#txtStreetAddress2').val('')
+                        $('#txtCity').val('')
+                        $('#txtState').val('')
+                        $('#txtZipCode').val('')
+                        $('#checkbox2').prop('checked', false)
+                    }
+                    else{
+                        return
+                    }
+                })
         }
       })
             
-    $('#btnCreateFarm').click(function(){    
+    // $('#btnCreateFarm').click(function(){    
 
-        let strFarmName = $('#txtFarmName').val();
-        let intFarmNameLength = $('#txtFarmName').val().length;
+    //     let strFarmName = $('#txtFarmName').val();
+    //     let intFarmNameLength = $('#txtFarmName').val().length;
 
-        let strStreetAddress1 = $('#txtStreetAddress1').val();
-        let intStreetAddress1Length = $('#txtStreetAddress1').val().length;
+    //     let strStreetAddress1 = $('#txtStreetAddress1').val();
+    //     let intStreetAddress1Length = $('#txtStreetAddress1').val().length;
 
-        let strStreetAddress2 = $('#txtStreetAddress2').val();
-        let intStreetAddress2Length = $('#txtStreetAddress2').val().length;
+    //     let strStreetAddress2 = $('#txtStreetAddress2').val();
+    //     let intStreetAddress2Length = $('#txtStreetAddress2').val().length;
 
-        let strCity = $('#txtCity').val();
-        let intCityLength = $('#txtCity').val().length;
+    //     let strCity = $('#txtCity').val();
+    //     let intCityLength = $('#txtCity').val().length;
 
-        let strState = $('#txtState').val();
-        let intStateLength = $('#txtState').val().length;
+    //     let strState = $('#txtState').val();
+    //     let intStateLength = $('#txtState').val().length;
 
-        let strZipCode = $('#txtZipCode').val();
-        let intZipCodeLength = $('#txtZipCode').val().length;
+    //     let strZipCode = $('#txtZipCode').val();
+    //     let intZipCodeLength = $('#txtZipCode').val().length;
 
 
-        var blnErrorFound2 = false;
-        var strErrorMessage2 = '';
+    //     var blnErrorFound1 = false;
+    //     var strErrorMessage1 = '';
 
-        if(intFarmNameLength < 1){
-            blnErrorFound2 = true;
-            strErrorMessage2 += "You must enter a Farm Name. ";
-        }
-        if(intStreetAddress1Length < 1){
-            blnErrorFound2 = true;
-            strErrorMessage2 += "You must enter a Street Address. ";
-        }
-        if(intCityLength < 1){
-            blnErrorFound2 = true;
-            strErrorMessage2 += "You must enter a City. ";
-        }
-        if(intStateLength < 1){
-            blnErrorFound2 = true;
-            strErrorMessage2 += "You must enter a State. ";
-        }
-        if(intZipCodeLength < 1){
-            blnErrorFound2 = true;
-            strErrorMessage2 += "You must enter a Zip Code. ";
-        }
-        if($('#checkbox2').prop('checked') == false){
-            blnErrorFound2 = true;
-            strErrorMessage2 += "You must accept our terms and conditions, our privacy policy, and our cookie policy. ";
-        }
+    //     if(intFarmNameLength < 1){
+    //         blnErrorFound1 = true;
+    //         strErrorMessage1 += "You must enter a Farm Name. ";
+    //     }
+    //     if(intStreetAddress1Length < 1){
+    //         blnErrorFound1 = true;
+    //         strErrorMessage1 += "You must enter a Street Address. ";
+    //     }
+    //     if(intCityLength < 1){
+    //         blnErrorFound1 = true;
+    //         strErrorMessage1 += "You must enter a City. ";
+    //     }
+    //     if(intStateLength < 1){
+    //         blnErrorFound1 = true;
+    //         strErrorMessage1 += "You must enter a State. ";
+    //     }
+    //     if(intZipCodeLength < 1){
+    //         blnErrorFound1 = true;
+    //         strErrorMessage1 += "You must enter a Zip Code. ";
+    //     }
+    //     if($('#checkbox2').prop('checked') == false){
+    //         blnErrorFound1 = true;
+    //         strErrorMessage1 += "You must accept our terms and conditions, our privacy policy, and our cookie policy. ";
+    //     }
 
-        if(blnErrorFound2 == true){
-           swal.fire ({
-                icon: 'Error',
-                title: 'Error',
-                text: strErrorMessage2
-            })
-        } else {
-            // $('#divRegistration').slideToggle()
-            // $('#divDashboard').slideToggle()
-            // $('#divNavBarStandard').slideToggle()
-            // $('#divNavBarDashboard').slideToggle()
-            // $('#txtFarmName').val('')
-            // $('#txtStreetAddress1').val('')
-            // $('#txtStreetAddress2').val('')
-            // $('#txtCity').val('')
-            // $('#txtState').val('')
-            // $('#txtZipCode').val('')
-            // $('#checkbox2').prop('checked', false)
+    //     if(blnErrorFound2 == true){
+    //        swal.fire ({
+    //             icon: 'Error',
+    //             title: 'Error',
+    //             text: strErrorMessage2
+    //         })
+    //     } else {
+    //         // $('#divRegistration').slideToggle()
+    //         // $('#divDashboard').slideToggle()
+    //         // $('#divNavBarStandard').slideToggle()
+    //         // $('#divNavBarDashboard').slideToggle()
+    //         // $('#txtFarmName').val('')
+    //         // $('#txtStreetAddress1').val('')
+    //         // $('#txtStreetAddress2').val('')
+    //         // $('#txtCity').val('')
+    //         // $('#txtState').val('')
+    //         // $('#txtZipCode').val('')
+    //         // $('#checkbox2').prop('checked', false)
 
-            $.post(strhost + '/farms', {
-                farmname: strFarmName,
-                streetaddress1: strStreetAddress1,
-                streetaddress2: strStreetAddress2,
-                city: strCity,
-                state: strState,
-                zipcode: strZipCode
-            }, function(result){
-                result = JSON.parse(result)
-                console.log(result)
-                if (result){
-                    swal.fire ({
-                        icon: 'Success',
-                        title: 'Success',
-                        text: 'Farm Created'
-                    })
-                    $('#divRegistration').slideToggle()
-                    $('#divDashboard').slideToggle()
-                    $('#divNavBarStandard').slideToggle()
-                    $('#divNavBarDashboard').slideToggle()
-                    $('#txtFarmName').val('')
-                    $('#txtStreetAddress1').val('')
-                    $('#txtStreetAddress2').val('')
-                    $('#txtCity').val('')
-                    $('#txtState').val('')
-                    $('#txtZipCode').val('')
-                    $('#checkbox2').prop('checked', false)
-                }
-                else{
-                    swal.fire ({
-                        icon: 'Error',
-                        title: 'Error',
-                        text: 'Farm Not Created'
-                    })
-                }
-            })
-        }
+           
+    //     }
 
-    })
+    // })
   </script> 
   
 </body>
