@@ -319,11 +319,16 @@ app.post("/products", (req,res,next) => {
     let strHarvestQuantity = req.query.harvestquantity || req.body.harvestquantity;
 
     if(strDateHarvested.length < 1){
-        strDatePlanted += 'N/A';
         strDateHarvested += 'Not Harvested/Butchered Yet';
         strHarvestWeight += '-';
         strHarvestQuantity += '0';
     }
+
+    if(strDatePlanted.length < 1){
+        strDatePlanted += 'N/A';
+    }
+
+    else {
     pool.query('INSERT INTO tblProducts (ProductID, FarmName, ProdType, FixedCost, DatePlanted, DateHarvested, HarvestWeight, Quantity) values (?,?,?,?,?,?,?,?)',
     [strProductID, strProductFarmName, strProductType, strFixedCost, strDatePlanted, strDateHarvested, strHarvestWeight, strHarvestQuantity], function(error, results){
             if(!error){
@@ -334,7 +339,7 @@ app.post("/products", (req,res,next) => {
                 res.status(400).send(JSON.stringify(objMessage));
             }
         })
-    
+    }
 
 })
 
