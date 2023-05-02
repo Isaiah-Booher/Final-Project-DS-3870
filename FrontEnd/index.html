@@ -393,22 +393,22 @@
                             <div class="p-4">
                               <h4 class="card-title">Your User Information</h4>
                               <div class="">
-                                <div><label>First Name: </label></div>
-                                <div><label>Last Name: </label></div>
-                                <div><label>User Type: </label></div>
-                                <div><label>Email: </label></div>
-                                <div><label>Mobile Number: </label></div>
+                                <div><label>First Name: Admin</label></div>
+                                <div><label>Last Name: Account</label></div>
+                                <div><label>User Type: Administrator</label></div>
+                                <div><label>Email: admin@email.com</label></div>
+                                <div><label>Mobile Number: (931) 261-1234 </label></div>
                               </div>
                             </div>
                             <div class="p-4">
                               <h4 class="card-title">Your Farm Information</h4>
                               <div>
-                                <div><label>Farm Name: </label></div>
-                                <div><label>Street Address 1: </label></div>
+                                <div><label>Farm Name: Cloverdale Ranch</label></div>
+                                <div><label>Street Address 1: 123 East St</label></div>
                                 <div><label>Street Address 2: </label></div>
-                                <div><label>City: </label></div>
-                                <div><label>State: </label></div>
-                                <div><label>Zip: </label></div>
+                                <div><label>City: Cookeville</label></div>
+                                <div><label>State: TN</label></div>
+                                <div><label>Zip: 12345</label></div>
                               </div>    
                             </div>
                           </div>
@@ -1333,15 +1333,15 @@
                               <div class="card">
                                 <div class="card-body">
                                   <h3 class="card-title">Total amount of products</h3>
-                                  <p class="card-text" id="revenue">-</p>
+                                  <p class="card-text" id="revenue">1,105</p>
                                 </div>
                               </div>
                             </div>
                             <div class="col-md-4">
                               <div class="card">
                                 <div class="card-body">
-                                  <h3 class="card-title">Cost per item produced</h3>
-                                  <p class="card-text" id="expenses">-</p>
+                                  <h3 class="card-title">Average Cost per item produced</h3>
+                                  <p class="card-text" id="expenses">$861.95</p>
                                 </div>
                               </div>
                             </div>
@@ -1349,13 +1349,12 @@
                               <div class="card">
                                 <div class="card-body">
                                   <h3 class="card-title">Total expenses</h3>
-                                  <p class="card-text" id="profit">-</p>
+                                  <p class="card-text" id="profit">$4,309.76</p>
                                 </div>
                               </div>
                             </div>
                           </div>
                         </section>
-
                         <div class="input-group mb-4 mt-4">
                           <input type="text" class="form-control" id="advanced-search-input" placeholder="Search by Product Type" />
                           <button class="btn btn-primary" id="advanced-search-button" type="button">
@@ -1365,24 +1364,100 @@
                         
                         <!-- Transactions -->
                         <section id="transactions" class="mt-3">
-                          <h2>Transactions</h2>
-                          <table class="table table-responsive" >
-                            <thead>
-                              <tr>
-                                <th>Farm</th>
-                                <th>Product Type</th>
-                                <th>Quantity</th>
-                                <th>Fixed Costs</th>
-                                <th>Employee ID</th>
-                                <th>Pay Rate</th>
-                                <th>Labor Hours</th>
-                                <th>Date</th>
-                                <th>Total</th> <!--(Labor Hours * Pay Rate) + (Fixed Costs * Quantity)-->
-                              </tr>
-                            </thead>
-                            <tbody id="transaction-table-body">
-                            </tbody>
-                          </table>
+                          <h2>Details</h2>
+                          <div class="table-responsive">
+
+                            <table class="table table-responsive" >
+                              <thead>
+                                <tr>
+                                  <th>Farm</th>
+                                  <th>Product</th>
+                                  <th>Quantity</th>
+                                  <th>Employee ID</th>
+                                  <th>PayRate/hr</th>
+                                  <th>Labor Hours</th>
+                                  <th>Date</th>
+                                  <th>Emp Gross Amt</th>
+                                  <th>Tax (10%)</th>
+                                  <th>Labor</th>
+                                  <th>Fixed Costs</th>
+                                  <th>Total</th> <!--(Labor Hours * Pay Rate) + (Fixed Costs * Quantity)-->
+                                </tr>
+                              </thead>
+                              <tbody id="transaction-table-body">
+                                <tr>
+                                  <td>Cloverdale Ranch</td>
+                                  <td>Corn</td>
+                                  <td>175</td>
+                                  <td>1</td>
+                                  <td>$19.00</td>
+                                  <td>40</td>
+                                  <td>2023-05-02</td>
+                                  <td>$760.00</td>
+                                  <td>$76.00</td>
+                                  <td>$684.00</td>
+                                  <td>$150.00</td>
+                                  <td>$834.00</td>
+                                </tr>
+                                <tr>
+                                  <td>Cloverdale Ranch</td>
+                                  <td>Lettuce</td>
+                                  <td>60</td>
+                                  <td>2</td>
+                                  <td>$16.34</td>
+                                  <td>40</td>
+                                  <td>2023-05-02</td>
+                                  <td>$653.60</td>
+                                  <td>$65.36</td>
+                                  <td>$588.24</td>
+                                  <td>$100.00</td>
+                                  <td>$688.27</td>
+                                </tr>
+                                <tr>
+                                  <td>Cloverdale Ranch</td>
+                                  <td>Tomatoes</td>
+                                  <td>300</td>
+                                  <td>3</td>
+                                  <td>$17.91</td>
+                                  <td>40</td>
+                                  <td>2023-05-02</td>
+                                  <td>$716.40</td>
+                                  <td>$71.64</td>
+                                  <td>$644.76</td>
+                                  <td>$280.00</td>
+                                  <td>$924.76</td>
+                                </tr>
+                                <tr>
+                                  <td>Cloverdale Ranch</td>
+                                  <td>Potatoes</td>
+                                  <td>450</td>
+                                  <td>4</td>
+                                  <td>$21.30</td>
+                                  <td>40</td>
+                                  <td>2023-05-02</td>
+                                  <td>$852.00</td>
+                                  <td>$85.20</td>
+                                  <td>$766.80</td>
+                                  <td>$350.00</td>
+                                  <td>$1116.80</td>
+                                </tr>
+                                <tr>
+                                  <td>Cloverdale Ranch</td>
+                                  <td>Eggs</td>
+                                  <td>120</td>
+                                  <td>5</td>
+                                  <td>$16.61</td>
+                                  <td>40</td>
+                                  <td>2023-05-02</td>
+                                  <td>$664.40</td>
+                                  <td>$66.40</td>
+                                  <td>$597.96</td>
+                                  <td>$148.00</td>
+                                  <td>$745.96</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
                         </section>
                       </div>
                     </div>
